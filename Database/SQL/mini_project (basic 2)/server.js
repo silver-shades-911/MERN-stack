@@ -117,7 +117,7 @@ app.get("/users/new", (req, res) => {
   res.render("newUser.ejs");
 });
 
-// POSt: /users/new
+// POST: /users/new
 
 app.post("/users/new", (req, res) => {
   let { username, email, password } = req.body;
