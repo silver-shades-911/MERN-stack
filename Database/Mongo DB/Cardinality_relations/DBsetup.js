@@ -1,5 +1,4 @@
-// ######### CARDINALITY MONGODB #############
-// ######### ONE TO MANY Different Approchase ###############
+// --------- CARDINALITY RELATIONSHIPS MONGODB --------
 
 // getting-started.js
 const mongoose = require("mongoose");

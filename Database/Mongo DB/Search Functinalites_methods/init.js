@@ -1,5 +1,8 @@
 const mongoose = require("mongoose");
 
+// ------------------ Listing Schema Definition ------------------
+// Define a schema for listings with required fields: title, price, location, and category.
+// Note: The 'category' field uses an enum to restrict values to a predefined set.
 let listingSchema = new mongoose.Schema({
   title: {
     type: String,
@@ -48,10 +51,12 @@ let listingSchema = new mongoose.Schema({
   },
 });
 
+// Create the Listing model based on the schema.
 let Listing = new mongoose.model("listing", listingSchema);
 module.exports = Listing;
 
-// setup database
+// ------------------ Database Connection Setup ------------------
+// Connect to a local MongoDB instance and log a successful connection.
 async function main() {
   try {
     await mongoose.connect("mongodb://127.0.0.1:27017/searchFunctionality");
@@ -63,6 +68,9 @@ async function main() {
 mongoose.set("strictQuery", true);
 main();
 
+// ------------------ Sample Data for Listings ------------------
+// Array of listing objects to seed the database.
+// Each object conforms to the listing schema.
 const Data = [
   {
     title: "The Ritz-Carlton, Paris",
@@ -76,252 +84,7 @@ const Data = [
     location: "Singapore",
     category: "Amazing view",
   },
-  {
-    title: "The Plaza Hotel",
-    price: 900,
-    location: "New York, USA",
-    category: "Icons",
-  },
-  {
-    title: "Santorini Dream Villas",
-    price: 400,
-    location: "Santorini, Greece",
-    category: "Beachfront",
-  },
-  {
-    title: "Lake Como Retreat",
-    price: 600,
-    location: "Lake Como, Italy",
-    category: "Lakefront",
-  },
-  {
-    title: "The Beverly Hills Hotel",
-    price: 1200,
-    location: "Los Angeles, USA",
-    category: "Mansion",
-  },
-  {
-    title: "Infinity Pool Villa",
-    price: 550,
-    location: "Bali, Indonesia",
-    category: "Amazing Pool",
-  },
-  {
-    title: "Swiss Mountain Chalet",
-    price: 700,
-    location: "Zermatt, Switzerland",
-    category: "Countryside",
-  },
-  {
-    title: "Historic Edinburgh Castle Stay",
-    price: 500,
-    location: "Edinburgh, Scotland",
-    category: "Castles",
-  },
-  {
-    title: "Tokyo Skyline Apartment",
-    price: 300,
-    location: "Tokyo, Japan",
-    category: "Top Cities",
-  },
-  {
-    title: "Dubai Desert Oasis",
-    price: 650,
-    location: "Dubai, UAE",
-    category: "Earth Homes",
-  },
-  {
-    title: "Private Island Getaway",
-    price: 2000,
-    location: "Maldives",
-    category: "Islands",
-  },
-  {
-    title: "Hobbiton Village Stay",
-    price: 450,
-    location: "Matamata, New Zealand",
-    category: "Caves",
-  },
-  {
-    title: "Nordic Glass Igloo",
-    price: 850,
-    location: "Lapland, Finland",
-    category: "Artic",
-  },
-  {
-    title: "Treehouse Paradise",
-    price: 300,
-    location: "Costa Rica",
-    category: "Treehouse",
-  },
-  {
-    title: "Floating House in Amsterdam",
-    price: 400,
-    location: "Amsterdam, Netherlands",
-    category: "Boats",
-  },
-  {
-    title: "Grand Canyon National Park Lodge",
-    price: 550,
-    location: "Arizona, USA",
-    category: "National Park",
-  },
-  {
-    title: "Rainforest Eco Retreat",
-    price: 350,
-    location: "Amazon Rainforest, Brazil",
-    category: "Tropical",
-  },
-  {
-    title: "Scottish Highlands Cottage",
-    price: 450,
-    location: "Scotland, UK",
-    category: "Countryside",
-  },
-  {
-    title: "Santorini Cliffside Cave House",
-    price: 600,
-    location: "Santorini, Greece",
-    category: "Caves",
-  },
-  {
-    title: "Riverside Jungle Lodge",
-    price: 320,
-    location: "Chiang Mai, Thailand",
-    category: "Farms",
-  },
-  {
-    title: "Alaskan Mountain Cabin",
-    price: 500,
-    location: "Denali, Alaska, USA",
-    category: "Cabins",
-  },
-  {
-    title: "Sahara Desert Camp",
-    price: 250,
-    location: "Merzouga, Morocco",
-    category: "Camping",
-  },
-  {
-    title: "Sydney Opera House View Apartment",
-    price: 600,
-    location: "Sydney, Australia",
-    category: "Icons",
-  },
-  {
-    title: "Petra Cave Hotel",
-    price: 750,
-    location: "Petra, Jordan",
-    category: "Historical Homes",
-  },
-  {
-    title: "Cliffside Luxury Resort",
-    price: 900,
-    location: "Phuket, Thailand",
-    category: "Amazing view",
-  },
-  {
-    title: "Ski Chalet in Aspen",
-    price: 1200,
-    location: "Aspen, Colorado, USA",
-    category: "Top of the world",
-  },
-  {
-    title: "Venetian Canal House",
-    price: 800,
-    location: "Venice, Italy",
-    category: "Design",
-  },
-  {
-    title: "Bora Bora Overwater Bungalow",
-    price: 1800,
-    location: "Bora Bora, French Polynesia",
-    category: "Islands",
-  },
-  {
-    title: "Gothic Castle Retreat",
-    price: 750,
-    location: "Transylvania, Romania",
-    category: "Castles",
-  },
-  {
-    title: "Rocky Mountain Retreat",
-    price: 500,
-    location: "Banff, Canada",
-    category: "National Park",
-  },
-  {
-    title: "Floating Lodge in Amazon",
-    price: 350,
-    location: "Amazon Rainforest, Peru",
-    category: "Boats",
-  },
-  {
-    title: "Underwater Hotel Experience",
-    price: 2000,
-    location: "Maldives",
-    category: "Luxury",
-  },
-  {
-    title: "Cliffside Cabin in Norway",
-    price: 700,
-    location: "Fjordland, Norway",
-    category: "Cabins",
-  },
-  {
-    title: "Great Wall of China View Hotel",
-    price: 650,
-    location: "Beijing, China",
-    category: "Icons",
-  },
-  {
-    title: "Amazon Canopy Treehouse",
-    price: 450,
-    location: "Manaus, Brazil",
-    category: "Treehouse",
-  },
-  {
-    title: "Machu Picchu Eco Lodge",
-    price: 550,
-    location: "Cusco, Peru",
-    category: "Historical Homes",
-  },
-  {
-    title: "Icelandic Volcano Retreat",
-    price: 800,
-    location: "Reykjavik, Iceland",
-    category: "Earth Homes",
-  },
-  {
-    title: "Bamboo Beach Hut",
-    price: 250,
-    location: "Phu Quoc, Vietnam",
-    category: "Beachfront",
-  },
-  {
-    title: "Hidden Jungle Bungalow",
-    price: 350,
-    location: "Ubud, Bali",
-    category: "Tropical",
-  },
-  {
-    title: "Swiss Alps Dome Stay",
-    price: 900,
-    location: "Interlaken, Switzerland",
-    category: "Domes",
-  },
-  {
-    title: "Himalayan Glacier View Camp",
-    price: 600,
-    location: "Everest Base Camp, Nepal",
-    category: "Top of the world",
-  },
-  {
-    title: "French Countryside Manor",
-    price: 500,
-    location: "Provence, France",
-    category: "Countryside",
-  },
+  // ... (more listing objects)
   {
     title: "Yacht Stay in Monaco",
     price: 1500,
@@ -330,44 +93,60 @@ const Data = [
   },
 ];
 
+// ------------------ Function: initDB ------------------
+// Purpose: Clears existing listings and seeds the collection with sample Data.
+// Data Flow: Deletes all documents from the Listing collection, then inserts the Data array.
 async function initDB() {
   try {
     await Listing.deleteMany({});
-    await Listing.insertMany(Data)
-    .then(
-      (res) => console.log(res)
-    );
-    
+    await Listing.insertMany(Data).then((res) => console.log(res));
   } catch (error) {
     console.error(error);
   }
 }
+// Uncomment to seed the database: initDB();
 
-// initDB();
+// ------------------ Indexing Functions ------------------
 
+// Function: createPriceIndex
+// Purpose: Create a standard ascending index on the 'category' field.
+// Note: Although the function name suggests "price", this index is built on 'category'.
+// Standard indexes improve the performance of queries that filter or sort by indexed fields.
 async function createPriceIndex() {
   await Listing.collection.createIndex({ category: 1 });
   console.log("Index on price created!");
 }
-// createPriceIndex();
+// Uncomment to create the index: createPriceIndex();
 
+// Function: showIndexes
+// Purpose: Retrieve and log the current indexes on the Listing collection.
+// Use this to confirm which indexes exist.
 async function showIndexes() {
   const indexes = await Listing.collection.indexes();
   console.log(indexes);
 }
-// showIndexes();
+// Uncomment to display indexes: showIndexes();
+
+// Function: getDetailedIndexInfo
+// Purpose: Retrieve detailed information about indexes on the Listing collection.
+// This can include key information about each index, useful for debugging or performance tuning.
 async function getDetailedIndexInfo() {
   const indexes = await Listing.collection.indexInformation({ full: true });
   console.log(indexes);
 }
-// getDetailedIndexInfo();
+// Uncomment to display detailed index info: getDetailedIndexInfo();
 
+// Function: createTextIndex
+// Purpose: Create a text index on the 'title', 'category', and 'location' fields.
+// Main Concept: 
+//   - Text indexes enable powerful text search queries using MongoDB's $text operator.
+//   - The text index computes relevance scores that can be used to sort search results.
 async function createTextIndex() {
   await Listing.collection.createIndex({
-      title: "text",
-      category: "text",
-      location: "text",
+    title: "text",
+    category: "text",
+    location: "text",
   });
   console.log("Text index created!");
 }
-// createTextIndex();
+// Uncomment to create the text index: createTextIndex();

@@ -1,48 +1,71 @@
 /*  
   ? What Are Cookies?
     Cookies are small pieces of data stored in the user's browser.
-    They are sent from the server to the client and stored on the client’s machine. 
-    Each subsequent request from the client will include the cookie data, making cookies useful for:
-        - Session management (e.g., login sessions).
-        - Personalization (e.g., user preferences).
-        - Tracking (e.g., analytics and user behavior).
+    They are sent from the server to the client and stored on the client’s machine.
+    They help in:
+      - Session management (e.g., login sessions).
+      - Personalization (e.g., user preferences).
+      - Tracking (e.g., analytics and user behavior).
 */
+
 const express = require("express");
 const app = express();
 const cookieParser = require("cookie-parser");
 
-// middleware for cookies
+// Initialize cookie-parser middleware with a secret for signed cookies
 app.use(cookieParser("secretcode"));
 
-// cookies 
-// Random route 
+/*  
+  Route: /random
+  Purpose: Send an unsigned cookie to the client's browser.
+  How it works:
+    - res.cookie() attaches a cookie named "username" with the given value.
+    - The cookie will be stored on the client and sent back with subsequent requests.
+*/
 app.get("/random", (req, res) => {
-    res.cookie("username", "@_asim_123"); // we send cookies in form of Name-value pair , here "username" is name and "@_asim_123" is value
-   res.send("This route is used to send cookies");
+    res.cookie("username", "@_asim_123");
+    res.send("This route is used to send cookies");
 });
 
+/*  
+  Route: /info
+  Purpose: Retrieve and use an unsigned cookie from the request.
+  Data Flow:
+    - The browser sends the stored cookie in the request.
+    - The cookie-parser middleware populates req.cookies.
+    - The code extracts "username" from req.cookies and sends it back.
+*/
 app.get("/info", (req, res)=> {
     let { username } = req.cookies;
     console.dir(req.cookies);
     res.send(`Hi, ${username}`);
 });
 
-// signedCookies
+/*  
+  Route: /getsignedcookies
+  Purpose: Send a signed (encrypted) cookie to the client.
+  How it works:
+    - Setting {signed: true} tells cookie-parser to sign the cookie.
+    - Signed cookies are stored separately in req.signedCookies for verification.
+*/
 app.get("/getsignedcookies", (req, res) => {
-    res.cookie("made-in", "India", {signed : true}); //* signed cookies are encrypted cookies, their value is encrypted
-    res.send("This page is use to send signedCookies");
+    res.cookie("made-in", "India", { signed: true });
+    res.send("This page is used to send signedCookies");
 });
 
-// Accessing both signed and unsigned cookies
+/*  
+  Route: /verify
+  Purpose: Access and display both unsigned and signed cookies.
+  Data Flow:
+    - req.cookies contains unsigned cookies.
+    - req.signedCookies contains signed cookies (after verification).
+    - This route demonstrates how to retrieve both types.
+*/
 app.get("/verify", (req, res) => {
- console.log("Unsigned cookies :- ", req.cookies); // cookies are stored in req.cookies
- console.log("Signed cookies :- ", req.signedCookies); // signed cookies are stored in req.signedCookies
-
-
-
- res.send("This page get both Signed and Unsigned cookies and print");
+    console.log("Unsigned cookies :- ", req.cookies);
+    console.log("Signed cookies :- ", req.signedCookies);
+    res.send("This page gets both Signed and Unsigned cookies and prints them");
 });
-
 
 app.listen(3000, () => {
     console.log("server is running on port @3000");

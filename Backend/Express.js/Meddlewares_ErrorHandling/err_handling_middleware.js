@@ -2,36 +2,45 @@ const express = require("express");
 const app = express();
 const ExpressError = require("./ExpressError");
 
-// ============================= ERROR HNADLING =========================================
+// ============================= ERROR HANDLING =========================================
 
-// text route for generating error
-app.get("/err",(req, res) => {
+// Route to intentionally generate an error.
+// In this route, a reference error is triggered (undefined variable),
+// which will be caught by the error handling middleware.
+app.get("/err", (req, res) => {
+    // This will cause a ReferenceError because "abds" is not defined.
     abcd = abds;
-  });
+});
 
-  // CUSTOME ERROR HANDLER (we handle error by our side)
+// --------------------- Custom Error Handling Middleware ---------------------
+
+// First error-handling middleware.
+// Its purpose is to catch errors from earlier middleware/routes and pass them along.
+// By calling next(err), it forwards the error to the next error-handling middleware.
 app.use((err, req, res, next) => {
     console.log("-------------------ERROR 1 ------------------");
-    // err in next is used to send err to next error-handling-middleware 
+    // Pass the error to the next error-handling middleware.
     next(err);
-  });
+});
   
-  app.use((err, req, res, next) => {
+// Second error-handling middleware.
+// This middleware formats the error response for the client.
+// It uses destructuring to extract status and message from the error, with defaults if not provided.
+app.use((err, req, res, next) => {
     console.log("------------ERROR 2------------");
-    //  if their is no next error-handling-middleware it invoke build-in express error handler , u can use that also 
-    // next(err);
+    let { status = 500, message = "Some Error Occurred" } = err;
+    res.status(status).send(message);
+});
   
-    let { status = 500, message = "Some Error Ocurred" } = err;
-    res.status(status).send(message);  // this is basic error handling 
-  });
+// --------------------- Route with Custom Error Throwing ---------------------
 
- 
-  // small activity  ,here we decide what status code ,what massage we send 
-  app.get("/admin", (req, res) => {
-    throw new ExpressError (403, "Access to Admin is Forbidden");  // best way for custome error handling by making own error class
-  });
+// This route demonstrates throwing a custom error using a custom error class (ExpressError).
+// When this error is thrown, it is caught by the error handling middleware above.
+app.get("/admin", (req, res) => {
+    throw new ExpressError(403, "Access to Admin is Forbidden");
+});
   
-
-  app.listen(8080, (req, res) => {
+// Start the server on port 8080.
+app.listen(8080, () => {
     console.log("server is running at port 8080");
-   });
+});
