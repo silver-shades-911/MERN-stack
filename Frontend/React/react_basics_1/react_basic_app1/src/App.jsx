@@ -1,9 +1,10 @@
 import "./App.css";
 import Title from "./Title.jsx"; // use for import single value from file and can rename also
-import { Description, Button } from "./Desc&Button.jsx"; // use for import multiple values from file
+import { Description, SimpleButton} from "./Desc&Button.jsx"; // use for import multiple values from file
 import ProductList from "./ProductList.jsx";
 import MessageBox from "./MessageBox.jsx";
 import ProductCardTray from "./ProductCardTray.jsx";
+import Button from "./Button.jsx";
 
 function App() {
   // Basics
@@ -11,7 +12,7 @@ function App() {
     <>
       <Title />
       <Description />
-      <Button />
+      <SimpleButton />
       <hr />
       <ProductList />
       <hr />
@@ -19,6 +20,9 @@ function App() {
       <hr />
        <h2>Blockbuster Deals on Accessories | Shop now</h2>
       <ProductCardTray/>
+      <hr />
+      <Button></Button>
+
     </>
   );
 }

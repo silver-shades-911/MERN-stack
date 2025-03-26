@@ -7,8 +7,16 @@ function ProductList() {
     b: "aluminum Frame",
     c: "plastic back",
   };
+  let ListStyle = {
+    width: "100%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent:"flex-start",
+    alignItems: "center"
+
+  }
   return (
-    <>
+    <div style={ListStyle}>
       <Product Title="iPhone with Array" Price="30000" features={option1} />
       {/* <Product Title="Macbook with Object" Price={90000} features={option2.a} /> */}
       <Product
@@ -17,7 +25,7 @@ function ProductList() {
         features={["Super Build quality", "Power Efficent", "Fashionable"]}
       />
       <Product />
-    </>
+    </div>
   );
 }
 

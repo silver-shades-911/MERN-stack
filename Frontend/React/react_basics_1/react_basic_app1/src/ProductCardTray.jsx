@@ -4,7 +4,7 @@ export default function ProductCardTray () {
     
     let Tray = {
         width: "100%",
-        height: "20rem",
+        height: "12rem",
         display: "flex",
         justifyContent: "space-evenly",
         alignItems: "center",
