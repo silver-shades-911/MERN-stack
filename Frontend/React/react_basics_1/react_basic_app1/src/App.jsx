@@ -3,6 +3,7 @@ import Title from "./Title.jsx"; // use for import single value from file and ca
 import { Description, Button } from "./Desc&Button.jsx"; // use for import multiple values from file
 import ProductList from "./ProductList.jsx";
 import MessageBox from "./MessageBox.jsx";
+import ProductCardTray from "./ProductCardTray.jsx";
 
 function App() {
   // Basics
@@ -15,6 +16,9 @@ function App() {
       <ProductList />
       <hr />
       <MessageBox />
+      <hr />
+       <h2>Blockbuster Deals on Accessories | Shop now</h2>
+      <ProductCardTray/>
     </>
   );
 }
