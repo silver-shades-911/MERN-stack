@@ -1,17 +1,23 @@
 import "./App.css";
 import Title from "./Title.jsx"; // use for import single value from file and can rename also
-import { Description, Button } from "./Desc&Button.jsx"; // use for import multiple values from file 
-import ProductList from "./assets/ProductList.jsx";
+import { Description, Button } from "./Desc&Button.jsx"; // use for import multiple values from file
+import ProductList from "./ProductList.jsx";
+import MessageBox from "./MessageBox.jsx";
 
 function App() {
-  return <>
-  <Title/>
-  <Description/>
-  <Button/>
-  <hr />
-  <ProductList/>
-  </>
-  }
+  // Basics
+  return (
+    <>
+      <Title />
+      <Description />
+      <Button />
+      <hr />
+      <ProductList />
+      <hr />
+      <MessageBox />
+    </>
+  );
+}
 
 export default App; // when we want to export single value in file and rename in other file to use
 
