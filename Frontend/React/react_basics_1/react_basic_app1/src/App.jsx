@@ -5,6 +5,8 @@ import ProductList from "./ProductList.jsx";
 import MessageBox from "./MessageBox.jsx";
 import ProductCardTray from "./ProductCardTray.jsx";
 import Button from "./Button.jsx";
+import FormWithEvent from "./event.jsx";
+
 
 function App() {
   // Basics
@@ -13,15 +15,27 @@ function App() {
       <Title />
       <Description />
       <SimpleButton />
+      <br />
       <hr />
+      <br />
       <ProductList />
+      <br />
       <hr />
+      <br />
       <MessageBox />
+      <br />
       <hr />
-       <h2>Blockbuster Deals on Accessories | Shop now</h2>
+      <br />
+      <h2>Blockbuster Deals on Accessories | Shop now</h2>
       <ProductCardTray/>
+      <br />
       <hr />
+      <br />
       <Button></Button>
+      <br />
+      <hr />
+      <br />
+      <FormWithEvent/>
 
     </>
   );
