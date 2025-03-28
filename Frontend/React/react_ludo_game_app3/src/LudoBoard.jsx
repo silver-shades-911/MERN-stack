@@ -1,6 +1,8 @@
 import { useState } from "react";
 
 export default function LudoBoard() {
+  //* OBJECT WITH STATES
+
   let [moves, setMoves] = useState({ red: 0, blue: 0, yellow: 0, green: 0 }); // We pass object with different keys with initial values
   // Here, moves object is create with initial values we pass
 
@@ -11,7 +13,7 @@ export default function LudoBoard() {
     setMoves(moves);
   }
 
-/*
+  /*
 *  Issue with working Object
 ?    Components is not re-rendering ?
       - Try to run code with Normal function passing new value to setMoves(moves)
@@ -29,21 +31,21 @@ export default function LudoBoard() {
 
 */
 
-//* Correct way to pass object in setState()
+  //* Correct way to pass object in setState()
 
-    // blue
-    function updateBlueMoves() {
-        console.log(`moves.blue = ${moves.blue}`);
+  // blue
+  function updateBlueMoves() {
+    console.log(`moves.blue = ${moves.blue}`);
 
-        setMoves((currMoves) => {
-        return {
-            ...currMoves,
-            blue: currMoves.blue + 1,
-        };
-        });
-    }
+    setMoves((currMoves) => {
+      return {
+        ...currMoves,
+        blue: currMoves.blue + 1,
+      };
+    });
+  }
 
-/*
+  /*
 
 ?   How useState recognize currMoves is refer to latest state of moves object ?
     - In  let [moves, setMoves] = useState({ red: 0, blue: 0, yellow: 0, green: 0 }); Initialize statement React expect the value is passing to useState() is the latest 
@@ -88,6 +90,17 @@ export default function LudoBoard() {
         ...currMoves,
         green: currMoves.green + 1,
       };
+    });
+  }
+
+  //*  ARRAY WITH STATES
+
+  let [arr, setArr] = useState(["No moves"]);
+
+  function addElementInArray() {
+    console.log(`Array -> ${arr}`);
+    setArr((currArr) => {
+      return [...currArr, "Element"];
     });
   }
 
@@ -143,6 +156,20 @@ export default function LudoBoard() {
       >
         <p style={{ fontWeight: "500" }}>Green Moves = {moves.green}</p>
         <button onClick={updateGreenMoves}>+1</button>
+      </div>
+
+
+      <div
+        style={{
+          height: "10rem",
+          width: "90vw",
+          border: "1px solid",
+          marginTop: "1rem",
+          backgroundColor: "whitesmoke",
+        }}
+      >
+        <p style={{ fontWeight: "500" }}> Array = {arr}</p>
+        <button onClick={addElementInArray}>Add Element</button>
       </div>
     </div>
   );
