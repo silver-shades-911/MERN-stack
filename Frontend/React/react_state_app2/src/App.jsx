@@ -1,6 +1,6 @@
 import './App.css'
 import Counter from './counter'
-
+import LikeButton from './LikeButton'
 
 
 function App() {
@@ -8,10 +8,16 @@ function App() {
     <>
       <h1>State in React</h1>
       <Counter/>
+      <br />
+      <hr />
+      <br />
+      <LikeButton/>
+      <br />
+      <br />
+      <hr />
     </>
   )
 }
 
 export default App
 
-// state, hooks, syntax - setCount passing update value logic
