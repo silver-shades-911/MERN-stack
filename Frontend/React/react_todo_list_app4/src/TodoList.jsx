@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 export default function TodoList() {
   // array static variable to store tasks
   let [todoArray, setTodoArray] = useState([
-    { task: "Sample task", id: uuidv4() },
+    { task: "Sample task", id: uuidv4(), done: false },
   ]);
 
   function handleAddTaskInTodoArray() {
@@ -15,6 +15,7 @@ export default function TodoList() {
         {
           task: newtask,
           id: uuidv4(),
+          done: false,
         },
       ];
     });
@@ -25,8 +26,8 @@ export default function TodoList() {
   let [newtask, setNewTask] = useState("");
 
   function handleNewTask(event) {
-    console.log("event.target ->", event.target);
-    console.log("event.target.value ->", event.target.value);
+    // console.log("event.target ->", event.target);
+    // console.log("event.target.value ->", event.target.value);
     setNewTask((newTask) => {
       newTask = event.target.value;
       return newTask;
@@ -44,6 +45,91 @@ export default function TodoList() {
     setTodoArray(newUpdatedArrayAfterDelete);
   }
 
+
+  // handleToUpperCase - Update all in array
+  function handleToUpperCase() {
+   let upperCaseNewArray = todoArray.map(
+    (todo) => {
+
+      // remember here we are updating todo Object then return to create new Array
+      // so spread operator -> id & need to mention key task: todo.task.toUpperCase(), Cannot directly update value
+      return {
+        ...todo,
+        task: todo.task.toUpperCase(),
+      };
+    }
+   );
+   console.log("upperCaseNewArray ->", upperCaseNewArray);
+   setTodoArray(upperCaseNewArray);
+  };
+
+
+   // handleUpperCaseElement
+     function handleUpperCaseElement(id) {
+      let newUpperCaseElementArray = todoArray.map(
+        (todo) => {
+          if(todo.id === id){
+            return {
+              ...todo,
+              task: todo.task.toUpperCase(),
+            };
+          }else{
+            return todo;
+          }
+        }
+      );
+      console.log("newUpperCaseElementArray ->", newUpperCaseElementArray);
+      setTodoArray(newUpperCaseElementArray);
+     };
+
+
+     // handleAllDone 
+     function handleAllDone() {
+      let newAllDoneArray = todoArray.map(
+        (todo) => {
+          return {
+            ...todo,
+            done: true,
+          };
+        }
+      );
+
+      setTodoArray(newAllDoneArray);
+     };
+
+     // DoneStyle
+    let DoneStyle = {
+      textDecorationLine: "line-through"
+    };
+
+
+    // handleDoneSingleTask
+
+    function handleDoneSingleTask(id) {
+      let newDoneSingleTaskArray = todoArray.map(
+        (todo) => {
+          if(todo.id == id && todo.done == false){
+            return {
+              ...todo,
+              done: true,
+            }
+          }
+          else if( todo.id == id && todo.done == true ){
+            return {
+              ...todo,
+              done: false,
+            }
+          }
+          else {
+            return todo;
+          };
+        }
+      );
+
+      setTodoArray(newDoneSingleTaskArray);
+    }
+
+
   return (
     <div>
       <h2>TODO-List APP</h2>
@@ -60,12 +146,25 @@ export default function TodoList() {
       <h3>Tasks</h3>
       <ul>
         {todoArray.map((todo) => (
-          <li key={todo.id}>
-            <span>{todo.task}</span> &nbsp; &nbsp; &nbsp;
+          <li key={todo.id} style={{margin: "1rem"}}
+          >
+            <span style = { todo.done == true ? DoneStyle : null }>{todo.task}</span>
+            &nbsp; &nbsp; &nbsp;
             <button onClick={() => handleDeleteTask(todo.id) }>Delete</button>
+            &nbsp; &nbsp; &nbsp;
+            <button onClick={() => handleUpperCaseElement(todo.id)}>Uppercase</button>
+            &nbsp; &nbsp; &nbsp;
+            <button onClick={() => handleDoneSingleTask(todo.id)}>Done</button>
+
           </li>
         ))}
       </ul>
+      <br />
+      <br />
+      <button onClick={handleToUpperCase}>Update All</button>
+      <br />
+      <br />
+      <button onClick={handleAllDone}>All Done</button>
     </div>
   );
 }
