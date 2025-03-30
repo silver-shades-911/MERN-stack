@@ -37,10 +37,8 @@ function Form() {
   }
 
   return (
-    <form action="#">
-      <h2>Form</h2>
-      <br />
-      <br />
+    <form action="#" style={{border: "1px solid black", padding: "2rem"}} onSubmit={handleFormSubmit}>
+      <h2>React Basic Form</h2>
       <label htmlFor="userName">Username:</label>
       <br />
       <input
@@ -77,7 +75,7 @@ function Form() {
       />
       <br />
       <br />
-      <button type="submit" onClick={handleFormSubmit}>
+      <button type="submit">
         Submit
       </button>
     </form>
@@ -91,6 +89,11 @@ export default Form;
    - Give same name in name attribute of each element as same as their respective key in state variable object 
      e.g.  <input type="text" name="userName" id="userName" style={inputStyle} onChange={handleFormInputs}/> here name="userName" same as its respective key { userName, ... } 
    - It help while updating state variable, due to similiar names give access to that key in state variable { }  
+
+   - We use this synatx to access Objects key & manipulate , When our key is variable , keys changes 
+    e.g.   [event.target.name]: event.target.value  (inside object)
+           currInput[event.target.name] = event.target.value  (outside object)
+
 
 *  FLOW
     
