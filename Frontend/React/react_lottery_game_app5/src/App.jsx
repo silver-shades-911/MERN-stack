@@ -6,7 +6,7 @@ function App() {
 
   // function to define winning condition & also we are passing this function as props to lower-hierarchy component (LotteryMachine)
   function winCondition(ticketArray) {
-    return digitSum(ticketArray) === 15;
+    return digitSum(ticketArray) >= 15;
   };
 
   return (
