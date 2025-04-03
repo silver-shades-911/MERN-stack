@@ -4,8 +4,10 @@ import Button from "@mui/material/Button";
 import { useState } from "react";
 import "./searchBar.css";
 
-const API_KEY = "a32ddbe080447813dad915e52f2556c8";
-const API_URL = "https://api.openweathermap.org/data/2.5/weather";
+const API_KEY = import.meta.env.VITE_API_KEY;
+const API_URL = import.meta.env.VITE_API_URL;
+console.log("API_URL:", API_URL);
+console.log("API_KEY:", API_KEY);
 
 
 export default function SearchBar({handleUpdateWeatherInfoProps}) {
@@ -22,9 +24,17 @@ export default function SearchBar({handleUpdateWeatherInfoProps}) {
   async function getWeatherInfo(city) {
     try {
 
-      let respone = await fetch(`${API_URL}?q=${city}&appid=${API_KEY}&units=metric`);
-      let jsonResponse = await respone.json();
+      let response = await fetch(`${API_URL}?q=${city}&appid=${API_KEY}&units=metric`);
       // console.log(jsonResponse);
+      let text = await response.text(); // Get raw response
+      console.log("Raw API response:", text); // Log response before parsing
+  
+      let jsonResponse = JSON.parse(text); // Parse JSON if valid
+      console.log("Parsed JSON:", jsonResponse);
+  
+      if (!jsonResponse || jsonResponse.cod !== 200) {
+        throw new Error(jsonResponse.message || "Invalid response from API");
+      }
       let weatherInfo = {
           name: jsonResponse.name,
           feels_like: jsonResponse.main.feels_like,
