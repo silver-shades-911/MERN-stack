@@ -1,0 +1,52 @@
+
+.weatherInfoCard {
+    position: relative;
+    height: 85%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.poster {
+    height: 10rem;
+}
+
+.temp {
+    font-size: 3rem;
+}
+
+
+.rowOne {
+    width: 95%;
+    height: 20%;
+    background-color: #A2D5F2;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 1rem;
+    border-radius: 1rem;
+
+}
+
+.rowTwo {
+    width: 95%;
+    height: 20%;
+    background-color: #FFEE93;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 0.5rem;
+    border-radius: 1rem;
+}
+
+.units {
+    width: 6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,0 +1,63 @@
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    /* background-color: aquamarine; */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-family: "Roboto";
+}
+
+#weatherApp {
+    position: relative;
+    height: 40rem;
+    width: 35rem;
+    background-color: #F5F5F5;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border-radius: 12px;
+}
+
+.navbar {
+    position: relative;
+    width: 100%;
+    height: 11%;
+    background-color: #2C3E50;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 12px;
+    color: white;
+}
+
+.logo {
+    height: 2.7rem;
+    border-radius: 1rem;
+    margin-left: 0.9rem;
+}
+
+.brandName {
+    font-weight: 500;
+    font-size: larger;
+    margin-left: 0.5rem;
+}
+
+.mainContainer {
+ width: 100%;
+ height: 89%;
+ display: flex;
+ flex-direction: column;
+ justify-content: flex-start;
+ 
+}
