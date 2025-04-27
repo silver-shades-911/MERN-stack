@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-function Navbar({brand="TextUtils", navOption="About Us"}) {
+function Navbar({ brand = "TextUtils", navOption = "About Us" }) {
   return (
     <nav className="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
       <div className="container-fluid">
@@ -26,11 +26,12 @@ function Navbar({brand="TextUtils", navOption="About Us"}) {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href='/'>
+              <a className="nav-link" href="/">
                 {navOption}
               </a>
             </li>
           </ul>
+
           <form className="d-flex" role="search">
             <input
               className="form-control me-2"
@@ -51,10 +52,8 @@ function Navbar({brand="TextUtils", navOption="About Us"}) {
 // This synatx is for type checking  -- In Begineer level
 // In advance level --> we use TypeScript that handle Type checking
 Navbar.propTypes = {
-
   brand: PropTypes.string,
   navOption: PropTypes.string,
-
-}
+};
 
 export default Navbar;
