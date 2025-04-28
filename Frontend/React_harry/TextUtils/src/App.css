@@ -7,16 +7,31 @@
   justify-content: center;
   align-items: center;
   margin-left: 1rem;
+  width: 12rem;
+  height: 2rem;
+  border-radius: 10px;
+  margin-right: 2rem;
 }
 
 .form-check-input:checked {
-    border-color: #000000;
-    background-color: rgb(0, 0, 0);
+  border-color: #ffffff;
+  background-color: rgb(27, 113, 167);
 }
 
 .form-check-input {
-    --bs-form-check-bg: #4a5561;
-    background-color: #ffffff;
-    border: var(--bs-border-width) solid #293e53;
+  --bs-form-check-bg: #4a5561;
+  background-color: #ffffff;
+  border: var(--bs-border-width) solid #293e53;
+}
 
+.accordion {
+  height: 21rem;
+}
+
+.container {
+  height: 30rem;
+}
+
+.accordion-button::after {
+  background-color: white;
 }
