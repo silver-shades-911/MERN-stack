@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-export default function TextInputForm({ heading }) {
-  let [text, setText] = useState("Enter text here");
+export default function TextInputForm({ heading, darkMode }) {
+  let [text, setText] = useState("");
 
   function handleTextInput(event) {
     setText(event.target.value);
@@ -18,7 +18,7 @@ export default function TextInputForm({ heading }) {
   }
 
   function handleClearText() {
-    setText("Enter text here");
+    setText("");
   }
 
   function handleTextEncrypt() {
@@ -26,7 +26,7 @@ export default function TextInputForm({ heading }) {
     for (let i = 0; i < text.length; i++) {
       encryptedText += String.fromCharCode(text.charCodeAt(i) + 1);
 
-/*
+      /*
 * Logic  Explanation
     text = "apple"
     text.charCodeAt(i) this code ---- generate UTF-16 code point --> e.g. 19 (original)
@@ -45,18 +45,40 @@ export default function TextInputForm({ heading }) {
     setText(decryptedText);
   }
 
+  /*
+  * Explanation of Extra space remover
+
+    text.split(/[ ]+/) does splitting:
+
+    split is a string method that divides the string into parts (called an array).
+
+    The argument /[ ]+/ is a regular expression:
+
+    [ ] → a space character
+
+    + → one or more spaces
+
+    So, wherever one or more spaces are found, the string is split into separate words.
+
+  */
+  function handleExtraSpaces() {
+    let newText = text.split(/[ ]+/);
+    setText(newText.join(" "));
+  }
+
   return (
     <>
       <h2>{heading}</h2>
       <form>
         <div className="mb-3">
-          <label htmlFor="textArea" className="form-label">
-            Textarea :
-          </label>
           <textarea
             className="form-control"
+            style={{
+              backgroundColor: darkMode === true ? "#E2E2B6" : "white",
+            }}
             value={text}
             onChange={handleTextInput}
+            placeholder="Enter text here"
             id="textArea"
             rows="8"
           ></textarea>
@@ -70,7 +92,7 @@ export default function TextInputForm({ heading }) {
         </button>
         <button
           type="button"
-          className="btn btn-danger mx-2"
+          className="btn btn-info mx-2"
           onClick={handleLwText}
         >
           Lowercase
@@ -96,15 +118,22 @@ export default function TextInputForm({ heading }) {
         >
           Decrypt
         </button>
+        <button
+          type="button"
+          className="btn btn-warning mx-2"
+          onClick={handleExtraSpaces}
+        >
+          Clear Extra spaces
+        </button>
       </form>
-      <div className="container mt-3">
+      <div className="mt-3">
         <h4>Text Summary</h4>
         <p>
-          Total Words {text.split(" ").length} & Total Characters {text.length}{" "}
+          Total Words {text.length == 0 ? 0 : text.split(" ").length} & Total Characters {text.length}{" "}
         </p>
         <p>{(0.008 * text.split(" ").length).toFixed(2)} Minutes to Read </p>
         <h4>Preview</h4>
-        <p>{text}</p>
+        <p>{text.length > 0 ? text : "Enter some text in above Textarea to see preview here"}</p>
       </div>
     </>
   );

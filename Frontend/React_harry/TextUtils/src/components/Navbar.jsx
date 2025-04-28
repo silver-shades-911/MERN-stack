@@ -1,10 +1,11 @@
 import PropTypes from "prop-types";
 
-function Navbar({ brand = "TextUtils", navOption = "About Us" }) {
+function Navbar({ brand = "TextUtils", navOption = "About Us", toggleModeFunc, darkMode }) {
+
   return (
-    <nav className="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
-      <div className="container-fluid">
-        <a className="navbar-brand" href="/">
+    <nav className={`navbar navbar-expand-lg bg-${darkMode === true ? 'black' : 'light'} `} >
+      <div className={`container-fluid text-${darkMode === false? 'dark' : 'light'}`}>
+        <a className={`navbar-brand text-${darkMode === false? 'dark' : 'light'}`} href="/">
           {brand}
         </a>
         <button
@@ -21,16 +22,29 @@ function Navbar({ brand = "TextUtils", navOption = "About Us" }) {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link" aria-current="page" href="/">
+              <a className={`nav-link text-${darkMode === false? 'dark' : 'light'}`} aria-current="page" href="/">
                 Home
+                {console.log(darkMode)}
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/">
+              <a className={`nav-link text-${darkMode === false? 'dark' : 'light'}`} href="/">
                 {navOption}
               </a>
             </li>
           </ul>
+          <div className="form-check form-switch mx-5">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              role="switch"
+              id="switchCheckChecked"
+              onChange={toggleModeFunc}
+            />
+            <label className={`form-check-label text-${darkMode === false? 'dark' : 'light'}`} htmlFor="switchCheckChecked">
+             {darkMode ? "Dark Mode" : "Light Mode"}
+            </label>
+          </div>
 
           <form className="d-flex" role="search">
             <input
@@ -39,7 +53,7 @@ function Navbar({ brand = "TextUtils", navOption = "About Us" }) {
               placeholder="Search"
               aria-label="Search"
             />
-            <button className="btn btn-dark" type="submit">
+            <button className={`btn btn-${darkMode === false ? 'dark' : 'secondary' }`} type="submit">
               Search
             </button>
           </form>
