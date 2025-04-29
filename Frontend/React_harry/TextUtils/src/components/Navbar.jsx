@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-function Navbar({ brand = "TextUtils", navOption = "About Us", toggleModeFunc, darkMode }) {
+function Navbar({ brand = "TextUtils", navOption = "About Us", toggleModeFunc, darkMode}) {
 
   return (
     <nav className={`navbar navbar-expand-lg bg-${darkMode === true ? 'black' : 'light'} `} >

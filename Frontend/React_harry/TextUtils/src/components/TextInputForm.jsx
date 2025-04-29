@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function TextInputForm({ heading, darkMode }) {
+export default function TextInputForm({ heading, darkMode, showAlert }) {
   let [text, setText] = useState("");
 
   function handleTextInput(event) {
@@ -10,15 +10,18 @@ export default function TextInputForm({ heading, darkMode }) {
   function handleUpText() {
     let newText = text.toUpperCase();
     setText(newText);
+    showAlert("Text is Uppercase successfully!", "success");
   }
 
   function handleLwText() {
     let newText = text.toLowerCase();
     setText(newText);
+    showAlert("Text is Lowercase successfully", "success");
   }
 
   function handleClearText() {
     setText("");
+    showAlert("Text is Cleared!", "success")
   }
 
   function handleTextEncrypt() {
@@ -35,6 +38,7 @@ export default function TextInputForm({ heading, darkMode }) {
 */
     }
     setText(encryptedText);
+    showAlert("Text is Encrypted Successfully", "success");
   }
 
   function handleTextDecrypt() {
@@ -43,6 +47,7 @@ export default function TextInputForm({ heading, darkMode }) {
       decryptedText += String.fromCharCode(text.charCodeAt(i) - 1);
     }
     setText(decryptedText);
+    showAlert("Text is Decrypted Successfully", "success");
   }
 
   /*
@@ -64,6 +69,17 @@ export default function TextInputForm({ heading, darkMode }) {
   function handleExtraSpaces() {
     let newText = text.split(/[ ]+/);
     setText(newText.join(" "));
+    showAlert("Successfully removed extra spaces", "success")
+  }
+
+
+  // Copy text logic
+
+  function handleCopyText() {
+    let data = document.getElementById("textArea");
+    data.select();
+    navigator.clipboard.writeText(data.value);
+    showAlert("Text Copied", "success")
   }
 
   return (
@@ -124,6 +140,13 @@ export default function TextInputForm({ heading, darkMode }) {
           onClick={handleExtraSpaces}
         >
           Clear Extra spaces
+        </button>
+        <button
+          type="button"
+          className="btn btn-light mx-2 border"
+          onClick={handleCopyText}
+        >
+          Copy
         </button>
       </form>
       <div className="mt-3">
