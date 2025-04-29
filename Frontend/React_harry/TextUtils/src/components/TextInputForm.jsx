@@ -10,18 +10,18 @@ export default function TextInputForm({ heading, darkMode, showAlert }) {
   function handleUpText() {
     let newText = text.toUpperCase();
     setText(newText);
-    showAlert("Text is Uppercase successfully!", "success");
+    showAlert("Text Uppercase ", "success");
   }
 
   function handleLwText() {
     let newText = text.toLowerCase();
     setText(newText);
-    showAlert("Text is Lowercase successfully", "success");
+    showAlert("Text Lowercased ", "success");
   }
 
   function handleClearText() {
     setText("");
-    showAlert("Text is Cleared!", "success")
+    showAlert("Text Cleared!", "success")
   }
 
   function handleTextEncrypt() {
@@ -38,7 +38,7 @@ export default function TextInputForm({ heading, darkMode, showAlert }) {
 */
     }
     setText(encryptedText);
-    showAlert("Text is Encrypted Successfully", "success");
+    showAlert("Text Encrypted ", "success");
   }
 
   function handleTextDecrypt() {
@@ -47,7 +47,7 @@ export default function TextInputForm({ heading, darkMode, showAlert }) {
       decryptedText += String.fromCharCode(text.charCodeAt(i) - 1);
     }
     setText(decryptedText);
-    showAlert("Text is Decrypted Successfully", "success");
+    showAlert("Text Decrypted ", "success");
   }
 
   /*
@@ -69,7 +69,7 @@ export default function TextInputForm({ heading, darkMode, showAlert }) {
   function handleExtraSpaces() {
     let newText = text.split(/[ ]+/);
     setText(newText.join(" "));
-    showAlert("Successfully removed extra spaces", "success")
+    showAlert("Extra spaces removed", "success")
   }
 
 
@@ -152,12 +152,35 @@ export default function TextInputForm({ heading, darkMode, showAlert }) {
       <div className="mt-3">
         <h4>Text Summary</h4>
         <p>
-          Total Words {text.length == 0 ? 0 : text.split(" ").length} & Total Characters {text.length}{" "}
+          Total Words {(text.match(/\b\w+\b/g) || [] ).length} & Total Characters {text.length}
         </p>
-        <p>{(0.008 * text.split(" ").length).toFixed(2)} Minutes to Read </p>
+        <p>{(0.008 * (text.match(/\b\w+\b/g) || [] ).length).toFixed(2)} Minutes to Read </p>
         <h4>Preview</h4>
         <p>{text.length > 0 ? text : "Enter some text in above Textarea to see preview here"}</p>
       </div>
     </>
   );
 }
+
+/*
+? --------  How word counter regex work ? -----------
+
+synatx -->  (text.match(/\b\w+\b/g) || [] ).length
+
+* regex explanation
+
+    | Part          | Meaning                                                                                                                                  |
+    |---------------|------------------------------------------------------------------------------------------------------------------------------------------|
+    | /.../g        | Regular Expression with global flag → find ALL matches (not just the first one).                                                         |
+    | \b            | Word boundary — the point between a word and a non-word character (like space, punctuation, start/end of line).                          |
+    | \w+           | One or more (`+`) word characters (`\w`) — letters (a-z, A-Z), digits (0-9), and underscore `_`.                                         |
+    | \b            | End the word at the next word boundary.                                                                                                  |
+
+
+*   || [] means:
+
+      If match() result is null, use an empty array [] instead.
+
+      This avoids an error like Cannot read property 'length' of null.
+
+*/
