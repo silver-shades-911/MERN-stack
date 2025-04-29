@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { Link } from 'react-router-dom';
 
 function Navbar({ brand = "TextUtils", navOption = "About Us", toggleModeFunc, darkMode}) {
 
@@ -22,18 +23,18 @@ function Navbar({ brand = "TextUtils", navOption = "About Us", toggleModeFunc, d
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className={`nav-link text-${darkMode === false? 'dark' : 'light'}`} aria-current="page" href="/">
+              <Link className={`nav-link text-${darkMode === false? 'dark' : 'light'}`} aria-current="page" to="/">
                 Home
                 {console.log(darkMode)}
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className={`nav-link text-${darkMode === false? 'dark' : 'light'}`} href="/">
+              <Link className={`nav-link text-${darkMode === false? 'dark' : 'light'}`} to="/about">
                 {navOption}
-              </a>
+              </Link>
             </li>
           </ul>
-          <div className="form-check form-switch mx-5">
+          <div className={`form-check form-switch ${document.body.style.width > "500px" ? "mx-5" : "me-5"}`}>
             <input
               className="form-check-input"
               type="checkbox"

@@ -101,7 +101,7 @@ export default function TextInputForm({ heading, darkMode, showAlert }) {
         </div>
         <button
           type="button"
-          className="btn btn-primary mx-2"
+          className="btn btn-primary m-2"
           onClick={handleUpText}
         >
           Uppercase
@@ -136,7 +136,7 @@ export default function TextInputForm({ heading, darkMode, showAlert }) {
         </button>
         <button
           type="button"
-          className="btn btn-warning mx-2"
+          className="btn btn-warning m-2"
           onClick={handleExtraSpaces}
         >
           Clear Extra spaces
