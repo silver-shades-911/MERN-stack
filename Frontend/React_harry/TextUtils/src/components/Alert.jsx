@@ -8,11 +8,14 @@ export default function Alert({ alert }) {
   };
 
   return (
-    alert && (
-      <div class={`alert alert-${alert.type} fade show`} role="alert">
-        <strong>{capitalizer(alert.type)}</strong> : {alert.msg}
-      </div>
-    )
+    <div style={{height: "3rem"}}>
+        {alert && (
+            <div class={`alert alert-${alert.type} fade show`} role="alert">
+              <strong>{capitalizer(alert.type)}</strong> : {alert.msg}
+            </div>
+        )}  
+    </div>
+    
   );
 }
 
@@ -23,4 +26,10 @@ export default function Alert({ alert }) {
 issue - Due to initially our alert object is null it show error 
 solution - to fix that we use this hack 
            alert && <div class...
+
+
+! Important Point
+
+  -->  <div style={{height: "3rem"}}>  we give alert some space 
+  bcz without is when invoke it do CLS (Comulative Layout Shift) it is a problem , not recommanded by Google WebMaster
 */

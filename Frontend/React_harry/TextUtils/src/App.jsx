@@ -67,13 +67,13 @@ function App() {
             path="/"
             element={
               <TextInputForm
-                heading="Enter text here"
+                heading="Try TextUtils - word counter, character counter, remove extra spaces"
                 darkMode={darkMode}
                 showAlert={showAlert}
               />
             }
           />
-          <Route path="/about" element={<AboutUs />} />
+          <Route path="/about" element={<AboutUs darkMode={darkMode} />} />
         </Routes>
       </div>
     </>

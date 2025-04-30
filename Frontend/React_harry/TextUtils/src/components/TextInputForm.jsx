@@ -76,15 +76,16 @@ export default function TextInputForm({ heading, darkMode, showAlert }) {
   // Copy text logic
 
   function handleCopyText() {
-    let data = document.getElementById("textArea");
-    data.select();
-    navigator.clipboard.writeText(data.value);
-    showAlert("Text Copied", "success")
+    // let data = document.getElementById("textArea");
+    // data.select();
+    navigator.clipboard.writeText(text);
+    showAlert("Text Copied", "success");
+    // document.getSelection().removeAllRanges();
   }
 
   return (
     <>
-      <h2>{heading}</h2>
+      <h1>{heading}</h1>
       <form>
         <div className="mb-3">
           <textarea
@@ -103,6 +104,7 @@ export default function TextInputForm({ heading, darkMode, showAlert }) {
           type="button"
           className="btn btn-primary m-2"
           onClick={handleUpText}
+          disabled={text.length == 0}
         >
           Uppercase
         </button>
@@ -110,6 +112,7 @@ export default function TextInputForm({ heading, darkMode, showAlert }) {
           type="button"
           className="btn btn-info mx-2"
           onClick={handleLwText}
+          disabled={text.length == 0}
         >
           Lowercase
         </button>
@@ -117,6 +120,7 @@ export default function TextInputForm({ heading, darkMode, showAlert }) {
           type="button"
           className="btn btn-dark mx-2"
           onClick={handleClearText}
+          disabled={text.length == 0}
         >
           Clear
         </button>
@@ -124,6 +128,7 @@ export default function TextInputForm({ heading, darkMode, showAlert }) {
           type="button"
           className="btn btn-primary mx-2"
           onClick={handleTextEncrypt}
+          disabled={text.length == 0}
         >
           Encrypt
         </button>
@@ -131,6 +136,7 @@ export default function TextInputForm({ heading, darkMode, showAlert }) {
           type="button"
           className="btn btn-danger mx-2"
           onClick={handleTextDecrypt}
+          disabled={text.length == 0}
         >
           Decrypt
         </button>
@@ -138,6 +144,7 @@ export default function TextInputForm({ heading, darkMode, showAlert }) {
           type="button"
           className="btn btn-warning m-2"
           onClick={handleExtraSpaces}
+          disabled={text.length == 0}
         >
           Clear Extra spaces
         </button>
@@ -145,6 +152,7 @@ export default function TextInputForm({ heading, darkMode, showAlert }) {
           type="button"
           className="btn btn-light mx-2 border"
           onClick={handleCopyText}
+          disabled={text.length == 0}
         >
           Copy
         </button>
@@ -156,7 +164,7 @@ export default function TextInputForm({ heading, darkMode, showAlert }) {
         </p>
         <p>{(0.008 * (text.match(/\b\w+\b/g) || [] ).length).toFixed(2)} Minutes to Read </p>
         <h4>Preview</h4>
-        <p>{text.length > 0 ? text : "Enter some text in above Textarea to see preview here"}</p>
+        <p>{text.length > 0 ? text : "Nothing to Preview, Please enter some text"}</p>
       </div>
     </>
   );

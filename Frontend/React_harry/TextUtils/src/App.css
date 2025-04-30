@@ -40,5 +40,5 @@
 }
 
 .accordion-button::after {
-  background-color: white;
+  filter: invert(1);
 }

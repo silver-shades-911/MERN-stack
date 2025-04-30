@@ -1,47 +1,18 @@
 import "../App.css";
 import {useState} from "react";
 
-export default function AboutUs() {
+export default function AboutUs({darkMode}) {
 
-
-// Dark Mode State variable 
-let [darkStyle, setDarkStyle] = useState({
-  backgroundColor: "white",
-  color: "black",
-});
-
-
-// Dark Mode button name 
-let [darkBtnLabel, setDarkBtnLabel] = useState("Light Mode");
- 
-
-function handleDarkMode() {
-  setDarkStyle(
-    (preStyle) => {
-      if(preStyle.backgroundColor === "white" && preStyle.color === "black"){
-        return {
-          backgroundColor: "black",
-          color: "white",
-        };
-      }else {
-        return {
-          backgroundColor: "white",
-          color: "black",
-        };
-      }
-    }
-  );
-  
-  setDarkBtnLabel(
-    (preLabel) => {
-      return (preLabel === "Light Mode" ? "Dark Mode" : "Light Mode");
-    }
-  )
-
-}
+let darkStyle = {
+  backgroundColor: darkMode == true ? "#063b69" : "#fff",
+  color: darkMode == false ? "black" : "white",
+  borderRadius: "2px"
+};
 
   return (
-    <div className="accordion" id="accordionExample" style={darkStyle}>
+    <>
+    <h1 className="my-4">About Us</h1>
+    <div className="accordion" id="accordionExample">
       <div className="accordion-item" style={darkStyle}>
         <h2 className="accordion-header" style={darkStyle}>
           <button
@@ -69,7 +40,7 @@ function handleDarkMode() {
             overall appearance, as well as the showing and hiding via CSS
             transitions. You can modify any of this with custom CSS or
             overriding our default variables. It's also worth noting that just
-            about any HTML can go within the <code>.accordion-body</code>,
+            about any HTML can go within the <code style={{  color: darkMode == false ? "#d63384" : "yellow"}}>.accordion-body</code>,
             though the transition does limit overflow.
           </div>
         </div>
@@ -101,7 +72,7 @@ function handleDarkMode() {
             overall appearance, as well as the showing and hiding via CSS
             transitions. You can modify any of this with custom CSS or
             overriding our default variables. It's also worth noting that just
-            about any HTML can go within the <code>.accordion-body</code>,
+            about any HTML can go within the <code style={{  color: darkMode == false ? "#d63384" : "yellow"}}>.accordion-body</code>,
             though the transition does limit overflow.
           </div>
         </div>
@@ -133,27 +104,12 @@ function handleDarkMode() {
             overall appearance, as well as the showing and hiding via CSS
             transitions. You can modify any of this with custom CSS or
             overriding our default variables. It's also worth noting that just
-            about any HTML can go within the <code>.accordion-body</code>,
+            about any HTML can go within the <code style={{  color: darkMode == false ? "#d63384" : "yellow"}}>.accordion-body</code>,
             though the transition does limit overflow.
           </div>
         </div>
       </div>
-      <ul style={{display: "flex",flexDirection: "row-reverse", height: "2rem"}} className="mt-3">
-      <li className="darkMode border">
-              <div className="form-check form-switch" style={{marginBottom: "0px"}}>
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  role="switch"
-                  id="switchCheckChecked"
-                  onChange={handleDarkMode}
-                />
-                <label className="form-check-label" htmlFor="switchCheckChecked">
-                 {darkBtnLabel}
-                </label>
-              </div>
-            </li>
-      </ul>
     </div>
+    </>
   );
 }
