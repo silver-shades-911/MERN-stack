@@ -23,8 +23,8 @@ export default class NewsItem extends Component {
           <p className="card-text" style={{ height: "72px" }}>
             {description.length > 90 ? description.slice(0, 90) : description}
           </p>
-          <p class="card-text">
-            <small class="text-body-secondary">
+          <p className="card-text">
+            <small className="text-body-secondary">
               by {author ? author.slice(0, 15) : "Unknown"} on{" "}
               {new Date(publishedAt).toDateString()}
             </small>
