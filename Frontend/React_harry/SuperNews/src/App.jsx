@@ -24,7 +24,7 @@ export default class App extends Component {
                 />
               }
             >
-             
+
             </Route>
             <Route
               exact
@@ -38,7 +38,7 @@ export default class App extends Component {
                 />
               }
             >
-             
+
             </Route>
             <Route
               exact
@@ -52,7 +52,7 @@ export default class App extends Component {
                 />
               }
             >
-             
+
             </Route>
             <Route
               exact
@@ -66,7 +66,7 @@ export default class App extends Component {
                 />
               }
             >
-             
+
             </Route>
             <Route
               exact
@@ -80,7 +80,7 @@ export default class App extends Component {
                 />
               }
             >
-             
+
             </Route>
             <Route
               exact
@@ -94,7 +94,7 @@ export default class App extends Component {
                 />
               }
             >
-             
+
             </Route>
             <Route
               exact
@@ -108,7 +108,7 @@ export default class App extends Component {
                 />
               }
             >
-             
+
             </Route>
           </Routes>
         </BrowserRouter>
