@@ -5,11 +5,11 @@ import PropTypes from "prop-types";
 import { Route } from "react-router";
 
 export default class NewsComponent extends Component {
-  // static defaultProps = {
-  //   country: "in",
-  //   pageSize: 12,
-  //   category: "general",
-  // };
+  static defaultProps = {
+    country: "in",
+    pageSize: 12,
+    category: "general",
+  };
 
   static propTypes = {
     country: PropTypes.string,
@@ -27,26 +27,10 @@ export default class NewsComponent extends Component {
     };
   }
 
-  async componentDidMount() {
-    // This run after render
-    console.log("i am cDM run 3rd");
-    let url = `https://newsapi.org/v2/top-headlines?country=us&category=${this.props.category}&apiKey=b6cfd6a284ee4fa48cdcaed245e77ddb&page=1&pageSize=12`;
-    this.setState({ loading: true });
-    let data = await fetch(url);
-    let parsedData = await data.json();
-    this.setState({
-      articles: parsedData.articles,
-      totalResults: Math.ceil(parsedData.totalResults / 12),
-      loading: false,
-    });
-    console.log(this.props.country, this.props.category);
-  }
-
-  handlePrevPage = async () => {
-    console.log("HI");
-    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country
+async updateNews(page) {
+   let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country
       }&category=${this.props.category
-      }&apiKey=b6cfd6a284ee4fa48cdcaed245e77ddb&page=${this.state.page - 1
+      }&apiKey=b6cfd6a284ee4fa48cdcaed245e77ddb&page=${page
       }&pageSize=${this.props.pageSize}`;
     this.setState({ loading: true });
     let data = await fetch(url);
@@ -54,26 +38,68 @@ export default class NewsComponent extends Component {
     // console.log(parsedData);
     this.setState({
       articles: parsedData.articles,
-      page: this.state.page - 1,
+      totalResults: Math.ceil(parsedData.totalResults / 12),
       loading: false,
     });
+}
+
+  async componentDidMount() {
+    // This run after render
+    console.log("i am cDM run 3rd");
+    // let url = `https://newsapi.org/v2/top-headlines?country=us&category=${this.props.category}&apiKey=b6cfd6a284ee4fa48cdcaed245e77ddb&page=1&pageSize=12`;
+    // this.setState({ loading: true });
+    // let data = await fetch(url);
+    // let parsedData = await data.json();
+    // this.setState({
+    //   articles: parsedData.articles,
+    //   totalResults: Math.ceil(parsedData.totalResults / 12),
+    //   loading: false,
+    // });
+    // console.log(this.props.country, this.props.category);
+    this.updateNews(1);
+  }
+
+  handlePrevPage = async () => {
+    console.log("Previous");
+    // let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country
+    //   }&category=${this.props.category
+    //   }&apiKey=b6cfd6a284ee4fa48cdcaed245e77ddb&page=${this.state.page - 1
+    //   }&pageSize=${this.props.pageSize}`;
+    // this.setState({ loading: true });
+    // let data = await fetch(url);
+    // let parsedData = await data.json();
+    // // console.log(parsedData);
+    // this.setState({
+    //   articles: parsedData.articles,
+    //   page: this.state.page - 1,
+    //   loading: false,
+    // });
+    this.setState({
+      page: this.state.page - 1,
+    });
+    this.updateNews(this.state.page - 1);
+
   };
 
   handleNextPage = async () => {
-    console.log("HEllO");
-    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country
-      }&category=${this.props.category
-      }&apiKey=b6cfd6a284ee4fa48cdcaed245e77ddb&page=${this.state.page + 1
-      }&pageSize=${this.props.pageSize}`;
-    this.setState({ loading: true });
-    let data = await fetch(url);
-    let parsedData = await data.json();
-    console.log(parsedData);
+    console.log("Next");
+    // let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country
+    //   }&category=${this.props.category
+    //   }&apiKey=b6cfd6a284ee4fa48cdcaed245e77ddb&page=${this.state.page + 1
+    //   }&pageSize=${this.props.pageSize}`;
+    // this.setState({ loading: true });
+    // let data = await fetch(url);
+    // let parsedData = await data.json();
+    // console.log(parsedData);
+    // this.setState({
+    //   articles: parsedData.articles,
+    //   page: this.state.page + 1,
+    //   loading: false,
+    // });
     this.setState({
-      articles: parsedData.articles,
       page: this.state.page + 1,
-      loading: false,
     });
+    this.updateNews(this.state.page + 1);
   };
 
   render() {
@@ -104,6 +130,9 @@ export default class NewsComponent extends Component {
                         : "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"
                     }
                     newsURL={news.url ? news.url : "/"}
+                    author={news.author}
+                    publishedAt={news.publishedAt}
+                    source={news.source.name}
                   />
                 </div>
               );
