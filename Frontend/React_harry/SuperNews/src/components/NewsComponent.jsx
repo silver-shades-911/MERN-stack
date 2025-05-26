@@ -37,19 +37,24 @@ export default class NewsComponent extends Component {
   }
 
   async updateNews() {
-    const { country, category, pageSize } = this.props;
-    const url = `https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=b6cfd6a284ee4fa48cdcaed245e77ddb&page=1&pageSize=${pageSize}`;
+    const { country, category, pageSize, setProgress, apiKey } = this.props;
+    setProgress(0);
+    const url = `https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=${apiKey}&page=1&pageSize=${pageSize}`;
     // const {page} = this.state;
     this.setState({ loading: true });
+    
 
     try {
       let data = await fetch(url);
+
+      setProgress(25);
       let parsedData = await data.json();
+      console.log(parsedData);
       if (parsedData.status === "ok") {
         const initialArticles = parsedData.articles
           ? parsedData.articles.filter((article) => article !== null) // filter null articles
           : []; // otherwise return empty array
-
+        setProgress(50)
         // update state
         this.setState({
           articles: initialArticles,
@@ -61,6 +66,9 @@ export default class NewsComponent extends Component {
             initialArticles.length < parsedData.totalResults &&
             initialArticles.length > 0,
         });
+
+        setProgress(75)
+
       } else {
         console.error("NewsAPI Error:", parsedData.message);
         this.setState({
@@ -68,6 +76,7 @@ export default class NewsComponent extends Component {
           hasMoreData: false, // stop API to Fetch on error
         });
       }
+      setProgress(100);
     } catch (error) {
       console.error("fetch Error:", error);
       this.setState({
@@ -83,9 +92,9 @@ export default class NewsComponent extends Component {
       return;
     }
 
-    const { country, category, pageSize } = this.props;
+    const { country, category, pageSize, apiKey } = this.props;
     const nextPage = this.state.page + 1;
-    const url = `https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=b6cfd6a284ee4fa48cdcaed245e77ddb&page=${nextPage}&pageSize=${pageSize}`;
+    const url = `https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=${apiKey}&page=${nextPage}&pageSize=${pageSize}`;
 
     // fetching time
 
@@ -108,11 +117,11 @@ export default class NewsComponent extends Component {
         // filter duplicate news
 
         this.setState((prevState) => {
-          const newArticles = fetchedArticles.filter((newArticle) => {
-            return !prevState.articles.some((oldArt) => {
-              oldArt.url === newArticle.url;
-            });
-          });
+          const newArticles = fetchedArticles.filter((newArticle) => (
+            !prevState.articles.some((oldArt) => 
+              oldArt.url === newArticle.url
+            )
+          ));
 
           const updatedArticles = prevState.articles.concat(newArticles);
 

@@ -25,7 +25,7 @@ export default class NewsItem extends Component {
           </p>
           <p className="card-text">
             <small className="text-body-secondary">
-              by {author ? author.slice(0, 15) : "Unknown"} on{" "}
+              by {author ? author.slice(0, 10) : "Unknown"} on{" "}
               {new Date(publishedAt).toDateString()}
             </small>
           </p>
