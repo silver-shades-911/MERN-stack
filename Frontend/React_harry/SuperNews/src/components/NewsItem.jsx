@@ -29,7 +29,7 @@ export default class NewsItem extends Component {
               {new Date(publishedAt).toDateString()}
             </small>
           </p>
-          {console.log(publishedAt)}
+          {/* {console.log(publishedAt)} */}
           <a href={newsURL} className="card-link">
             Read More
           </a>
