@@ -15,21 +15,26 @@ const fetchuser = async (req, res, next) => {
 
     // if token exists -> draw payload (user data ) from JWT
     let payload = jwt.verify(token, SEC_KEY);
-    
+
     // if token is not exists -> then return back
-    if(!payload){
-        return res.status(401).json({ error: "Unauthorized Access" });
-    };
-    
-    //if payload is exists -> 
-    req.user = payload.user; // creating user obj in req for future operation using userID 
+    if (!payload) {
+      return res.status(401).json({ error: "Unauthorized Access" });
+    }
+
+    //if payload is exists ->
+    req.user = payload.user; // creating user obj in req for future operation using userID
     console.log(payload);
     console.log(req.user.id);
     next();
-  } catch {
-    (err) => {
-      res.status(500).json({ errMsg: err.message });
-    };
+  } catch (err) {
+     // Choose status code based on error type
+  if (err.name === "TokenExpiredError") {
+    return res.status(401).json({ error: "Token expired" });
+  } else if (err.name === "JsonWebTokenError") {
+    return res.status(401).json({ error: "Invalid token" });
+  } else {
+    return res.status(500).json({ error: "Something went wrong" });
+  }
   }
 };
 

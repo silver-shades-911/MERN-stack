@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const connectToMongo = require("./db");
 const authRouter = require('./routes/auth.js');
-const notes = require('./routes/notes.js');
+const noteRouter = require('./routes/note.js');
 
 // MongoDB Connect
 connectToMongo();
@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
 
 // Available routes
 app.use("/api/auth", authRouter);
-app.use("/api/notes", notes);
+app.use("/api/note", noteRouter);
 
 app.listen(5000, () => {
     console.log("Server is started");
