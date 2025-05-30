@@ -1,6 +1,6 @@
 import "./App.css";
 import Navbar from "./components/Navbar";
-import { BrowserRouter, Route, Routes, NavLink } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, NavLink } from "react-router-dom";
 import Home from "./components/Home";
 import About from "./components/About";
 import NoteState from "./context/notes/NoteState";
@@ -8,21 +8,19 @@ import NoteState from "./context/notes/NoteState";
 function App() {
   return (
     <>
-    <NoteState>
-
+      <NoteState>
         <Navbar />
+        <div className="container">
+          <Routes>
+            <Route exact path="/home" element={<Home />}></Route>
 
-        <Routes>
-          <Route exact path="/home" element={<Home />}></Route>
-
-          <Route exact path="/aboutus" element={<About />}></Route>
-        </Routes>
-
-    </NoteState>
+            <Route exact path="/aboutus" element={<About />}></Route>
+          </Routes>
+        </div>
+      </NoteState>
     </>
   );
 }
-
 
 /*
 * we are wrapping whole App.jsx into <NoteState> ... </NoteState> , so all components and nested components of our App get access of note state
