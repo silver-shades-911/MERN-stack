@@ -1,14 +1,19 @@
 const express = require('express');
+var cors = require('cors')
 const app = express();
 const connectToMongo = require("./db");
 const authRouter = require('./routes/auth.js');
 const noteRouter = require('./routes/note.js');
+
+
+
 
 // MongoDB Connect
 connectToMongo();
 
 // json() middleware
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded());
 

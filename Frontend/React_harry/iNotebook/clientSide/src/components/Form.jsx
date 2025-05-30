@@ -36,7 +36,7 @@ let [newNote, setNewNote] = useState(initialValue);
 
 // STEP1 - function which invoke on chnage in fields
 const updateNewNoteState = (event) => {
-  console.log(event);
+  // console.log(event);
  setNewNote(
   (preVersion) => ({
     ...preVersion,
@@ -50,7 +50,7 @@ const updateNewNoteState = (event) => {
 const handleFormSubmit = (event) => {
   event.preventDefault();
 
-  //* STEP2 - pass newNOte into setter function of noteState variable of noteContext
+  //* STEP2 - pass newNote into setter function of noteState variable of noteContext
 addNoteFunc(newNote);
 setNewNote(initialValue);
 };
@@ -79,7 +79,7 @@ setNewNote(initialValue);
         ></textarea>
       </div>
         <div className="mb-3">
-        <label htmlhtmlFor="tag" className="form-label">
+        <label htmlFor="tag" className="form-label">
           Tags
         </label>
         <input type="text" className="form-control" name='tag' id="tag"  onChange={updateNewNoteState} value={newNote.tag}/>
