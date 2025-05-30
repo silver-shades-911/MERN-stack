@@ -6,7 +6,7 @@ const Noteitem = (props) => {
 
   return (
    
-      <div className="card">
+      <div className="card" style={{width: "25rem"}}>
         <div className="card-header">{title}</div>
         <div className="card-body">
           <p className="card-text">{description}</p>

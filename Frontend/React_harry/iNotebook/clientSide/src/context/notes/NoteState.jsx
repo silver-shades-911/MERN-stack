@@ -44,7 +44,7 @@ const NoteState = (props) => {
       ownerID: "68373855df8be0f59a6ee7a6",
       title: "How to use intel ",
       description:
-        "intel  is best laptop ever, buy it first  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id unde similique ducimus quod voluptatum debitis, rem, totam alias delectus officia a excepturi error accusamus, placeat asperiores odit. Atque, molestias laudantium?",
+        "intel  is best laptop ever, buy it first  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id unde similiqu intel  is best laptop ever, buy it first  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id unde similiqintel  is best laptop ever, buy it first  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id unde similiqintel  is best laptop ever, buy it first  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id unde similiqe ducimus quod voluptatum debitis, rem, totam alias delectus officia a excepturi error accusamus, placeat asperiores odit. Atque, molestias laudantium?",
       tag: ["#macbook", "#apple", "#laptop", "#use", "#samsung"],
       date: "2025-05-29T08:35:29.840Z",
       __v: 0,
@@ -138,10 +138,32 @@ const NoteState = (props) => {
   // defining state
   let [notes, setNotes] = useState(initialNotes);
 
+
+
+  // Function for Adding New Note
+  //TODO
+  const addNoteFunc = (newNote) => {
+   setNotes(notes.concat(newNote)); //? here add new element in to array we can  push() but it just update existing array 
+   console.log("Added")             //  duo to this our setNotes does not consider it updated value and not re-render
+                                    // So we use concat , it retrun new array
+  };
+
+  // Function for Updating Note
+  //TODO
+
+  // Function for Delete Note
+  //TODO 
+
+
+
+
+
+
+
   // passing state-setter func Pack
   let stateAndSetterFuncPack = {
-    notes,
-    setNotes,
+    notes:notes,
+    addNoteFunc:addNoteFunc,
   };
 
   return (

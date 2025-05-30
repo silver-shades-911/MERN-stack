@@ -8,7 +8,7 @@ const Notes = (props) => {
   const { notes, setNotes } = useContext(noteContext);
 
   return (
-    <div className="row row-cols-auto">
+    <div className="row row-cols-auto gy-3">
       {notes.map((note) => (
          <div className="col" key={note._id}>
         <Noteitem note={note} />
