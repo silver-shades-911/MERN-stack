@@ -82,11 +82,13 @@ router.post(
   "/login",
   [body("email").isEmail(), body("password").isLength({ min: "3" }).exists()],
   async (req, res) => {
+    let success = false;
     let errors = validationResult(req);
 
     // if got errors return them back . no need to bother our server
     if (!errors.isEmpty()) {
-      return res.status(400).json({ err: errors.message });
+      success = false;
+      return res.status(400).json({ success, err: errors.message });
     }
 
     try {
@@ -95,7 +97,8 @@ router.post(
 
       // if user not exist then retrun it back
       if (!existedUser) {
-        return res.status(400).json({ err: "Please Enter valid credentials " }); // dont tell user doesn't exist, why should we tell he is doesnt know right credentials. may be hacker ({common sense })
+        success = false;
+        return res.status(400).json({ success, err: "Please Enter valid credentials " }); // dont tell user doesn't exist, why should we tell he is doesnt know right credentials. may be hacker ({common sense })
       }
 
       // check user password match or not
@@ -107,7 +110,8 @@ router.post(
 
       // if not matched => false
       if (!userMatch) {
-        return res.status(400).json({ err: "Please Enter Valid credentials" });
+        success = false;
+        return res.status(400).json({ success, err: "Please Enter Valid credentials" });
       }
 
       // if matched => true
@@ -119,8 +123,9 @@ router.post(
       };
 
       let token = await jwt.sign(payload, SEC_KEY);
-
-      res.json({ authtoken: token });
+       
+      success = true;
+      res.json({ success, authtoken: token });
     } catch (err) {
       res.status(500).json({ errorMsg: err.message });
     }

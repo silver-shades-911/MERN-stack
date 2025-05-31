@@ -1,20 +1,17 @@
 import React, { useEffect } from "react";
-import { NavLink, useLocation } from 'react-router-dom';
-
+import { NavLink, useLocation } from "react-router-dom";
 
 const Navbar = () => {
-
   // want to show active on navbar ,nav-pages accroding to which page is active / open
-   let location = useLocation();
+  let location = useLocation();
 
-   // using useEffect to re-render and show page location
+  // using useEffect to re-render and show page location
   useEffect(
     () => {
-     console.log(location.pathname);
+      console.log(location.pathname);
     },
     [location] // dependency : re-render when location change
   );
-
 
   return (
     <nav
@@ -22,37 +19,56 @@ const Navbar = () => {
       data-bs-theme="dark"
     >
       <div className="container-fluid">
-        <a className="navbar-brand">iNotebook</a>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav">
-            <li className="nav-item">
-              <NavLink to="/" className={`nav-link ${location.pathname === "/" ? "active" : ""}`}>
-                Home
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink to="/aboutus" className={`nav-link ${location.pathname === "/aboutus" ? "active" : ""}`}>
-                About Us
-              </NavLink>
-            </li>
-          </ul>
+        <div className="navbar-nav">
+          <a className="navbar-brand">iNotebook</a>
+          <div className="nav-item">
+            <NavLink
+              to="/"
+              className={`nav-link ${
+                location.pathname === "/" ? "active" : ""
+              }`}
+            >
+              Home
+            </NavLink>
+          </div>
+
+          <div className="nav-item">
+            <NavLink
+              to="/about"
+              className={`nav-link ${
+                location.pathname === "/about" ? "active" : ""
+              }`}
+            >
+              About Us
+            </NavLink>
+          </div>
         </div>
+
+        <form className="d-flex">
+          <div
+            className="btn-group"
+            role="group"
+            aria-label="Basic mixed styles example"
+          >
+            <NavLink
+            to={"/login"
+            }>
+              <button type="button" className={`btn ${location.pathname === "/login" ? 'btn-light' : 'btn-dark'}`}>
+              Login
+            </button>
+              </NavLink>
+             <NavLink
+            to={"/signup"
+            }>
+              <button type="button" className={`btn ${location.pathname === "/signup" ? 'btn-light' : 'btn-dark'}`}>
+              SignUp
+            </button>
+              </NavLink>
+          </div>
+        </form>
       </div>
     </nav>
   );
 };
-
-
 
 export default Navbar;

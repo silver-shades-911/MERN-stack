@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useRef } from "react";
 import noteContext from "../context/notes/noteContext";
 import Noteitem from "./Noteitem";
 
@@ -29,9 +29,17 @@ const Notes = () => {
     _id: "",
   });
 
+//? We are using useRef ? -> because without it, we need to manually click on Modal Button to Launch / popUp it  
+
+// Creating Modal Button Ref to point it , and initialize it with null
+
+const modalPopBtnRef = useRef(null);
+const modalCloseBtnRef = useRef(null);
 
   const updateEform = (note) => {
     console.log("note came in Notes from Noteitem",note);
+
+    modalPopBtnRef.current.click(); // When EDit button in UI invoke this function , this invoke click action on currently referencing modal launching button in modalButtonRef()
 
     // on click on update Note button , and comming existing note data from Noteitem , set pur local eForm State variable value -> to show in form
     setForm({
@@ -77,15 +85,19 @@ const Notes = () => {
 
 
     updateNoteFunc(updatedNote);
+
+    modalCloseBtnRef.current.click();
   };
 
   return (
     <div className="row row-cols-auto gy-3">
       <button
         type="button"
-        className="btn btn-primary"
+        className="btn btn-primary d-none"  
         data-bs-toggle="modal"
         data-bs-target="#staticBackdrop"
+        ref={modalPopBtnRef}
+    
       >
         Launch static backdrop modal
       </button>
@@ -110,6 +122,7 @@ const Notes = () => {
                 className="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
+                ref={modalCloseBtnRef}
               ></button>
             </div>
 
@@ -162,6 +175,11 @@ const Notes = () => {
           </div>
         </div>
       </div>
+
+      {notes.length === 0 && 
+      <div className="textCenter">
+        No Notes to Display
+        </div>}
       {notes.map((note) => (
         <div className="col" key={note._id}>
           <Noteitem note={note} updateEform={updateEform} />

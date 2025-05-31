@@ -63,7 +63,7 @@ setNewNote(initialValue);
         <label htmlFor="title" className="form-label">
           Title
         </label>
-        <input type="text" className="form-control" name='title' id="title"  onChange={updateNewNoteState} value={newNote.title}/>
+        <input type="text" className="form-control" name='title' id="title"  onChange={updateNewNoteState} value={newNote.title} required minLength={5}/>
       </div>
       <div className="mb-3">
         <label htmlFor="description" className="form-label">
@@ -76,13 +76,15 @@ setNewNote(initialValue);
           rows="3"
           onChange={updateNewNoteState}
           value={newNote.description}
+          minLength={15}
+          required
         ></textarea>
       </div>
         <div className="mb-3">
         <label htmlFor="tag" className="form-label">
           Tags
         </label>
-        <input type="text" className="form-control" name='tag' id="tag"  onChange={updateNewNoteState} value={newNote.tag}/>
+        <input type="text" className="form-control" name='tag' id="tag"  onChange={updateNewNoteState} value={newNote.tag} placeholder='e.g. #Apple #Mango #Orange'/>
       </div>
 
       <button type="submit"  className="btn btn-primary">
