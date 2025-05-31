@@ -37,7 +37,7 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <NavLink to="/home" className={`nav-link ${location.pathname === "/home" ? "active" : ""}`}>
+              <NavLink to="/" className={`nav-link ${location.pathname === "/" ? "active" : ""}`}>
                 Home
               </NavLink>
             </li>

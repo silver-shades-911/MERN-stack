@@ -14,7 +14,7 @@ function App() {
         <Alert message={"This is alert of bootstarp fro mapp"}/>
         <div className="container">
           <Routes>
-            <Route exact path="/home" element={<Home />}></Route>
+            <Route exact path="/" element={<Home />}></Route>
 
             <Route exact path="/aboutus" element={<About />}></Route>
           </Routes>

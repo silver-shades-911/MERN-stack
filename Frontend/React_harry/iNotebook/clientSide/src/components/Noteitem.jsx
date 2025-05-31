@@ -4,18 +4,15 @@ import noteContext from "../context/notes/noteContext";
 
 const Noteitem = (props) => {
   const { title, description, _id, tag } = props.note;
+  const  updateEform = props.updateEform;
+  console.log(props);
 
   //* Accessing NoteContext function to update NoteState value
-  const { deleteNoteFunc, updateNoteFunc } = useContext(noteContext);  
+  const { deleteNoteFunc  } = useContext(noteContext);  
 
   // Delete note handler
   const handleNoteDelete = (id) => {
    deleteNoteFunc(id);
-  };
-
-  // update note handler
-  const handleNoteUpdate = (title, description, tag, id) => {
-   updateNoteFunc(title, description, tag, id);
   };
 
   
@@ -29,7 +26,10 @@ const Noteitem = (props) => {
             <i className="fa-solid fa-trash" onClick={() => handleNoteDelete(_id)}></i>
           </a>
           <a  className="card-link">
-            <i className="fa-solid fa-pen-to-square" onClick={() => handleNoteUpdate(title, description, tag, _id)}></i>
+            <i className="fa-solid fa-pen-to-square" onClick={() => 
+              { console.log("sending note from Noteitem", props.note);
+                updateEform(props.note);
+                }}></i>
           </a>
         </div>
       </div>
@@ -45,3 +45,8 @@ Noteitem.propTypes = {
 };
 
 export default Noteitem;
+
+
+
+//*  <i className="fa-solid fa-pen-to-square" onClick={() => updateEform(props.note)}></i>
+//   we pass updateEform function from Notes to noteItem so , when click on individual noteitems edit button it invoke update function in Notes  

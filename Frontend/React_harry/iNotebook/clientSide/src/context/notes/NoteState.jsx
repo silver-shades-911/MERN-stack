@@ -40,7 +40,7 @@ const NoteState = (props) => {
   //! Dev Tip :-  for simplicity to implementing context api use hardcode value insted  to build functionalities like CRUD,api
 
 /*
-* PHASE I
+! PHASE I
   let initialNotes = [
     {
       _id: "68381c515esadsdccb8ade1e5bb0ae",
@@ -69,7 +69,7 @@ const NoteState = (props) => {
 const host = "http://localhost:5000/";
 
 
-//* PHASE II
+//! PHASE II
 let initialValue = []
 
 
@@ -78,8 +78,8 @@ let [notes, setNotes] = useState(initialValue);
 
 
 // Function to Fetch all notes from API 
-const fetchAllNotesFunc = () => {
-    fetch(`${host}api/note/fetchallnote`, {
+const fetchAllNotesFunc = async() => {
+    let response = await fetch(`${host}api/note/fetchallnote`, {
       method: 'GET', // or 'POST', 'PUT', 'DELETE', etc.
       headers: {
         'Content-Type': 'application/json',
@@ -88,12 +88,11 @@ const fetchAllNotesFunc = () => {
       },
 
     })
-    .then(response => response.json())
-    .then(data => setNotes(data))
-    .catch(error => console.error('Error:', error));
+    let json = await response.json();
+    setNotes(json);
 };
 
-//* PHASE I
+//! PHASE I
   // // Function for Adding New Note
   // const addNoteFunc = (newNote) => {
 
@@ -104,12 +103,12 @@ const fetchAllNotesFunc = () => {
   //   // So we use concat , it retrun new array
   // };
 
- //* PHASE II
+ //! PHASE II
  // creating function for add new note
 
-    const addNoteFunc = (newNote) => {
+    const addNoteFunc = async(newNote) => {
      
-     fetch(`${host}api/note/createnote`, {
+     let response = await fetch(`${host}api/note/createnote`, {
       method: 'POST', // or 'POST', 'PUT', 'DELETE', etc.
       headers: {
         'Content-Type': 'application/json',
@@ -117,19 +116,14 @@ const fetchAllNotesFunc = () => {
         // Add other headers as needed
       },
       body: JSON.stringify(newNote)
-    })
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(error => console.error('Error:', error));
-    
+    });
+    let json = await response.json();
+    console.log(json);
 
     };
 
 
-
-
-
-//* PHASE I
+//! PHASE I
 // Delete a note
   // const deleteNoteFunc = (id) => {
   //   console.log("Note is deleted having _id", id);
@@ -143,45 +137,33 @@ const fetchAllNotesFunc = () => {
   // };
 
 
-//* PHASE II
+//! PHASE II
 // Delete a note through api
-const deleteNoteFunc = (id) => {
+const deleteNoteFunc = async (id) => {
     
-     fetch(`${host}api/note/deletenote/${id}`, {
+     let response = await fetch(`${host}api/note/deletenote/${id}`, {
       method: 'DELETE', // or 'POST', 'PUT', 'DELETE', etc.
       headers: {
         'Content-Type': 'application/json',
         'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjgzNzM4NTVkZjhiZTBmNTlhNmVlN2E2In0sImlhdCI6MTc0ODUwNTAyMX0.X4PmSUnkDPADafg9CHwpDQCGeJ_i048BbDzhz4Jkz1o'
         // Add other headers as needed
       }
-    })
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(error => console.error('Error:', error));
-    setNotes(updatedNotes);
+    });
+    let json = await response.json();
+    console.log(json);
 
   };
 
 
 
 
+// Function for Updating Note
+
+//! PHASE I
+/* const updateNoteFunc = (note) => {
 
 
-
-
-
-
-
-
-
-
-
-
-  // Function for Updating Note
-  const updateNoteFunc = (title, description, tag, id) => {
-
-      // TODO API Call
-
+* This for loop we use in our Hard code value Version      
     for (let index = 0; index <= notes.length; index++) {
       let element = notes[index];
 
@@ -198,7 +180,38 @@ const deleteNoteFunc = (id) => {
         element.tag = tag;
       }
     }
+
+    console.log(note);
+
+
   };
+
+  */
+
+  //!PHASE II
+
+  const updateNoteFunc = async(updatedNoteData) => {
+
+    console.log("Updated Note data from NoteState ",updatedNoteData);
+
+    let response = await fetch(`${host}api/note/updatenote/${updatedNoteData._id}`, {
+      method: 'PUT', // or 'POST', 'PUT', 'DELETE', etc.
+      headers: {
+        'Content-Type': 'application/json',
+        'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjgzNzM4NTVkZjhiZTBmNTlhNmVlN2E2In0sImlhdCI6MTc0ODUwNTAyMX0.X4PmSUnkDPADafg9CHwpDQCGeJ_i048BbDzhz4Jkz1o'
+        // Add other headers as needed
+      },
+      body: JSON.stringify({
+        title: updatedNoteData.title,
+        description: updatedNoteData.description,
+        tag: updatedNoteData.tag,
+      }), // optional body for POST/PUT requests
+    });
+    let json = await response.json();
+    console.log(json);
+
+
+  }
 
   // passing state-setter func Pack
   let stateAndSetterFuncPack = {
