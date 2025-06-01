@@ -1,7 +1,17 @@
+//! This is harry sir method to implement context API
+
 import { useState } from "react";
 import NoteContext from "./noteContext";
+import {useAlert} from "../alertContext";
+import { useNavigate } from "react-router-dom";
 
 const NoteState = (props) => {
+  // defining useAlert
+  let { alert, setAlert } = useAlert();
+
+  // useNavigate
+  let navigate = useNavigate();
+
   /*
 
   * LEARNING - CONTEXT API 
@@ -39,7 +49,7 @@ const NoteState = (props) => {
 
   //! Dev Tip :-  for simplicity to implementing context api use hardcode value insted  to build functionalities like CRUD,api
 
-/*
+  /*
 ! PHASE I
   let initialNotes = [
     {
@@ -65,34 +75,46 @@ const NoteState = (props) => {
   ];
 */
 
-// URL
-const host = "http://localhost:5000/";
+  // URL
+  const host = "http://localhost:5000/";
 
+  //! PHASE II
+  let initialValue = [];
 
-//! PHASE II
-let initialValue = []
+  // defining state
+  let [notes, setNotes] = useState(initialValue);
 
-
-// defining state
-let [notes, setNotes] = useState(initialValue);
-
-
-// Function to Fetch all notes from API 
-const fetchAllNotesFunc = async() => {
+  // Function to Fetch all notes from API
+  const fetchAllNotesFunc = async () => {
     let response = await fetch(`${host}api/note/fetchallnote`, {
-      method: 'GET', // or 'POST', 'PUT', 'DELETE', etc.
+      method: "GET", // or 'POST', 'PUT', 'DELETE', etc.
       headers: {
-        'Content-Type': 'application/json',
-        'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjgzNzM4NTVkZjhiZTBmNTlhNmVlN2E2In0sImlhdCI6MTc0ODUwNTAyMX0.X4PmSUnkDPADafg9CHwpDQCGeJ_i048BbDzhz4Jkz1o'
+        "Content-Type": "application/json",
+        "auth-token":
+          localStorage.getItem('authtoken')
         // Add other headers as needed
       },
-
-    })
+    });
     let json = await response.json();
-    setNotes(json);
-};
+    console.log("Fetch all notes",json);
 
-//! PHASE I
+    if (json.success) {
+      setNotes(json.allNotes); // re-render UI by updating state
+      setAlert({
+        type: "success",
+        message: "All notes are loaded.",
+      });
+     
+    } else {
+      setAlert({
+        type: "danger",
+        message: "Failed to load all Notes.",
+      });
+     
+    }
+  };
+
+  //! PHASE I
   // // Function for Adding New Note
   // const addNoteFunc = (newNote) => {
 
@@ -103,28 +125,45 @@ const fetchAllNotesFunc = async() => {
   //   // So we use concat , it retrun new array
   // };
 
- //! PHASE II
- // creating function for add new note
+  //! PHASE II
+  // creating function for add new note
 
-    const addNoteFunc = async(newNote) => {
-     
-     let response = await fetch(`${host}api/note/createnote`, {
-      method: 'POST', // or 'POST', 'PUT', 'DELETE', etc.
+  const addNoteFunc = async (newNote) => {
+    let response = await fetch(`${host}api/note/createnote`, {
+      method: "POST", // or 'POST', 'PUT', 'DELETE', etc.
       headers: {
-        'Content-Type': 'application/json',
-        'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjgzNzM4NTVkZjhiZTBmNTlhNmVlN2E2In0sImlhdCI6MTc0ODUwNTAyMX0.X4PmSUnkDPADafg9CHwpDQCGeJ_i048BbDzhz4Jkz1o'
+        "Content-Type": "application/json",
+        "auth-token":
+          localStorage.getItem('authtoken')
         // Add other headers as needed
       },
-      body: JSON.stringify(newNote)
+      body: JSON.stringify(newNote),
     });
+
     let json = await response.json();
-    console.log(json);
+        console.log(json);
+    if (json.success) {
+      setNotes(     // re-render UI by updating state
+        (prevNotes) => [
+          ...prevNotes, json.newNote 
+        ]
+      );
+      setAlert({
+        type: "success",
+        message: "New note is created successfully.",
+      });
+    
+    } else {
+      setAlert({
+        type: "danger",
+        message: "Failed to add a new note.",
+      });
+     
+    }
+  };
 
-    };
-
-
-//! PHASE I
-// Delete a note
+  //! PHASE I
+  // Delete a note
   // const deleteNoteFunc = (id) => {
   //   console.log("Note is deleted having _id", id);
 
@@ -136,31 +175,45 @@ const fetchAllNotesFunc = async() => {
   //   setNotes(updatedNotes);
   // };
 
-
-//! PHASE II
-// Delete a note through api
-const deleteNoteFunc = async (id) => {
-    
-     let response = await fetch(`${host}api/note/deletenote/${id}`, {
-      method: 'DELETE', // or 'POST', 'PUT', 'DELETE', etc.
+  //! PHASE II
+  // Delete a note through api
+  const deleteNoteFunc = async (id) => {
+    let response = await fetch(`${host}api/note/deletenote/${id}`, {
+      method: "DELETE", // or 'POST', 'PUT', 'DELETE', etc.
       headers: {
-        'Content-Type': 'application/json',
-        'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjgzNzM4NTVkZjhiZTBmNTlhNmVlN2E2In0sImlhdCI6MTc0ODUwNTAyMX0.X4PmSUnkDPADafg9CHwpDQCGeJ_i048BbDzhz4Jkz1o'
+        "Content-Type": "application/json",
+        "auth-token":
+          localStorage.getItem('authtoken')
         // Add other headers as needed
-      }
+      },
     });
     let json = await response.json();
     console.log(json);
+    if (json.success) {
 
+      setNotes(  // re-rendering UI by updating state
+        (prevNotes) => (
+           prevNotes.filter( note =>  note._id !== json.deletedNote._id)
+        ));
+  
+      setAlert({
+        type: "success",
+        message: "Note is deleted successfully.",
+      });
+    
+    } else {
+      setAlert({
+        type: "danger",
+        message: "Failed to deleted a note.",
+      });
+    
+    }
   };
 
+  // Function for Updating Note
 
-
-
-// Function for Updating Note
-
-//! PHASE I
-/* const updateNoteFunc = (note) => {
+  //! PHASE I
+  /* const updateNoteFunc = (note) => {
 
 
 * This for loop we use in our Hard code value Version      
@@ -190,28 +243,48 @@ const deleteNoteFunc = async (id) => {
 
   //!PHASE II
 
-  const updateNoteFunc = async(updatedNoteData) => {
+  const updateNoteFunc = async (updatedNoteData) => {
+    console.log("Updated Note data from NoteState ", updatedNoteData);
 
-    console.log("Updated Note data from NoteState ",updatedNoteData);
-
-    let response = await fetch(`${host}api/note/updatenote/${updatedNoteData._id}`, {
-      method: 'PUT', // or 'POST', 'PUT', 'DELETE', etc.
-      headers: {
-        'Content-Type': 'application/json',
-        'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjgzNzM4NTVkZjhiZTBmNTlhNmVlN2E2In0sImlhdCI6MTc0ODUwNTAyMX0.X4PmSUnkDPADafg9CHwpDQCGeJ_i048BbDzhz4Jkz1o'
-        // Add other headers as needed
-      },
-      body: JSON.stringify({
-        title: updatedNoteData.title,
-        description: updatedNoteData.description,
-        tag: updatedNoteData.tag,
-      }), // optional body for POST/PUT requests
-    });
+    let response = await fetch(
+      `${host}api/note/updatenote/${updatedNoteData._id}`,
+      {
+        method: "PUT", // or 'POST', 'PUT', 'DELETE', etc.
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token":
+            localStorage.getItem('authtoken')
+          // Add other headers as needed
+        },
+        body: JSON.stringify({
+          title: updatedNoteData.title,
+          description: updatedNoteData.description,
+          tag: updatedNoteData.tag,
+        }), // optional body for POST/PUT requests
+      }
+    );
     let json = await response.json();
-    console.log(json);
+        console.log(json);
+   if (json.success) {
+    setNotes(                   // re-render UI by updating state
+      (prevNotes) => (
+        prevNotes.map( note => note._id === json.editedNote._id ? json.editedNote : note)
+      )
+    );
 
-
-  }
+      setAlert({
+        type: "success",
+        message: "Note is updated successfully.",
+      });
+      navigate("/");
+    } else {
+      setAlert({
+        type: "danger",
+        message: "Failed to update a note.",
+      });
+      navigate("/");
+    }
+  };
 
   // passing state-setter func Pack
   let stateAndSetterFuncPack = {

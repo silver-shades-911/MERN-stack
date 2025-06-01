@@ -7,27 +7,30 @@ import NoteState from "./context/notes/NoteState";
 import Alert from "./components/Alert";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
-
+import { AlertProvider } from "./context/alertContext.jsx";
+// import { TestAlertButton } from "./components/TestAlertButton.jsx";
 
 
 function App() {
   return (
     <>
-      <NoteState>
-        <Navbar />
-        <Alert message={"This is alert of bootstarp fro mapp"}/>
-        <div className="container">
-          <Routes>
-            <Route exact path="/" element={<Home />}></Route>
+      <AlertProvider>
+        <NoteState>
+          <Navbar />
+          <Alert />
+          <div className="container">
+            <Routes>
+              <Route exact path="/" element={<Home />}></Route>
 
-            <Route exact path="/about" element={<About />}></Route>
+              <Route exact path="/about" element={<About />}></Route>
 
-            <Route exact path="/login" element={<Login/>}></Route>
-            
-            <Route exact path="/signup" element={<Signup/>}></Route>
-          </Routes>
-        </div>
-      </NoteState>
+              <Route exact path="/login" element={<Login />}></Route>
+
+              <Route exact path="/signup" element={<Signup />}></Route>
+            </Routes>
+          </div>
+        </NoteState>
+      </AlertProvider>
     </>
   );
 }

@@ -1,0 +1,20 @@
+.about-us h2 {
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.about-us ul {
+  padding-left: 1.2rem;
+}
+
+.about-us ul li {
+  margin-bottom: 8px;
+}
+
+.about-us .card {
+  transition: transform 0.3s ease;
+}
+
+.about-us .card:hover {
+  transform: translateY(-5px);
+}

@@ -6,11 +6,17 @@ const { body, validationResult } = require("express-validator");
 
 // ROUTE 1 => Fetch all Notes: GET"/api/note/fetchallnote".  Login Required
 router.get("/fetchallnote", fetchuser, async (req, res) => {
+
+// flag
+let success = false;
+
   try {
     let allNotes = await Note.find({ ownerID: req.user.id });
-    res.json(allNotes);
+    success = true;
+    res.json({success, allNotes});
   } catch (err) {
-    res.status(500).json({ errMsg: err.message });
+    success = false;
+    res.status(500).json({ success, errMsg: err.message });
   }
 });
 
@@ -21,22 +27,21 @@ router.post(
   [
     body("title", "Enter Valid Title").isLength({ min: 5 }),
     body("description", "Enter valid Description").isLength({ min: 10 }),
-    body("tag", "Please give space between 2 tags ").isString().notEmpty(),
+    body("tag", "Please give space between 2 tags "),
   ], // we want to verify note input , cannot take any input in DB
   async (req, res) => {
     const errors = validationResult(req);
 
     // if errros got  -> return them back
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errMsg1: errors.array() });
+      success = false;
+      return res.status(400).json({ success, errMsg1: errors.array() });
     }
 
     try {
       let { title, description, tag } = req.body;
 
-      // tag split into array
-      tag = tag.split(" ").filter((t) => t.trim() !== "");
-
+  
       let updatedNote = new Note({
         ownerID: req.user.id,
         title: title,
@@ -44,11 +49,13 @@ router.post(
         tag: tag,
       });
 
-      let result = await updatedNote.save();
+      let newNote = await updatedNote.save();
 
-      res.status(200).json(result);
+      success = true;
+      res.status(200).json({success ,newNote});
     } catch (err) {
-      res.status(500).json({ errMsg: err.message });
+      success = false;
+      res.status(500).json({success, errMsg: err.message });
     }
   }
 );
@@ -60,14 +67,15 @@ router.put(
   [
     body("title", "Enter Valid Title").isLength({ min: 5 }),
     body("description", "Enter valid Description").isLength({ min: 10 }),
-    body("tag", "Please give space between 2 tags ").isString().notEmpty(),
+    body("tag", "Please give space between 2 tags "),
   ], // we want to verify note input , cannot take any input in DB
   async (req, res) => {
     const errors = validationResult(req);
 
     // if errros got  -> return them back
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errMsg1: errors.array() });
+      success = false;
+      return res.status(400).json({  success, errMsg1: errors.array() });
     }
 
     try {
@@ -83,9 +91,6 @@ router.put(
         updatedNote.description = description;
       }
 
-      // tag split into array
-      tag = tag.split(" ").filter((t) => t.trim() !== "");
-
       if (tag) {
         updatedNote.tag = tag;
       }
@@ -95,24 +100,28 @@ router.put(
 
       //if not exists -> return them back
       if (!existedNote) {
-        return res.status(404).send("Not Found");
+        success = false;
+        return res.status(404).send(success, "Not Found");
       }
 
       // check current user is Owner of Note ?
       if (req.user.id !== existedNote.ownerID.toString()) {
-        return res.status(401).send("Unauthorized access");
+        success = false;
+        return res.status(401).send({ success, errMsg:"Unauthorized access"});
       }
 
       // if it is Owner
-      let result = await Note.findByIdAndUpdate(
+      let editedNote = await Note.findByIdAndUpdate(
         req.params.id,
         { $set: updatedNote },
         { new: true }
       );
 
-      res.status(200).json(result);
+      success = true;
+      res.status(200).json({success, editedNote});
     } catch (err) {
-      res.status(500).json({ errMsg: err.message });
+      success = false;
+      res.status(500).json({ success, errMsg: err.message });
     }
   }
 );
@@ -129,21 +138,27 @@ router.delete("/deletenote/:id", fetchuser, async (req, res) => {
 
   // if note not exists
   if (!existingNote) {
-    return res.status(404).json({ errMsg: "note does not exists" });
+    success = false;
+    return res.status(404).json({success, errMsg: "note does not exists" });
   }
 
   // if exists -> check current user is owner or not
   if (req.user.id !== existingNote.ownerID.toString()) {
-    return res.status(401).json({ errMsg: "Unauthorized Access" });
+    success = false;
+    return res.status(401).json({success ,errMsg: "Unauthorized Access" });
   }
 
   // if it is owner
-  let result = await Note.findByIdAndDelete(existingNote._id);
+  let deletedNote = await Note.findByIdAndDelete(existingNote._id);
+  console.log(deletedNote)
+
+  success = true;
   res
     .status(200)
-    .json({ success: `Note having ID ${result._id} is Deleted Successful` });
+    .json({ success, deletedNote});
  }catch (err){
-  res.status(500).json({errMsg: err.message});
+  success = false;
+  res.status(500).json({success ,errMsg: err.message});
  }
 });
 

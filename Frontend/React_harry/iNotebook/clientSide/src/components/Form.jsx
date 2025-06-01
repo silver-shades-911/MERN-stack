@@ -1,5 +1,7 @@
 import {useState, useEffect, useContext} from 'react';
 import noteContext from '../context/notes/noteContext';
+import { TagsInput } from "react-tag-input-component";
+
 
 /*
 * We want to submit form data and add new Note 
@@ -33,16 +35,42 @@ let initialValue = {
 // STEP1 -  defining newNote state varibale for form
 let [newNote, setNewNote] = useState(initialValue);
 
+//! ERROR - bcz tag is not object now 
+/* 👉 The problem is that event in this case is not an event object like in an <input> — it’s an array of tags (e.g., ["mango", "apple"]).
 
-// STEP1 - function which invoke on chnage in fields
+So event.target.name gives the error:
+
+❌ Cannot read properties of undefined (reading 'name')
+
+*/
+// // STEP1 - function which invoke on chnage in fields
+// const updateNewNoteState = (event) => {
+//   // console.log(event);
+//  setNewNote(
+//   (preVersion) => (
+//     console.log(event)
+//     ,{
+//     ...preVersion,
+//     [event.target.name]: event.target.value,
+//   })
+//  )
+// };
+
+
+//
 const updateNewNoteState = (event) => {
-  // console.log(event);
- setNewNote(
-  (preVersion) => ({
-    ...preVersion,
-    [event.target.name]: event.target.value,
-  })
- )
+  const { name, value } = event.target;
+  setNewNote((prev) => ({
+    ...prev,
+    [name]: value,
+  }));
+};
+
+const updateTags = (tagsArray) => {
+  setNewNote((prev) => ({
+    ...prev,
+    tag: tagsArray,
+  }));
 };
 
 
@@ -84,7 +112,13 @@ setNewNote(initialValue);
         <label htmlFor="tag" className="form-label">
           Tags
         </label>
-        <input type="text" className="form-control" name='tag' id="tag"  onChange={updateNewNoteState} value={newNote.tag} placeholder='e.g. #Apple #Mango #Orange'/>
+        <TagsInput
+        value={newNote.tag}
+        onChange={updateTags}
+        name="tag"
+        placeHolder="Enter tags "
+      />
+       <em>press enter or comma to add new tag</em>
       </div>
 
       <button type="submit"  className="btn btn-primary">

@@ -1,6 +1,9 @@
 import { useContext, useEffect, useState, useRef } from "react";
 import noteContext from "../context/notes/noteContext";
 import Noteitem from "./Noteitem";
+import { useNavigate } from "react-router-dom";
+import { TagsInput } from "react-tag-input-component";
+import {useAlert} from "../context/alertContext";
 
 
 const Notes = () => {
@@ -9,15 +12,28 @@ const Notes = () => {
   const { notes, fetchAllNotesFunc, updateNoteFunc } = useContext(noteContext);
 
 
+    // defining useAlert
+    let { alert, setAlert } = useAlert();
+
+  //useNavigate
+  const naviagate = useNavigate();
+
   // At Starting of website , we want for 1 time Fetch all notes
   useEffect(
     () => {
-      fetchAllNotesFunc();
+      if (localStorage.getItem("authtoken")) {
+        fetchAllNotesFunc();
+      } else {
+        console.log("hello ");
+         setAlert({
+          type: "danger",
+          message: "Login or signup first to load notes."
+      })
+        naviagate("/login");
+      }
     },
     [] // at beginning
   );
-
-
 
   //* Logic to Update Notes
 
@@ -25,19 +41,21 @@ const Notes = () => {
   let [eForm, setForm] = useState({
     eTitle: "",
     eDescription: "",
-    eTag:"",
+    eTag: [],
     _id: "",
   });
 
-//? We are using useRef ? -> because without it, we need to manually click on Modal Button to Launch / popUp it  
+  
 
-// Creating Modal Button Ref to point it , and initialize it with null
+  //? We are using useRef ? -> because without it, we need to manually click on Modal Button to Launch / popUp it
 
-const modalPopBtnRef = useRef(null);
-const modalCloseBtnRef = useRef(null);
+  // Creating Modal Button Ref to point it , and initialize it with null
+
+  const modalPopBtnRef = useRef(null);
+  const modalCloseBtnRef = useRef(null);
 
   const updateEform = (note) => {
-    console.log("note came in Notes from Noteitem",note);
+    console.log("note came in Notes from Noteitem", note);
 
     modalPopBtnRef.current.click(); // When EDit button in UI invoke this function , this invoke click action on currently referencing modal launching button in modalButtonRef()
 
@@ -45,7 +63,7 @@ const modalCloseBtnRef = useRef(null);
     setForm({
       eTitle: note.title,
       eDescription: note.description,
-      eTag: note.tag.toString(),
+      eTag: note.tag,
       date: note.date,
       ownerID: note.ownerID,
       _id: note._id,
@@ -55,34 +73,38 @@ const modalCloseBtnRef = useRef(null);
 
   // handle eForm on change , update state value
   const onChangeEform = (e) => {
-  setForm(
-    (preVersion) => (
-   { 
+    setForm((preVersion) => ({
       ...preVersion,
-      [e.target.name]: e.target.value
-    })
-  )
+      [e.target.name]: e.target.value,
+    }));
   };
+
+
+    // Update tags
+  const updateTags = (tagsArray) => {
+  setForm((prev) => ({
+    ...prev,
+    eTag: tagsArray,
+  }));
+};
 
 
   //* handle form submission
   // Now after submit we want to update NoteState value of noteContext
   const handleEformSubmit = (e) => {
-   
     e.preventDefault();
     // passing updated Note value to updateNoteFunc in NoteState through noteContext
 
-    console.log("eForm from submitting",eForm);
+    console.log("eForm from submitting", eForm);
 
     const updatedNote = {
-       title: eForm.eTitle,
-       description: eForm.eDescription,
-       tag: eForm.eTag,
-       date: eForm.date,
-       ownerID: eForm.ownerID,
-       _id: eForm._id,
+      title: eForm.eTitle,
+      description: eForm.eDescription,
+      tag: eForm.eTag,
+      date: eForm.date,
+      ownerID: eForm.ownerID,
+      _id: eForm._id,
     };
-
 
     updateNoteFunc(updatedNote);
 
@@ -93,11 +115,10 @@ const modalCloseBtnRef = useRef(null);
     <div className="row row-cols-auto gy-3">
       <button
         type="button"
-        className="btn btn-primary d-none"  
+        className="btn btn-primary d-none"
         data-bs-toggle="modal"
         data-bs-target="#staticBackdrop"
         ref={modalPopBtnRef}
-    
       >
         Launch static backdrop modal
       </button>
@@ -126,15 +147,20 @@ const modalCloseBtnRef = useRef(null);
               ></button>
             </div>
 
-
             <form onSubmit={handleEformSubmit}>
-
               <div className="modal-body">
                 <div className="mb-3">
                   <label htmlFor="eTitle" className="form-label">
                     Title
                   </label>
-                  <input type="text" className="form-control" id="eTitle" name="eTitle" onChange={onChangeEform} value={eForm.eTitle}/>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="eTitle"
+                    name="eTitle"
+                    onChange={onChangeEform}
+                    value={eForm.eTitle}
+                  />
                 </div>
                 <div className="mb-3">
                   <label htmlFor="eDescription" className="form-label">
@@ -153,7 +179,13 @@ const modalCloseBtnRef = useRef(null);
                   <label htmlFor="eTag" className="form-label">
                     Tags
                   </label>
-                  <input type="text" className="form-control" id="eTag" name="eTag" onChange={onChangeEform} value={eForm.eTag}/>
+                  <TagsInput
+                    value={eForm.eTag}
+                    onChange={updateTags}
+                    name="tag"
+                    placeHolder="Enter tags "
+                  />
+                  <em>press enter or comma to add new tag</em>
                 </div>
               </div>
               <div className="modal-footer">
@@ -168,18 +200,14 @@ const modalCloseBtnRef = useRef(null);
                   Understood
                 </button>
               </div>
-
             </form>
-
-
           </div>
         </div>
       </div>
 
-      {notes.length === 0 && 
-      <div className="textCenter">
-        No Notes to Display
-        </div>}
+      {notes.length === 0 && (
+        <div className="textCenter">No Notes to Display</div>
+      )}
       {notes.map((note) => (
         <div className="col" key={note._id}>
           <Noteitem note={note} updateEform={updateEform} />

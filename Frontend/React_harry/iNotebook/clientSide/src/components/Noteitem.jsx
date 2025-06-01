@@ -22,15 +22,15 @@ const Noteitem = (props) => {
         <div className="card-header">{title}</div>
         <div className="card-body">
           <p className="card-text">{description}</p>
+          
           <a  className="card-link">
             <i className="fa-solid fa-trash" onClick={() => handleNoteDelete(_id)}></i>
           </a>
           <a  className="card-link">
             <i className="fa-solid fa-pen-to-square" onClick={() => 
-              { console.log("sending note from Noteitem", props.note);
-                updateEform(props.note);
-                }}></i>
+              { updateEform(props.note);}}></i>
           </a>
+           <p className="card-text"><small className="text-body-secondary">tags: {tag.join(", ")}</small></p>
         </div>
       </div>
 

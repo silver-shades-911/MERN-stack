@@ -1,9 +1,13 @@
 import React, { useEffect } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   // want to show active on navbar ,nav-pages accroding to which page is active / open
   let location = useLocation();
+
+  //useNAvigate
+
+  const navigate = useNavigate();
 
   // using useEffect to re-render and show page location
   useEffect(
@@ -12,6 +16,12 @@ const Navbar = () => {
     },
     [location] // dependency : re-render when location change
   );
+
+  // Logout logic
+   const handleLogout = () => {
+    localStorage.removeItem('authtoken');
+    navigate("/login");
+   }
 
   return (
     <nav
@@ -44,7 +54,7 @@ const Navbar = () => {
           </div>
         </div>
 
-        <form className="d-flex">
+        {!localStorage.getItem('authtoken') ? <div className="d-flex">
           <div
             className="btn-group"
             role="group"
@@ -65,7 +75,7 @@ const Navbar = () => {
             </button>
               </NavLink>
           </div>
-        </form>
+        </div> : <button type="button" className="btn btn-dark" onClick={handleLogout} >Logout</button> }
       </div>
     </nav>
   );
