@@ -23,26 +23,32 @@ router.post(
     }),
   ],
   async (req, res) => {
+    //flag to check operation is success or failed
+    let success = false;
+
     // validation result getting
     const errors = validationResult(req);
     console.log(errors);
 
     // if catch error return
     if (!errors.isEmpty()) {
+      success=false;
       // check dont have error object
-      return res.status(400).json({ errors: errors.array() }); // we are sending error catch in while validation , errors obj contain errors array
+      return res.status(400).json({ success, errors: errors.array() }); // we are sending error catch in while validation , errors obj contain errors array
     }
 
     try {
       // check if user already exits or not
       let existingUser = await User.findOne({ email: req.body.email });
       if (existingUser) {
+        success = false;
         return res
           .status(400)
-          .send(
-            "This is email is already exits , Please try with different email"
-          );
-      }
+          .json({
+            success,
+            errMsg: "This is email is already exits , Please try with different email",
+      });
+      };
 
       // hashing + salting
       const salt = await bcrypt.genSaltSync(10);
@@ -70,7 +76,8 @@ router.post(
       // token generation
       let token = await jwt.sign(payload, SEC_KEY);
 
-      res.json({ authtoken: token });
+      success = true;
+      res.json({ success, authtoken: token });
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
