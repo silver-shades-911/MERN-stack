@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dot Blinking Effect</title>
+</head>
+<body>
+  <div id="messageBox" style="font-family: monospace; white-space: pre;"></div>
+
+  <script>
+    const array = [
+      "Initialize Hacking",
+      "Reading your files",
+      "Password file detected",
+      "Sending all files to server0",
+      "Cleaning this device all data"
+    ];
+
+    const messageBox = document.getElementById("messageBox");
+
+    let index = 0;
+
+    function showNextMessage() {
+      if (index >= array.length) return;
+
+      let dotCount = 0;
+      const maxDots = 3;
+      const blinkInterval = 250; // 250ms per dot step
+      let elapsed = 0;
+
+      const dotID = setInterval(() => {
+        // Clear current line
+        messageBox.textContent = messageBox.textContent.replace(/\.\.\.$|\.\.|\.|$/, '');
+        // Add dots
+        dotCount = (dotCount % maxDots) + 1;
+        messageBox.textContent += '.'.repeat(dotCount);
+        elapsed += blinkInterval;
+
+        if (elapsed >= 1000) {
+          clearInterval(dotID);
+          messageBox.textContent = messageBox.textContent.replace(/\.*$/, ''); // remove dots
+          messageBox.textContent += ' ' + array[index] + '\n'; // append the message
+          index++;
+          setTimeout(showNextMessage, 500); // small pause before next animation
+        }
+      }, blinkInterval);
+    }
+
+    // Start the sequence
+    showNextMessage();
+  </script>
+</body>
+</html>
