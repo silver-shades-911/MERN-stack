@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+  </head>
+  <body class="bg-gray-800">
+    <!-- 3 equal columns layout -->
+    <div class="h-30 grid grid-cols-1  sm:grid-cols-2 md:grid-cols-3 gap-4 mt-5">
+      <div class=" rounded-md bg-amber-500 hidden sm:block"></div>
+      <div class=" rounded-md bg-sky-500"></div>
+      <div class=" rounded-md bg-purple-500 hidden md:block"></div>
+    </div>
+
+    <!-- 4 equal columns layout -->
+    <div class="h-30 grid grid-cols-1 sm:grid-cols-4 lg:grid-cols-4 md:grid-cols-12 gap-4 mt-5">
+      <div class="rounded-md bg-amber-500 hidden sm:block sm:col-span-1 md:col-span-3 lg:col-span-1"></div>
+      <div class="rounded-md bg-sky-500 col-span-1  sm:col-span-3 md:col-span-6 lg:col-span-1"></div>
+      <div class="rounded-md bg-purple-500 hidden lg:block lg:col-span-1"></div>
+      <div class="rounded-md bg-green-500 hidden md:block md:col-span-3 lg:col-span-1  "></div>
+    </div>
+
+    <!-- 2 unequal columns layout   -->
+    <div class="h-30 grid grid-cols-1 sm:grid-cols-12 gap-4 mt-5">
+      <div class="rounded-md bg-amber-500 hidden sm:block sm:col-span-2"></div>
+      <div class="rounded-md bg-sky-500 col-span-1 sm:col-span-10"></div>
+    </div>
+ 
+    <!-- 2 unequal columns layout  -->
+      <div class="h-30 grid grid-cols-2 sm:grid-cols-12 gap-4 mt-5">
+      <div class="rounded-md bg-amber-500 col-span-1 sm:col-span-9"></div>
+      <div class="rounded-md bg-sky-500 col-span-1 sm:col-span-3"></div>
+    </div>
+
+    <!-- 3 unequal columns layout -->
+    <div class="h-30 grid grid-cols-1 md:grid-cols-12 lg:grid-cols-12 gap-4 mt-5">
+      <div class="rounded-md bg-amber-500 hidden md:block md:col-span-2 lg:col-span-2"></div>
+      <div class="rounded-md bg-sky-500 md:col-span-10 lg:col-span-8"></div>
+      <div class="rounded-md bg-purple-500 hidden lg:block lg:col-span-2"></div>
+     
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
