@@ -1,1 +1,9 @@
 **/node_modules/
+Backend/Quora Posts /views/detailPost.ejs
+Backend/Quora Posts /views/newPost.ejs
+Backend/Quora Posts /views/index.ejs
+Backend/Quora Posts /views/edit.ejs
+Backend/Quora Posts /public/style.css
+Backend/Quora Posts /package.json
+Backend/Quora Posts /package-lock.json
+Backend/Quora Posts /index.js

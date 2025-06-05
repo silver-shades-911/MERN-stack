@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>Vite App</title>
+  </head>
+  <body class="w-screen overflow-x-hidden flex flex-col">
+    <!-- navbar start here  -->
+    <nav
+      class="w-full h-20 bg-amber-200 flex justify-between items-center px-5"
+    >
+      <a href="" class="flex justify-center items-center gap-x-2">
+        <img src="./src/assets/asset 0.png" alt="" class="size-15" />
+        <span class="text-xl font-bold">ToDesktop</span>
+      </a>
+      <!-- hamburger & sidebar  -->
+      <div class="md:hidden">
+        <i
+          class="block fa-solid fa-bars text-3xl"
+          onclick=""
+          id="hamburger"
+        ></i>
+      </div>
+      <div
+        id="sideNav"
+        class="fixed hidden inset-0 bg-amber-200 flex flex-col justify-items-start items-start p-10 gap-y-10 md:hidden"
+      >
+        <div class="w-full flex justify-between items-center">
+          <a href="" class="flex justify-center items-center gap-x-2">
+            <img src="./src/assets/asset 0.png" alt="" class="size-15" />
+            <span class="text-2xl font-bold">ToDesktop</span>
+          </a>
+          <div>
+            <i class="fa-solid fa-xmark text-3xl"></i>
+          </div>
+        </div>
+
+        <ul class="flex flex-col justify-start items-start gap-y-8 mt-10">
+          <li class="text-xl font-semibold">Pricing</li>
+          <li class="text-xl font-semibold">Docs</li>
+          <li class="text-xl font-semibold">Changelog</li>
+          <li class="text-xl font-semibold">Blogs</li>
+          <li class="text-xl font-semibold">Login</li>
+        </ul>
+        <div>
+          <div
+            class="w-full flex flex-row justify-center-safe items-center gap-x-2 p-2 rounded-xl border mt-10"
+          >
+            <img src="./src/assets/asset 1.svg" alt="" class="size-8" />
+            <span class="font-semibold">Electron Developer</span>
+            <i class="fa-solid fa-arrow-right text-xl"></i>
+          </div>
+        </div>
+      </div>
+      <!-- navbar for desktop  -->
+      <ul class="hidden md:flex justify-center items-center gap-x-5">
+        <li class="text-md font-semibold">Pricing</li>
+        <li class="text-md font-semibold">Docs</li>
+        <li class="text-md font-semibold">Changelog</li>
+        <li class="text-md font-semibold">Blogs</li>
+        <li class="text-md font-semibold">Login</li>
+      </ul>
+      <div
+        class="hidden md:flex justify-center items-center gap-x-2 p-2 rounded-xl border"
+      >
+        <img src="./src/assets/asset 1.svg" alt="" class="size-8" />
+        <span class="font-semibold">Electron Developer</span>
+        <i class="fa-solid fa-arrow-right text-xl"></i>
+      </div>
+    </nav>
+    <!-- navbar end here  -->
+    <main class="w-full overflow-x-hidden flex-1 container mx-auto">
+      <!-- hero section  -->
+      <div>
+        <!-- version tab  -->
+        <div class="pt-20 pb-15 pl-5">
+          <!-- slide  -->
+          <div
+            class="flex flex-row w-fit py-2 px-5 justify-center items-center gap-x-3 border rounded-lg border-amber-300 bg-amber-50 shadow-lg shadow-amber-100 md:mx-auto"
+          >
+            <div
+              class="w-2 h-2 rounded-full bg-amber-300 border-amber-500"
+            ></div>
+            <span class="text-xl"
+              ><span class="text-xl text-amber-400">v0.21.1:</span> Find in-page
+              bug fixes</span
+            >
+            <i class="fa-solid fa-arrow-right text-xl"></i>
+          </div>
+        </div>
+        <!-- hero text  -->
+        <div class="px-5 mb-10 md:flex md:justify-center md:items-center md:mb-15">
+          <span class="text-[3rem] font-bold  text-gray-800 md:text-7xl md:text-gray-600 text-center"
+            >Web app to desktop app in minutes</span
+          >
+        </div>
+        <div class="px-5 mb-10 md:flex md:justify-center md:items-center md:mb-20 " >
+          <span class="text-2xl font-medium text-gray-500"
+            >Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum cum
+            perferendis impedit fugit illum ab.</span
+          >
+        </div>
+        <div class="px-5 mb-20 md:flex md:flex-row md:justify-center md:items-center">
+          <div class="flex justify-center gap-x-5 md:justify-between md:gap-x-7">
+            <button class="w-50 h-12 rounded-lg bg-sky-500 text-xl text-white font-semibold">Download now</button>
+            <button class="w-50 h-12 rounded-lg  text-xl font-semibold">Read Docs</button>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </main>
+
+    <script type="module" src="/src/main.js" defer></script>
+  </body>
+</html>
