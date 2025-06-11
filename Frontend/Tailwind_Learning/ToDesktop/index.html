@@ -16,7 +16,7 @@
   <body class="w-screen overflow-x-hidden flex flex-col">
     <!-- navbar start here  -->
     <nav
-      class="w-full h-20 bg-amber-200 flex justify-between items-center px-5"
+      class="w-full h-20 bg-amber-200 flex justify-between items-center px-5 text-sm"
     >
       <a href="" class="flex justify-center items-center gap-x-2">
         <img src="./src/assets/asset 0.png" alt="" class="size-15" />
@@ -24,15 +24,11 @@
       </a>
       <!-- hamburger & sidebar  -->
       <div class="md:hidden">
-        <i
-          class="block fa-solid fa-bars text-3xl"
-          onclick=""
-          id="hamburger"
-        ></i>
+        <i class="block fa-solid fa-bars text-xl" onclick="" id="hamburger"></i>
       </div>
       <div
         id="sideNav"
-        class="fixed hidden inset-0 bg-amber-200 flex flex-col justify-items-start items-start p-10 gap-y-10 md:hidden"
+        class="fixed hidden inset-0 bg-amber-200 flex-col justify-items-start items-start p-10 gap-y-10 md:hidden"
       >
         <div class="w-full flex justify-between items-center">
           <a href="" class="flex justify-center items-center gap-x-2">
@@ -53,7 +49,7 @@
         </ul>
         <div>
           <div
-            class="w-full flex flex-row justify-center-safe items-center gap-x-2 p-2 rounded-xl border mt-10"
+            class="w-full flex flex-row justify-center-safe items-center gap-x-2 p-2 rounded-2xl border mt-10"
           >
             <img src="./src/assets/asset 1.svg" alt="" class="size-8" />
             <span class="font-semibold">Electron Developer</span>
@@ -70,7 +66,7 @@
         <li class="text-md font-semibold">Login</li>
       </ul>
       <div
-        class="hidden md:flex justify-center items-center gap-x-2 p-2 rounded-xl border"
+        class="hidden md:flex justify-center items-center gap-x-2 p-2 rounded-2xl border"
       >
         <img src="./src/assets/asset 1.svg" alt="" class="size-8" />
         <span class="font-semibold">Electron Developer</span>
@@ -82,7 +78,9 @@
       <!-- hero section  -->
       <div>
         <!-- version tab  -->
-        <div class="pt-20 pb-15 pl-5">
+        <div
+          class="pt-20 pb-15 pl-5 flex flex-col justify-center items-center gap-y-10"
+        >
           <!-- slide  -->
           <div
             class="flex flex-row w-fit py-2 px-5 justify-center items-center gap-x-3 border rounded-lg border-amber-300 bg-amber-50 shadow-lg shadow-amber-100 md:mx-auto"
@@ -96,27 +94,998 @@
             >
             <i class="fa-solid fa-arrow-right text-xl"></i>
           </div>
+          <!-- Code Optional Drag Drop ...  -->
+          <div class="hidden md:flex flex-row w-fit gap-x-7">
+            <div>
+              <i class="fa-regular fa-file-code"></i>
+              <span>Code Optional</span>
+            </div>
+            <div>
+              <i class="fa-solid fa-hand-back-fist"></i>
+              <span>Drag & drop builder</span>
+            </div>
+            <div>
+              <i class="fa-solid fa-laptop"></i>
+              <span>windows, Mac, Linux</span>
+            </div>
+          </div>
         </div>
         <!-- hero text  -->
-        <div class="px-5 mb-10 md:flex md:justify-center md:items-center md:mb-15">
-          <span class="text-[3rem] font-bold  text-gray-800 md:text-7xl md:text-gray-600 text-center"
+        <div
+          class="mb-10 px-5 md:flex md:justify-center md:items-center md:mb-15"
+        >
+          <span
+            class="text-[3rem] font-bold text-gray-800 md:text-7xl md:text-gray-600 text-center"
             >Web app to desktop app in minutes</span
           >
         </div>
-        <div class="px-5 mb-10 md:flex md:justify-center md:items-center md:mb-20 " >
+        <div
+          class="px-5 mb-10 md:flex md:justify-center md:items-center md:mb-20"
+        >
           <span class="text-2xl font-medium text-gray-500"
             >Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum cum
             perferendis impedit fugit illum ab.</span
           >
         </div>
-        <div class="px-5 mb-20 md:flex md:flex-row md:justify-center md:items-center">
-          <div class="flex justify-center gap-x-5 md:justify-between md:gap-x-7">
-            <button class="w-50 h-12 rounded-lg bg-sky-500 text-xl text-white font-semibold">Download now</button>
-            <button class="w-50 h-12 rounded-lg  text-xl font-semibold">Read Docs</button>
+        <div
+          class="px-5 mb-20 md:flex md:flex-row md:justify-center md:items-center"
+        >
+          <div
+            class="flex justify-center gap-x-5 md:justify-between md:gap-x-7"
+          >
+            <button
+              class="w-50 h-12 rounded-lg bg-sky-500 text-xl text-white font-semibold"
+            >
+              Download now
+            </button>
+            <button class="w-50 h-12 rounded-lg text-xl font-semibold">
+              Read Docs
+            </button>
           </div>
         </div>
-        <div></div>
       </div>
+      <!-- hero section end here  -->
+
+      <!-- app powered by section start here  -->
+      <div>
+        <!-- title  -->
+        <div class="flex flex-row justify-center items-center pb-10">
+          <div class="flex flex-row gap-x-5">
+            <img src="./src/assets/asset 2.svg" alt="" class="translate-y-1" />
+            <span>APPS POWERED BY TODESKTOP</span>
+            <img
+              src="./src/assets/asset 2.svg"
+              alt=""
+              class="-scale-x-100 translate-y-1"
+            />
+          </div>
+        </div>
+
+        <!-- companies icons tray box  -->
+        <div class="flex flex-col pt-10 gap-y-5 pb-30">
+          <div
+            id="lane1"
+            class="flex flex-row justify-start items-center overflow-x-visible gap-x-4 -translate-x-48 transition-transform ease-linear"
+          >
+            <div
+              class="flex flex-col justify-center items-center p-5 rounded-lg border border-gray-400"
+            >
+              <img
+                src="./src/assets/asset 3.png"
+                class="size-16 md:size-20"
+                alt=""
+              />
+              <span>Bounding</span>
+            </div>
+            <div
+              class="flex flex-col justify-center items-center p-5 rounded-lg border border-gray-400"
+            >
+              <img
+                src="./src/assets/asset 3.png"
+                class="size-16 md:size-20"
+                alt=""
+              />
+              <span>Bounding</span>
+            </div>
+            <div
+              class="flex flex-col justify-center items-center p-5 rounded-lg border border-gray-400"
+            >
+              <img
+                src="./src/assets/asset 3.png"
+                class="size-16 md:size-20"
+                alt=""
+              />
+              <span>Bounding</span>
+            </div>
+            <div
+              class="flex flex-col justify-center items-center p-5 rounded-lg border border-gray-400"
+            >
+              <img
+                src="./src/assets/asset 3.png"
+                class="size-16 md:size-20"
+                alt=""
+              />
+              <span>Bounding</span>
+            </div>
+            <div
+              class="flex flex-col justify-center items-center p-5 rounded-lg border border-gray-400"
+            >
+              <img
+                src="./src/assets/asset 3.png"
+                class="size-16 md:size-20"
+                alt=""
+              />
+              <span>Bounding</span>
+            </div>
+            <div
+              class="flex flex-col justify-center items-center p-5 rounded-lg border border-gray-400"
+            >
+              <img
+                src="./src/assets/asset 3.png"
+                class="size-16 md:size-20"
+                alt=""
+              />
+              <span>Bounding</span>
+            </div>
+            <div
+              class="flex flex-col justify-center items-center p-5 rounded-lg border border-gray-400"
+            >
+              <img
+                src="./src/assets/asset 3.png"
+                class="size-16 md:size-20"
+                alt=""
+              />
+              <span>Bounding</span>
+            </div>
+            <div
+              class="flex flex-col justify-center items-center p-5 rounded-lg border border-gray-400"
+            >
+              <img
+                src="./src/assets/asset 3.png"
+                class="size-16 md:size-20"
+                alt=""
+              />
+              <span>Bounding</span>
+            </div>
+            <div
+              class="flex flex-col justify-center items-center p-5 rounded-lg border border-gray-400"
+            >
+              <img
+                src="./src/assets/asset 3.png"
+                class="size-16 md:size-20"
+                alt=""
+              />
+              <span>Bounding</span>
+            </div>
+            <div
+              class="flex flex-col justify-center items-center p-5 rounded-lg border border-gray-400"
+            >
+              <img
+                src="./src/assets/asset 3.png"
+                class="size-16 md:size-20"
+                alt=""
+              />
+              <span>Bounding</span>
+            </div>
+            <div
+              class="flex flex-col justify-center items-center p-5 rounded-lg border border-gray-400"
+            >
+              <img
+                src="./src/assets/asset 3.png"
+                class="size-16 md:size-20"
+                alt=""
+              />
+              <span>Bounding</span>
+            </div>
+            <div
+              class="flex flex-col justify-center items-center p-5 rounded-lg border border-gray-400"
+            >
+              <img
+                src="./src/assets/asset 3.png"
+                class="size-16 md:size-20"
+                alt=""
+              />
+              <span>Bounding</span>
+            </div>
+          </div>
+          <div
+            id="lane2"
+            class="flex flex-row justify-start items-center overflow-x-visible gap-x-4 translate-x-38 transition-transform ease-linear"
+          >
+            <div
+              class="flex flex-col justify-center items-center p-5 rounded-lg border border-gray-400"
+            >
+              <img
+                src="./src/assets/asset 3.png"
+                class="size-16 md:size-20"
+                alt=""
+              />
+              <span>Bounding</span>
+            </div>
+            <div
+              class="flex flex-col justify-center items-center p-5 rounded-lg border border-gray-400"
+            >
+              <img
+                src="./src/assets/asset 3.png"
+                class="size-16 md:size-20"
+                alt=""
+              />
+              <span>Bounding</span>
+            </div>
+            <div
+              class="flex flex-col justify-center items-center p-5 rounded-lg border border-gray-400"
+            >
+              <img
+                src="./src/assets/asset 3.png"
+                class="size-16 md:size-20"
+                alt=""
+              />
+              <span>Bounding</span>
+            </div>
+            <div
+              class="flex flex-col justify-center items-center p-5 rounded-lg border border-gray-400"
+            >
+              <img
+                src="./src/assets/asset 3.png"
+                class="size-16 md:size-20"
+                alt=""
+              />
+              <span>Bounding</span>
+            </div>
+            <div
+              class="flex flex-col justify-center items-center p-5 rounded-lg border border-gray-400"
+            >
+              <img
+                src="./src/assets/asset 3.png"
+                class="size-16 md:size-20"
+                alt=""
+              />
+              <span>Bounding</span>
+            </div>
+            <div
+              class="flex flex-col justify-center items-center p-5 rounded-lg border border-gray-400"
+            >
+              <img
+                src="./src/assets/asset 3.png"
+                class="size-16 md:size-20"
+                alt=""
+              />
+              <span>Bounding</span>
+            </div>
+            <div
+              class="flex flex-col justify-center items-center p-5 rounded-lg border border-gray-400"
+            >
+              <img
+                src="./src/assets/asset 3.png"
+                class="size-16 md:size-20"
+                alt=""
+              />
+              <span>Bounding</span>
+            </div>
+            <div
+              class="flex flex-col justify-center items-center p-5 rounded-lg border border-gray-400"
+            >
+              <img
+                src="./src/assets/asset 3.png"
+                class="size-16 md:size-20"
+                alt=""
+              />
+              <span>Bounding</span>
+            </div>
+            <div
+              class="flex flex-col justify-center items-center p-5 rounded-lg border border-gray-400"
+            >
+              <img
+                src="./src/assets/asset 3.png"
+                class="size-16 md:size-20"
+                alt=""
+              />
+              <span>Bounding</span>
+            </div>
+            <div
+              class="flex flex-col justify-center items-center p-5 rounded-lg border border-gray-400"
+            >
+              <img
+                src="./src/assets/asset 3.png"
+                class="size-16 md:size-20"
+                alt=""
+              />
+              <span>Bounding</span>
+            </div>
+            <div
+              class="flex flex-col justify-center items-center p-5 rounded-lg border border-gray-400"
+            >
+              <img
+                src="./src/assets/asset 3.png"
+                class="size-16 md:size-20"
+                alt=""
+              />
+              <span>Bounding</span>
+            </div>
+            <div
+              class="flex flex-col justify-center items-center p-5 rounded-lg border border-gray-400"
+            >
+              <img
+                src="./src/assets/asset 3.png"
+                class="size-16 md:size-20"
+                alt=""
+              />
+              <span>Bounding</span>
+            </div>
+          </div>
+          <div
+            id="lane3"
+            class="flex flex-row justify-start items-center overflow-x-visible gap-x-4 -translate-x-48 transition-transform ease-linear"
+          >
+            <div
+              class="flex flex-col justify-center items-center p-5 rounded-lg border border-gray-400"
+            >
+              <img
+                src="./src/assets/asset 3.png"
+                class="size-16 md:size-20"
+                alt=""
+              />
+              <span>Bounding</span>
+            </div>
+            <div
+              class="flex flex-col justify-center items-center p-5 rounded-lg border border-gray-400"
+            >
+              <img
+                src="./src/assets/asset 3.png"
+                class="size-16 md:size-20"
+                alt=""
+              />
+              <span>Bounding</span>
+            </div>
+            <div
+              class="flex flex-col justify-center items-center p-5 rounded-lg border border-gray-400"
+            >
+              <img
+                src="./src/assets/asset 3.png"
+                class="size-16 md:size-20"
+                alt=""
+              />
+              <span>Bounding</span>
+            </div>
+            <div
+              class="flex flex-col justify-center items-center p-5 rounded-lg border border-gray-400"
+            >
+              <img
+                src="./src/assets/asset 3.png"
+                class="size-16 md:size-20"
+                alt=""
+              />
+              <span>Bounding</span>
+            </div>
+            <div
+              class="flex flex-col justify-center items-center p-5 rounded-lg border border-gray-400"
+            >
+              <img
+                src="./src/assets/asset 3.png"
+                class="size-16 md:size-20"
+                alt=""
+              />
+              <span>Bounding</span>
+            </div>
+            <div
+              class="flex flex-col justify-center items-center p-5 rounded-lg border border-gray-400"
+            >
+              <img
+                src="./src/assets/asset 3.png"
+                class="size-16 md:size-20"
+                alt=""
+              />
+              <span>Bounding</span>
+            </div>
+            <div
+              class="flex flex-col justify-center items-center p-5 rounded-lg border border-gray-400"
+            >
+              <img
+                src="./src/assets/asset 3.png"
+                class="size-16 md:size-20"
+                alt=""
+              />
+              <span>Bounding</span>
+            </div>
+            <div
+              class="flex flex-col justify-center items-center p-5 rounded-lg border border-gray-400"
+            >
+              <img
+                src="./src/assets/asset 3.png"
+                class="size-16 md:size-20"
+                alt=""
+              />
+              <span>Bounding</span>
+            </div>
+            <div
+              class="flex flex-col justify-center items-center p-5 rounded-lg border border-gray-400"
+            >
+              <img
+                src="./src/assets/asset 3.png"
+                class="size-16 md:size-20"
+                alt=""
+              />
+              <span>Bounding</span>
+            </div>
+            <div
+              class="flex flex-col justify-center items-center p-5 rounded-lg border border-gray-400"
+            >
+              <img
+                src="./src/assets/asset 3.png"
+                class="size-16 md:size-20"
+                alt=""
+              />
+              <span>Bounding</span>
+            </div>
+            <div
+              class="flex flex-col justify-center items-center p-5 rounded-lg border border-gray-400"
+            >
+              <img
+                src="./src/assets/asset 3.png"
+                class="size-16 md:size-20"
+                alt=""
+              />
+              <span>Bounding</span>
+            </div>
+            <div
+              class="flex flex-col justify-center items-center p-5 rounded-lg border border-gray-400"
+            >
+              <img
+                src="./src/assets/asset 3.png"
+                class="size-16 md:size-20"
+                alt=""
+              />
+              <span>Bounding</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- app powered by section end here  -->
+      <!-- how it work / steps section start here  -->
+      <div class="flex flex-col justify-center content-start gap-y-10">
+        <span class="text-6xl font-bold my-15">How it works</span>
+
+        <!-- cards start from here  -->
+        <div
+          class="w-full h-auto border-2 border-gray-500 px-10 py-15 rounded-2xl flex flex-col just lg:flex-row gap-x-10"
+        >
+          <div
+            class="w-full flex flex-col justify-items-center gap-y-8 lg:w-1/2"
+          >
+            <div
+              class="w-fit px-5 py-2 bg-amber-100 border-2 border-amber-200 text-2xl font-medium text-red-900 rounded-2xl"
+            >
+              Step 1
+            </div>
+            <div class="text-5xl font-semibold">
+              Bootstrap straight from your web app
+            </div>
+            <div class="text-2xl font-light text-gray-800">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores,
+              dicta ullam. Quod amet voluptatem reprehenderit aperiam veniam.
+            </div>
+            <ul
+              class="grid grid-cols-2 justify-items-center-safe items-center p-10 gap-y-2"
+            >
+              <li class="text-[1.4rem]">
+                <i class="fa-solid fa-check"></i>
+                <a class="underline-offset-4 ml-1.5">Lorem ipsum</a>
+              </li>
+              <li class="text-[1.4rem]">
+                <i class="fa-solid fa-check"></i>
+                <a class="underline-offset-4 ml-1.5">Lorem ipsum</a>
+              </li>
+              <li class="text-[1.4rem]">
+                <i class="fa-solid fa-check"></i>
+                <a class="underline-offset-4 ml-1.5">Lorem ipsum</a>
+              </li>
+              <li class="text-[1.4rem]">
+                <i class="fa-solid fa-check"></i>
+                <a class="underline-offset-4 ml-1.5">Lorem ipsum</a>
+              </li>
+              <li class="text-[1.4rem]">
+                <i class="fa-solid fa-check"></i>
+                <a class="underline-offset-4 ml-1.5">Lorem ipsum</a>
+              </li>
+              <li class="text-[1.4rem]">
+                <i class="fa-solid fa-check"></i>
+                <a class="underline-offset-4 ml-1.5">Lorem ipsum</a>
+              </li>
+            </ul>
+          </div>
+          <div class="flex justify-center items-center py-10 lg:w-1/2">
+            <img src="./src/assets/asset 27.svg" alt="" />
+          </div>
+        </div>
+        <div
+          class="w-full h-auto border-2 border-gray-500 px-10 py-15 rounded-2xl flex flex-col just lg:flex-row gap-x-10"
+        >
+          <div
+            class="w-full flex flex-col justify-items-center gap-y-8 lg:w-1/2"
+          >
+            <div
+              class="w-fit px-5 py-2 bg-amber-100 border-2 border-amber-200 text-2xl font-medium text-red-900 rounded-2xl"
+            >
+              Step 1
+            </div>
+            <div class="text-5xl font-semibold">
+              Bootstrap straight from your web app
+            </div>
+            <div class="text-2xl font-light text-gray-800">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores,
+              dicta ullam. Quod amet voluptatem reprehenderit aperiam veniam.
+            </div>
+            <ul
+              class="grid grid-cols-2 justify-items-center-safe items-center p-10 gap-y-2"
+            >
+              <li class="text-[1.4rem]">
+                <i class="fa-solid fa-check"></i>
+                <a class="underline-offset-4 ml-1.5">Lorem ipsum</a>
+              </li>
+              <li class="text-[1.4rem]">
+                <i class="fa-solid fa-check"></i>
+                <a class="underline-offset-4 ml-1.5">Lorem ipsum</a>
+              </li>
+              <li class="text-[1.4rem]">
+                <i class="fa-solid fa-check"></i>
+                <a class="underline-offset-4 ml-1.5">Lorem ipsum</a>
+              </li>
+              <li class="text-[1.4rem]">
+                <i class="fa-solid fa-check"></i>
+                <a class="underline-offset-4 ml-1.5">Lorem ipsum</a>
+              </li>
+              <li class="text-[1.4rem]">
+                <i class="fa-solid fa-check"></i>
+                <a class="underline-offset-4 ml-1.5">Lorem ipsum</a>
+              </li>
+              <li class="text-[1.4rem]">
+                <i class="fa-solid fa-check"></i>
+                <a class="underline-offset-4 ml-1.5">Lorem ipsum</a>
+              </li>
+            </ul>
+          </div>
+          <div class="flex justify-center items-center py-10 lg:w-1/2">
+            <img src="./src/assets/asset 27.svg" alt="" />
+          </div>
+        </div>
+        <div
+          class="w-full h-auto border-2 border-gray-500 px-10 py-15 rounded-2xl flex flex-col just lg:flex-row gap-x-10"
+        >
+          <div
+            class="w-full flex flex-col justify-items-center gap-y-8 lg:w-1/2"
+          >
+            <div
+              class="w-fit px-5 py-2 bg-amber-100 border-2 border-amber-200 text-2xl font-medium text-red-900 rounded-2xl"
+            >
+              Step 1
+            </div>
+            <div class="text-5xl font-semibold">
+              Bootstrap straight from your web app
+            </div>
+            <div class="text-2xl font-light text-gray-800">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores,
+              dicta ullam. Quod amet voluptatem reprehenderit aperiam veniam.
+            </div>
+            <ul
+              class="grid grid-cols-2 justify-items-center-safe items-center p-10 gap-y-2"
+            >
+              <li class="text-[1.4rem]">
+                <i class="fa-solid fa-check"></i>
+                <a class="underline-offset-4 ml-1.5">Lorem ipsum</a>
+              </li>
+              <li class="text-[1.4rem]">
+                <i class="fa-solid fa-check"></i>
+                <a class="underline-offset-4 ml-1.5">Lorem ipsum</a>
+              </li>
+              <li class="text-[1.4rem]">
+                <i class="fa-solid fa-check"></i>
+                <a class="underline-offset-4 ml-1.5">Lorem ipsum</a>
+              </li>
+              <li class="text-[1.4rem]">
+                <i class="fa-solid fa-check"></i>
+                <a class="underline-offset-4 ml-1.5">Lorem ipsum</a>
+              </li>
+              <li class="text-[1.4rem]">
+                <i class="fa-solid fa-check"></i>
+                <a class="underline-offset-4 ml-1.5">Lorem ipsum</a>
+              </li>
+              <li class="text-[1.4rem]">
+                <i class="fa-solid fa-check"></i>
+                <a class="underline-offset-4 ml-1.5">Lorem ipsum</a>
+              </li>
+            </ul>
+          </div>
+          <div class="flex justify-center items-center py-10 lg:w-1/2">
+            <img src="./src/assets/asset 27.svg" alt="" />
+          </div>
+        </div>
+      </div>
+      <!-- how it work / steps section end here   -->
+      <!-- bento card grid section start here  -->
+      <div>
+        <div class="text-6xl font-medium my-15">
+          ToDesktop handles the details
+        </div>
+
+        <!-- bento box  -->
+        <div
+          class="flex flex-col justify-start content-start gap-y-10 lg:max-h-[50rem] lg:grid lg:grid-cols-3 lg:grid-rows-6 lg:gap-5 lg:place-content-evenly"
+        >
+          <!-- bento box card -->
+          <div
+            class="border-4 border-amber-400 lg:row-span-2 lg:row-start-1 p-[1px]"
+          >
+            <div
+              class="w-full h-full flex flex-col justify-items-center items-center gap-y-10 py-10 rounded-2xl border border-gray-500"
+            >
+              <span class="text-3xl font-semibold text-gray-600"
+                >Native Notification</span
+              >
+              <img src="./src//assets/asset 28.png" alt="" class="w-2/3" />
+            </div>
+          </div>
+          <!-- bento box card -->
+          <div class="border-4 border-amber-400 lg:row-span-4 lg:row-start-1">
+            <div
+              class="w-full h-full flex flex-col justify-items-center items-center gap-y-10 p-10 rounded-2xl border border-gray-500"
+            >
+              <span class="text-3xl font-semibold text-gray-600"
+                >Native Notification</span
+              >
+              <span class="text-2xl text-center text-gray-500">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Officiis consequatur ipsam magnam libero voluptas, asperiores
+                qui porro ex ducimus placeat,
+              </span>
+              <img src="./src//assets/asset 29.png" alt="" class="w-2/3" />
+            </div>
+          </div>
+          <!-- bento box card -->
+          <div class="border-4 border-amber-400 lg:row-span-2 lg:row-start-1">
+            <div
+              class="w-full h-full flex flex-col justify-items-center items-center gap-y-10 py-10 rounded-2xl border border-gray-500"
+            >
+              <span class="text-3xl font-semibold text-gray-600"
+                >Native Notification</span
+              >
+              <img src="./src//assets/asset 30.png" alt="" class="w-2/3" />
+            </div>
+          </div>
+          <!-- bento box card -->
+          <div class="border-4 border-amber-400 lg:row-span-4 lg:row-start-3">
+            <div
+              class="w-full h-full flex flex-col justify-items-center items-center gap-y-10 p-10 rounded-2xl border border-gray-500"
+            >
+              <span class="text-3xl font-semibold text-gray-600"
+                >Native Notification</span
+              >
+              <span class="text-2xl text-center text-gray-500">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Officiis consequatur ipsam magnam libero voluptas, asperiores
+                qui porro ex ducimus placeat,
+              </span>
+              <img src="./src//assets/asset 31.png" alt="" class="w-2/3" />
+            </div>
+          </div>
+          <!-- bento box card -->
+          <div class="border-4 border-amber-400 lg:row-span-2 lg:row-start-5">
+            <div
+              class="w-full h-full flex flex-col justify-items-center items-center gap-y-10 py-10 rounded-2xl border border-gray-500"
+            >
+              <span class="text-3xl font-semibold text-gray-600"
+                >Native Notification</span
+              >
+              <img src="./src//assets/asset 28.png" alt="" class="w-2/3" />
+            </div>
+          </div>
+          <!-- bento box card -->
+          <div class="border-4 border-amber-400 lg:row-span-4 lg:row-start-3">
+            <div
+              class="w-full h-full flex flex-col justify-items-center items-center gap-y-10 p-10 rounded-2xl border border-gray-500"
+            >
+              <span class="text-3xl font-semibold text-gray-600"
+                >Native Notification</span
+              >
+              <span class="text-2xl text-center text-gray-500">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Officiis consequatur ipsam magnam libero voluptas, asperiores
+                qui porro ex ducimus placeat,
+              </span>
+              <img src="./src//assets/asset 29.png" alt="" class="w-2/3" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- bento card grid section end here  -->
+      <!-- company features section start here   -->
+      <div
+        class="mt-20 overflow-x-visible py-5 border-2 rounded-xl border-gray-500"
+      >
+        <!-- tray  -->
+        <div
+          id="lane4"
+          class="min-w-fit flex flex-row justify-items-start items-center gap-x-2.5 overflow-x-visible -translate-x-1/3 transition-transform ease-linears"
+        >
+          <span class="whitespace-nowrap text-2xl font-semibold text-gray-700"
+            >Download Analytics</span
+          >
+          <span>⬩</span>
+          <span class="whitespace-nowrap text-2xl font-semibold text-gray-700"
+            >Download Analytics</span
+          >
+          <span>⬩</span>
+          <span class="whitespace-nowrap text-2xl font-semibold text-gray-700"
+            >Download Analytics</span
+          >
+          <span>⬩</span>
+          <span class="whitespace-nowrap text-2xl font-semibold text-gray-700"
+            >Download Analytics</span
+          >
+          <span>⬩</span>
+          <span class="whitespace-nowrap text-2xl font-semibold text-gray-700"
+            >Download Analytics</span
+          >
+          <span>⬩</span>
+          <span class="whitespace-nowrap text-2xl font-semibold text-gray-700"
+            >Download Analytics</span
+          >
+          <span>⬩</span>
+          <span class="whitespace-nowrap text-2xl font-semibold text-gray-700"
+            >Download Analytics</span
+          >
+          <span>⬩</span>
+          <span class="whitespace-nowrap text-2xl font-semibold text-gray-700"
+            >Download Analytics</span
+          >
+          <span>⬩</span>
+          <span class="whitespace-nowrap text-2xl font-semibold text-gray-700"
+            >Download Analytics</span
+          >
+          <span>⬩</span>
+          <span class="whitespace-nowrap text-2xl font-semibold text-gray-700"
+            >Download Analytics</span
+          >
+          <span>⬩</span>
+          <span class="whitespace-nowrap text-2xl font-semibold text-gray-700"
+            >Download Analytics</span
+          >
+          <span>⬩</span>
+          <span class="whitespace-nowrap text-2xl font-semibold text-gray-700"
+            >Download Analytics</span
+          >
+          <span>⬩</span>
+          <span class="whitespace-nowrap text-2xl font-semibold text-gray-700"
+            >Download Analytics</span
+          >
+          <span>⬩</span>
+          <span class="whitespace-nowrap text-2xl font-semibold text-gray-700"
+            >Download Analytics</span
+          >
+          <span>⬩</span>
+          <span class="whitespace-nowrap text-2xl font-semibold text-gray-700"
+            >Download Analytics</span
+          >
+          <span>⬩</span>
+        </div>
+      </div>
+      <!-- company features section end here   -->
+      <!-- customer stories start here  -->
+      <div class="my-25">
+        <div class="my-15 text-5xl font-semibold">Customer stories</div>
+        <div class="flex flex-col border-2 border-gray-600 rounded-2xl">
+          <div class="flex flex-col gap-y-10 p-10">
+            <div class="flex justify-items-center items-center gap-x-3">
+              <img src="./src/assets/asset 9.png" class="w-15" alt="" />
+              <span class="text-3xl font-bold">Click Up</span>
+            </div>
+            <div>
+              <span class="text-2xl font-semibold text-gray-600"
+                >Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Dignissimos laboriosam itaque dolorem, eius non dolorum!</span
+              >
+            </div>
+            <div class="flex flex-wrap gap-3">
+              <span
+                class="flex items-center py-2 px-4 w-fit text-xl text-red-900 font-semibold gap-x-2 bg-amber-100 border-2 border-amber-300 rounded-xl"
+                ><i class="fa-solid fa-check"></i
+                ><span>Chromless UI</span></span
+              >
+              <span
+                class="flex items-center py-2 px-4 w-fit text-xl text-red-900 font-semibold gap-x-2 bg-amber-100 border-2 border-amber-300 rounded-xl"
+                ><i class="fa-solid fa-check"></i
+                ><span>Native spellcheck</span></span
+              >
+              <span
+                class="flex items-center py-2 px-4 w-fit text-xl text-red-900 font-semibold gap-x-2 bg-amber-100 border-2 border-amber-300 rounded-xl"
+                ><i class="fa-solid fa-check"></i
+                ><span>Task time in menubar</span></span
+              >
+              <span
+                class="flex items-center py-2 px-4 w-fit text-xl text-red-900 font-semibold gap-x-2 bg-amber-100 border-2 border-amber-300 rounded-xl"
+                ><i class="fa-solid fa-check"></i
+                ><span>Notification count in th dock</span></span
+              >
+              <span
+                class="flex items-center py-2 px-4 w-fit text-xl text-red-900 font-semibold gap-x-2 bg-amber-100 border-2 border-amber-300 rounded-xl"
+                ><i class="fa-solid fa-check"></i
+                ><span>Global hotkey to create task</span></span
+              >
+            </div>
+            <div>
+              <div class="text-2xl text-gray-500 font-light">
+                "Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Accusantium beatae quasi dolorum sint, veritatis quis impedit
+                libero incidunt quibusdam. Tempora tempore quidem atque sapiente
+                incidunt similique a beatae! Iste temporibus eius a eos suscipit
+                qui."
+              </div>
+            </div>
+
+            <!-- profile card  -->
+            <div>
+              <div class="flex gap-x-5 justify-items-start items-center">
+                <div>
+                  <img
+                    src="/src/assets/asset 33.jpeg"
+                    alt=""
+                    class="w-20 rounded-full"
+                  />
+                </div>
+                <div>
+                  <div class="text-xl font-medium">Zeb Evans</div>
+                  <div class="text-xl font-medium text-gray-500">
+                    Founder & CEO, ClickUp
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- img  -->
+          <div class="w-full mt-10 bg-amber-300 pl-10 overflow-x-hidden">
+            <img src="./src/assets/asset 34.png" alt="" />
+          </div>
+        </div>
+      </div>
+      <!-- customer stories end here  -->
+      <!-- native api section start here  -->
+      <div class="flex flex-col gap-y-10">
+        <!-- card 1 -->
+        <div class="flex flex-col gap-y-5 p-5 rounded-xl">
+          <div class="flex justify-start items-center gap-x-3">
+            <span class="flex p-5 w-fit rounded-full bg-sky-200">
+              <i class="fa-solid fa-code text-2xl font-bold text-sky-700"></i>
+            </span>
+            <span class="text-2xl font-bold"> Native APIs </span>
+          </div>
+          <div class="text-xl font-light">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestiae
+            dignissimos totam, enim pariatur culpa aliquam et similique at fugit
+            sequi, quasi sunt nulla voluptas quo? Quae deleniti nesciunt nemo
+            voluptatibus facere alias, a iusto eius.
+          </div>
+          <div class="flex flex-row gap-x-4">
+            <div class="flex">
+              <div
+                class="w-12 h-12 rounded-full bg-center"
+                style="background-image: url('./src/assets/asset\ 8.png')"
+              ></div>
+              <div
+                class="w-12 h-12 rounded-full bg-center -ml-3.5"
+                style="background-image: url('./src/assets/asset\ 36.jpeg')"
+              ></div>
+            </div>
+            <div class="">
+              <div class="font-medium">Rick Pastoor</div>
+              <div class="font-medium text-gray-500">Rise</div>
+            </div>
+          </div>
+        </div>
+        <!-- card 1 -->
+        <div class="flex flex-col gap-y-5 p-5 rounded-xl">
+          <div class="flex justify-start items-center gap-x-3">
+            <span class="flex p-5 w-fit rounded-full bg-sky-200">
+              <i class="fa-solid fa-code text-2xl font-bold text-sky-700"></i>
+            </span>
+            <span class="text-2xl font-bold"> Native APIs </span>
+          </div>
+          <div class="text-xl font-light">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestiae
+            dignissimos totam, enim pariatur culpa aliquam et similique at fugit
+            sequi, quasi sunt nulla voluptas quo? Quae deleniti nesciunt nemo
+            voluptatibus facere alias, a iusto eius.
+          </div>
+          <div class="flex flex-row gap-x-4">
+            <div class="flex">
+              <div
+                class="w-12 h-12 rounded-full bg-center"
+                style="background-image: url('./src/assets/asset\ 8.png')"
+              ></div>
+              <div
+                class="w-12 h-12 rounded-full bg-center -ml-3.5"
+                style="background-image: url('./src/assets/asset\ 36.jpeg')"
+              ></div>
+            </div>
+            <div class="">
+              <div class="font-medium">Rick Pastoor</div>
+              <div class="font-medium text-gray-500">Rise</div>
+            </div>
+          </div>
+        </div>
+        <!-- card 1 -->
+        <div class="flex flex-col gap-y-5 p-5 rounded-xl">
+          <div class="flex justify-start items-center gap-x-3">
+            <span class="flex p-5 w-fit rounded-full bg-sky-200">
+              <i class="fa-solid fa-code text-2xl font-bold text-sky-700"></i>
+            </span>
+            <span class="text-2xl font-bold"> Native APIs </span>
+          </div>
+          <div class="text-xl font-light">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestiae
+            dignissimos totam, enim pariatur culpa aliquam et similique at fugit
+            sequi, quasi sunt nulla voluptas quo? Quae deleniti nesciunt nemo
+            voluptatibus facere alias, a iusto eius.
+          </div>
+          <div class="flex flex-row gap-x-4">
+            <div class="flex">
+              <div
+                class="w-12 h-12 rounded-full bg-center"
+                style="background-image: url('./src/assets/asset\ 8.png')"
+              ></div>
+              <div
+                class="w-12 h-12 rounded-full bg-center -ml-3.5"
+                style="background-image: url('./src/assets/asset\ 36.jpeg')"
+              ></div>
+            </div>
+            <div class="">
+              <div class="font-medium">Rick Pastoor</div>
+              <div class="font-medium text-gray-500">Rise</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- native api section end here  -->
+      <!-- create your desktop app for free section start here  -->
+      <div class="my-25 bg-black text-white">
+        <div class="flex flex-col border-2 border-gray-600 rounded-2xl">
+          <div class="flex flex-col gap-y-10 p-10">
+            <div>
+              <span class="text-2xl font-semibold text-white"
+                >Lorem ipsum dolor sit amet consectetur</span
+              >
+            </div>
+            <div class="">
+              <span class="text-3xl font-bold text-white">Click Up</span>
+            </div>
+
+            <div>
+              <span class="text-2xl font-semibold text-white"
+                >Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Dignissimos laboriosam itaque dolorem, eius non dolorum!</span
+              >
+            </div>
+            <div class="flex flex-wrap gap-3">
+              <span
+                class="flex items-center py-2 px-4 w-fit text-xl text-red-900 font-semibold gap-x-2 bg-sky-600 border-2 border-amber-300 rounded-xl"
+                ><i class="fa-solid fa-check"></i
+                ><span class="text-white">Chromless UI</span></span
+              >
+            </div>
+            <div>
+              <div class="text-sm italic text-white font-light">
+                "Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Accusantium beatae quasi dolorum sint,
+              </div>
+            </div>
+          </div>
+          <!-- img  -->
+          <div class="w-full mt-10 pl-10 overflow-x-hidden">
+            <img src="./src/assets/asset 34.png" alt="" />
+          </div>
+        </div>
+      </div>
+      <!-- create your desktop app for free section end here  -->
+
+      <div class="min-h-screen"></div>
     </main>
 
     <script type="module" src="/src/main.js" defer></script>
