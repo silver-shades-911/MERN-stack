@@ -59,3 +59,22 @@ setUpIntersectionObserver(lane1, true, 0.15);
 setUpIntersectionObserver(lane2, false, 0.15);
 setUpIntersectionObserver(lane3, true, 0.15);
 setUpIntersectionObserver(lane4, true, 0.7)
+
+
+
+// FAQs collaps logic
+
+let dtElements = document.querySelectorAll('dt');
+
+dtElements.forEach(
+  (element) => {
+    element.addEventListener("click", () => { 
+      let ddID = element.getAttribute('aria-controls');
+      let ddElement = document.getElementById(ddID);
+      let arrowIcon = element.querySelector('i');
+      ddElement.classList.toggle('hidden');
+      arrowIcon.classList.toggle('-rotate-180');
+
+    });
+  }
+)
