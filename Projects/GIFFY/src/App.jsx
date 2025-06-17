@@ -1,0 +1,63 @@
+import "./App.css";
+import { createBrowserRouter, RouterProvider } from "react-router";
+import Applayouts from "./layouts/Applayouts";
+import Home from "./pages/Home";
+import Category from "./pages/Category";
+import Search from "./pages/Search";
+import GifPage from "./pages/GifPage";
+import Favourit from "./pages/Favourit";
+
+// Our Routes
+// Home
+//Category
+//search
+//single gif
+//favorites
+
+/*
+
+React Router is a multi-strategy router for React. There are three primary ways, or "modes", to use it in your app.
+
+* Data
+
+   By moving route configuration outside of React rendering, Data Mode adds data loading, actions, pending states and more with APIs like loader, action, and useFetcher.
+
+*/
+
+
+
+
+let router = createBrowserRouter([
+  {
+    element: <Applayouts />,       // this is element  and following are childrens 
+                                   // that childrens render in element where we give postiton 
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/:category",
+        element: <Category />,
+      },
+      {
+        path: "/search/:query",
+        element: <Search />,
+      },
+      {
+        path: "/:type/:slug",
+        element: <GifPage />,
+      },
+      {
+        path: "/favourit",
+        element: <Favourit />,
+      },
+    ],
+  },
+]);
+
+function App() {
+  return <RouterProvider router={router} />;
+}
+
+export default App;
