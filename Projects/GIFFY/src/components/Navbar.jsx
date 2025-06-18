@@ -88,7 +88,7 @@ const Navbar = () => {
           </button>
 
           {/* favourits gifs */}
-          {favorite.length == 0 && (
+          {favorite.length !== 0 && (
             <div className="font-bold bg-gray-600 py-2 px-4 rounded-md">
               <Link to={"favourit"}>favorite GIFs</Link>
             </div>
@@ -103,7 +103,7 @@ const Navbar = () => {
 
           {/* category panel */}
           {showCategorySwtich && (
-            <div className="absolute top-25 w-full px-10 py-10 gradientHover left-0">
+            <div className="absolute top-25 w-full px-10 py-10 gradientHover left-0 z-20">
               <div className="text-3xl font-bold mb-2">Category</div>
               <hr className="my-5" />
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
