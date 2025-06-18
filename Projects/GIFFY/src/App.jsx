@@ -1,4 +1,3 @@
-import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import Applayouts from "./layouts/Applayouts";
 import Home from "./pages/Home";
@@ -6,6 +5,7 @@ import Category from "./pages/Category";
 import Search from "./pages/Search";
 import GifPage from "./pages/GifPage";
 import Favourit from "./pages/Favourit";
+import { GifProvider } from "./context/gif-context";
 
 // Our Routes
 // Home
@@ -24,13 +24,10 @@ React Router is a multi-strategy router for React. There are three primary ways,
 
 */
 
-
-
-
 let router = createBrowserRouter([
   {
-    element: <Applayouts />,       // this is element  and following are childrens 
-                                   // that childrens render in element where we give postiton 
+    element: <Applayouts />, // this is element  and following are childrens
+    // that childrens render in element where we give postiton
     children: [
       {
         path: "/",
@@ -57,7 +54,11 @@ let router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <GifProvider>
+      <RouterProvider router={router} />;
+    </GifProvider>
+  );
 }
 
 export default App;
