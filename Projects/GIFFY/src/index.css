@@ -1,3 +1,7 @@
+/* * {
+  border: 1px solid red;
+} */
+
 @import "tailwindcss";
 
 /* @theme {
@@ -11,3 +15,10 @@
   @apply bg-gradient-to-r from-teal-600 via-blue-600 to-pink-600;
 }
 
+@utility faded-text {
+  @apply font-bold text-sm text-gray-400;
+}
+
+@utility divider {
+  @apply w-full h-0.5 my-6 bg-gray-800;
+}

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { HiBars3BottomRight } from "react-icons/hi2";
 import { HiDotsVertical } from "react-icons/hi";
 import { useGifContext } from "../context/gif-context";
+import GifSearch from "./GifSearch";
 
 
 const Navbar = () => {
@@ -61,7 +62,7 @@ const Navbar = () => {
           <Link
             to={"category"}
             key={category.name}
-            className="px-4 py-1 hover:gradientHover border-b-4 hidden lg:block font-bold"
+            className="px-4 py-1 hover:gradientHover border-b-4 block lg:hidden font-bold"
           >
             Reactions
           </Link>
@@ -70,6 +71,7 @@ const Navbar = () => {
             return (
               <Link
                 to={`/${category.name_encoded}`}
+                key={category.name_encoded}
                 className="px-4 py-1 hover:gradientHover border-b-4 hidden lg:block font-bold"
               >
                 {category.name}
@@ -109,7 +111,7 @@ const Navbar = () => {
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
                 {category.map((category) => {
                   return (
-                    <Link className="font-bold" to={category.name_encoded}>
+                    <Link className="font-bold" to={category.name_encoded} key={category.name_encoded}>
                       {category.name}
                     </Link>
                   );
@@ -119,6 +121,9 @@ const Navbar = () => {
           )}
         </div>
       </div>
+
+      {/* search bar */}
+      <GifSearch/>
     </nav>
   );
 };

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useGifContext } from "../context/gif-context";
 import Gif from "../components/Gif"
+import GifFilter from "../components/GifFilter";
 
 const Home = () => {
 
@@ -24,7 +25,7 @@ setGif(data);
 useEffect(
   () => {
     fetchTrendingGifs();
-  }, []
+  }, [filter]
 );
 
 // test
@@ -39,7 +40,9 @@ console.log("test2 - gif", gif);
       </div>
 
       {/* Filter Gifs Componend */}
-
+       <GifFilter showTrending={true} />
+      
+      {/* home page containt */}
       <div className="columns-2 md:columns-3 lg:columns-4 xl:columns-5 gap-2">
         {gif.map(
           (gif) => {
