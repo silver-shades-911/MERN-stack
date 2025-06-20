@@ -5,7 +5,6 @@ import { HiDotsVertical } from "react-icons/hi";
 import { useGifContext } from "../context/gif-context";
 import GifSearch from "./GifSearch";
 
-
 const Navbar = () => {
   // category state varibale to show categories
   const [category, setCategory] = useState([]);
@@ -59,13 +58,13 @@ const Navbar = () => {
 
         <div className="flex font-bold gap-2 items-center ">
           {/* render categories*/}
-          <Link
+          {/* <Link
             to={"category"}
             key={category.name}
             className="px-4 py-1 hover:gradientHover border-b-4 block lg:hidden font-bold"
           >
             Reactions
-          </Link>
+          </Link> */}
 
           {category?.slice(0, 5)?.map((category) => {
             return (
@@ -97,7 +96,12 @@ const Navbar = () => {
           )}
 
           {/*  */}
-          <button className="block lg:hidden">
+          <button
+            className={` block lg:hidden  py-0.5 hover:gradientHover border-b-4 ${
+              showCategorySwtich ? "gradientHover" : ""
+            } `}
+            onClick={() => setShowCategorySwtich(!showCategorySwtich)}
+          >
             <Link>
               <HiBars3BottomRight size={35} />
             </Link>
@@ -111,7 +115,12 @@ const Navbar = () => {
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
                 {category.map((category) => {
                   return (
-                    <Link className="font-bold" to={category.name_encoded} key={category.name_encoded}>
+                    <Link
+                      className="font-bold"
+                      to={category.name_encoded}
+                      key={category.name_encoded}
+                      onClick={() => setShowCategorySwtich(false)}
+                    >
                       {category.name}
                     </Link>
                   );
@@ -123,7 +132,7 @@ const Navbar = () => {
       </div>
 
       {/* search bar */}
-      <GifSearch/>
+      <GifSearch />
     </nav>
   );
 };

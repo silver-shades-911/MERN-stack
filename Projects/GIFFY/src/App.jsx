@@ -1,3 +1,12 @@
+/*
+
+GIFFY clone is finished, 
+TODO :
+Except Feature : Add Favorites 
+How to do : make state varible [] at context and store gif id's and render , when click in Favorits pages  
+
+
+*/
 import { createBrowserRouter, RouterProvider } from "react-router";
 import Applayouts from "./layouts/Applayouts";
 import Home from "./pages/Home";
@@ -42,7 +51,7 @@ let router = createBrowserRouter([
         element: <Search />,
       },
       {
-        path: "/:type/:slug",
+        path: "/:type/:id",
         element: <GifPage />,
       },
       {

@@ -4,9 +4,9 @@ import { FaXTwitter } from "react-icons/fa6";
 
 const FollowOn = () => {
   return (
-    <div className="faded-text pt-2">
-      <div>Follow on:</div>
-      <div className="flex gap-2 pt-3 items-center">
+    <div className="flex flex-col faded-text pt-2 ">
+      <div className="text-[1rem] text-gray-300">Follow on:</div>
+      <div className="flex gap-x-2 items-center pt-3">
         <a href="">
           <FaYoutube size={20} />
         </a>
@@ -14,7 +14,7 @@ const FollowOn = () => {
           <FaInstagram size={20} />
         </a>
         <a href="">
-          <FaXTwitter szie={20} />
+          <FaXTwitter size={20} />
         </a>
       </div>
     </div>
