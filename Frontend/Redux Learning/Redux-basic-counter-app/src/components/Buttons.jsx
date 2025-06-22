@@ -14,38 +14,20 @@ const Buttons = () => {
   const counter = useSelector((state) => state.counter);
   // If have many state varibles then => e.g. state.time
   //If state variable is object or array they access it like it e.g. Array[0] , obj.key
-  {console.log(counter)};
+  {
+    console.log(counter);
+  }
 
   //TODO 13: how to dispatch operation with data
   const dispatch = useDispatch();
 
   return (
-    <div style={{ display: "flex", gap: "5rem", marginTop: "2rem" }}>
-      <button
-        style={{ fontSize: "2rem", width: "50px" }}
-        onClick={() => dispatch(decrement())}
-      >
-        -
-      </button>
+    <div>
+      <button onClick={() => dispatch(decrement())}>-</button>
 
-      <span
-        style={{
-          backgroundColor: "gray",
-          color: "white",
-          width: "100px",
-          padding: "20px",
-          fontSize: "20px",
-        }}
-      >
-        {counter.value}
-      </span>
+      <span>{counter.value}</span>
 
-      <button
-        style={{ fontSize: "2rem", width: "50px" }}
-        onClick={() => dispatch(increment())}
-      >
-        +
-      </button>
+      <button onClick={() => dispatch(increment())}>+</button>
     </div>
   );
 };

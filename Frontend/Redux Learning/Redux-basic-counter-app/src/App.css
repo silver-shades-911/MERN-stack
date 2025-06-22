@@ -1,4 +1,61 @@
+/* General app styles */
 body {
-    background-color: black;
-    color: whitesmoke
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* Heading */
+h1 {
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+/* Display Component Styles */
+h4 {
+  padding: 15px;
+  background-color: #555;
+  color: white;
+  border-radius: 8px;
+  font-size: 18px;
+  width: fit-content;
+  margin-bottom: 2rem;
+}
+
+/* Buttons Container */
+button {
+  font-size: 2rem;
+  width: 60px;
+  height: 60px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+span {
+  background-color: gray;
+  color: white;
+  width: 120px;
+  padding: 20px;
+  font-size: 24px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+div {
+  display: flex;
+  gap: 3rem;
+  align-items: center;
 }
