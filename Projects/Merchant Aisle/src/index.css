@@ -1,0 +1,25 @@
+/* src/index.css */
+
+body {
+  background-color: black;
+}
+
+
+
+@import "tailwindcss";
+
+/*
+  Add your custom global styles below this import.
+  However, remember that Tailwind's utility-first approach generally discourages
+  extensive custom CSS outside of its system.
+*/
+
+
+@utility btn-primary {
+  @apply px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md;
+}
+
+@utility my-custom-text {
+  @apply text-4xl tracking-wide text-indigo-500 font-sans font-semibold;
+  line-height: 1.6; /* You can also add raw CSS properties */
+}
