@@ -1,3 +1,4 @@
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -10,5 +11,6 @@ export default {
       // the CSS-first approach using `@theme` in `src/index.css` is preferred for v4.
     },
   },
-  plugins: [],
+ plugins: [require('tailwind-scrollbar')],
+
 }
