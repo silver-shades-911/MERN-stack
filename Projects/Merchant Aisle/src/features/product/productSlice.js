@@ -16,6 +16,7 @@ const products = Array.from({ length: 20 }, () => ({
   fastDelivery: faker.datatype.boolean(),
   category: faker.commerce.department(),
   rating: faker.helpers.arrayElement([1, 2, 3, 4, 5]),
+  qyt:1,
 }));
 
 console.log(products);
