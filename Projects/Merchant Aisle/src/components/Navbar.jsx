@@ -1,10 +1,18 @@
-import React, { useState } from "react";
 import { BsSearch } from "react-icons/bs";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Cart from "./Cart";
-
+import { useSelector, useDispatch } from "react-redux";
+import { setSearchQuery } from "../features/filter/filterSlice";
 const Navbar = () => {
+  // useSelector
+
+  let searchQuery = useSelector((state) => state.filter.filter);
+  const dispatch = useDispatch();
+
+  // handleSearchQuery
+  const handleSearchQuery = (e) => {
+    dispatch(setSearchQuery(e.target.value));
+  };
 
   return (
     <div className="w-full h-20 bg-indigo-700 text-white flex justify-between items-center px-5 z-100">
@@ -22,10 +30,9 @@ const Navbar = () => {
           type="search"
           className="bg-slate-100 rounded-full text-black h-13 w-96 px-5.5 outline-0"
           placeholder="Search a product..."
+          value={searchQuery}
+          onChange={handleSearchQuery}
         />
-        <button className="rounded-full p-2 bg-indigo-950">
-          <BsSearch size={20} />
-        </button>
       </div>
 
       {/* cart */}
