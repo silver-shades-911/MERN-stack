@@ -19,6 +19,26 @@ const LongCart = ({ product }) => {
     );
   };
 
+  // options
+
+  //! IMP point about scoping
+  // if u run this directly options scope is limited to if block only
+  // if (product.inStock !== 0) {
+  //   let options = Array.from({ length: product.inStock }, (_, i) => i + 1);
+  //   console.log("options =>", options);
+  // };
+
+  // soluton
+
+  // define array at component
+  let options = [];
+
+  // check condition and then modify
+  if (product.inStock !== 0) {
+    options = Array.from({ length: product.inStock }, (_, i) => i + 1);
+    //console.log("options =>", options);
+  }
+
   return (
     <div className="flex items-center p-5 rounded-2xl bg-gray-800 text-white">
       <div className="w-1/6 flex justify-center">
@@ -44,9 +64,14 @@ const LongCart = ({ product }) => {
           value={product.qyt}
           onChange={handleQyt}
         >
-          <option default>1</option>
-          <option>2</option>
-          <option>3</option>
+          {options.length > 0 &&
+            options.map((num) => {
+              return (
+                <option key={num} value={num}>
+                  {num}
+                </option>
+              );
+            })}
         </select>
       </div>
       <div className="w-1/6 flex justify-center">

@@ -29,14 +29,14 @@ const Home = () => {
             cart.map((c) => <LongCart product={c} />)
           ) : (
             <div className="text-2xl font-light flex justify-center items-center">
-              <p>Cart is Empty...</p>
+              <p>Cart is Empty.</p>
             </div>
           )}
         </div>
       </div>
       <div className="max-h-screen w-2/7 pt-20 p-10 bg-slate-900 flex flex-col gap-y-6">
         {/* summary */}
-        <h1 className="text-5xl">Subtotal ({cart.length}) Total</h1>
+        <h1 className="text-5xl">Subtotal ({cart.length}) items</h1>
         <h5 className="text-xl font-bold">Total: ${total}</h5>
         <div className="flex justify-center">
           <button className="w-2/3 bg-gray-100 text-black py-3 rounded-xl font-medium">

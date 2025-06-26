@@ -6,7 +6,6 @@ const Card = ({ product }) => {
   let dispatch = useDispatch();
   let cart = useSelector((state) => state.cart.cart);
 
-
   // handle add to cart
   const handleAddToCart = () => {
     dispatch(add_to_cart(product));
@@ -33,7 +32,9 @@ const Card = ({ product }) => {
         }`}</div>
         <Rating rating={product.rating} />
 
-        {cart.some((c) => c.id === product.id) ? (
+        {product.inStock === 0 ? (
+          <button className="mt-4 text-sm font-medium py-1.5 px-2.5 rounded-lg  bg-slate-600 w-fit text-white">Out of Stock</button>
+        ) : cart.some((c) => c.id === product.id) ? (
           <button
             className="mt-4 text-sm font-medium py-1.5 px-2.5 rounded-lg bg-red-700 w-fit text-white"
             onClick={handleRemoveFromCart}

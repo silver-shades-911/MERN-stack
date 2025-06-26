@@ -30,20 +30,23 @@ export const cartSlice = createSlice({
     },
 
     change_qyt: (state, action) => {
-      let pID = action.payload.id;
+      let pID = action.payload.pID; //! Wrong data access can lead to unexpected behaviour of state
+
+      if (!state.cart) {
+        console.warn("Cart is undefined");
+        return;
+      }
+
+      console.log("state ==>", state.cart);
 
       let product = state.cart.find((c) => c.id === pID);
-      console.log(
-       "action ==>", action
-      );
-       console.log(
-       "state ==>", state
-      );
-       console.log(
-       "product ==>", product
-      );
+      console.log("product ==>", product);
 
-      product.qyt = action.payload.qyt;
+      if (product) {
+        product.qyt = action.payload.qyt;
+      } else {
+        console.warn(`Product with ID ${pID} not found in cart.`);
+      }
     },
   },
 });

@@ -50,7 +50,10 @@ const Cart = () => {
                       <div className="font-medium">{c.name}</div>
                       <div>&#36;{c.price}</div>
                     </span>
-                    <button className="flex justify-center items-center cursor-pointer" onClick={() => dispatch(remove_from_cart(c.id))}>
+                    <button
+                      className="flex justify-center items-center cursor-pointer"
+                      onClick={() => dispatch(remove_from_cart(c.id))}
+                    >
                       <MdDelete size={25} />
                     </button>
                   </li>
@@ -64,7 +67,10 @@ const Cart = () => {
           </ul>
 
           <Link to={"/checkout"}>
-            <button className="text-lg font-semibold text-white bg-blue-700 w-full py-2.5 rounded-xl" >
+            <button
+              className="text-lg font-semibold text-white bg-blue-700 w-full py-2.5 rounded-xl"
+              onClick={() => setDropdownSwitch(false)}
+            >
               Go To Cart
             </button>
           </Link>
