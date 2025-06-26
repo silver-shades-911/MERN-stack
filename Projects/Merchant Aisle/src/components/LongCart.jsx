@@ -2,7 +2,7 @@ import React from "react";
 import Rating from "./Rating";
 import { MdDelete } from "react-icons/md";
 import { useDispatch } from "react-redux";
-import { change_qyt } from "../features/cart/cartSlice";
+import { change_qyt, remove_from_cart } from "../features/cart/cartSlice";
 
 const LongCart = ({ product }) => {
   // dispatch
@@ -75,7 +75,7 @@ const LongCart = ({ product }) => {
         </select>
       </div>
       <div className="w-1/6 flex justify-center">
-        <button>
+        <button onClick={() => dispatch(remove_from_cart(product.id))}>
           <MdDelete size={25} />
         </button>
       </div>

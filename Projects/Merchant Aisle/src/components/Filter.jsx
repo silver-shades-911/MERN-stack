@@ -45,8 +45,8 @@ const Filter = () => {
           name="group1"
           id="dscd"
           className="size-5"
-          checked={sort === "HighToLow"}
-          onChange={() => dispatch(setSort("HighToLow"))}
+          checked={sort === "highToLow"}
+          onChange={() => dispatch(setSort("highToLow"))}
         />
         <label htmlFor="dscd" className="text-lg">
           Descending
