@@ -68,7 +68,7 @@ router.post(
       let payload = {
         user: {
           //  username: user.username,
-          //  email: user.email,  ---> best way to add our data as payload , our id is best data it is unique and fast to authenication in futur e
+          //  email: user.email,  ---> best way to add our data as payload , our id is best data it is unique and fast to authenication in future
           id: user.id,
         },
       };
@@ -183,4 +183,9 @@ module.exports = router;
    - Easier and cleaner than creating instances and saving manually.
 
    - Suitable for bulk inserts with validation.
+
+   ✅ What is a Mongoose Instance?
+   
+   A Mongoose instance is when you create an object from a Mongoose model using the new keyword. 
+   It's like creating a document manually — it gives you access to instance methods, middleware (save() hooks), and validation.
 */
