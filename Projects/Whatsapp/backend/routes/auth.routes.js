@@ -9,11 +9,11 @@ const router = express.Router();
 
 //signup
 // ROUTE 1 => Create a User using : POST "/api/auth/signup". Does not require login
-router.get("/signup", signupController);
+router.post("/signup", signupController);
 
 //login
 // ROUTE 2 => Login a User using : POST "/api/auth/login". Does not require login
-router.get("/login", loginController);
+router.post("/login", loginController);
 
 //logout
 // ROUTE 3 => Logout a User using : GET "/api/auth/logout". Required login

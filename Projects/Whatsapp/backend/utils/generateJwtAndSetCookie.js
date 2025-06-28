@@ -3,7 +3,9 @@ import jwt from "jsonwebtoken";
 
 
 const generateJwtAndSetCookie = (userID, res) => {
-  // generate token
+ try {
+
+   // generate token
   var token = jwt.sign({ userID: userID }, process.env.JWT_SECRET_KEY, {
     expiresIn: "15d",
   });
@@ -16,6 +18,12 @@ const generateJwtAndSetCookie = (userID, res) => {
     secure: process.env.NODE_ENV === "production", // Only true in prod,
     signed: true,
   });
+ } catch (error) {
+
+   console.error("Error in generateJwtAndSetCookie", error);
+   res.status(500).json({error: "Internal Server Error"});
+
+ }
 };
 
 export default generateJwtAndSetCookie;

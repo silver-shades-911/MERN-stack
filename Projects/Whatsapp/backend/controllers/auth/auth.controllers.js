@@ -34,20 +34,20 @@ export const signupController = async (req, res) => {
     const hash = await bcrypt.hash(password, salt);
 
     // profile picture
-    const profilePictureURL = `https://avatar.iran.liara.run/public/${gender}/username=${username}`;
+    const profileUrl = `https://avatar.iran.liara.run/public/${gender}/username=${username}`;
 
     // new user
     let newUser = {
       fullName,
       username,
       password: hash,
-      profileUrl: profilePictureURL,
+      profileUrl: profileUrl,
       gender,
     };
 
     if (newUser) {
       //generate JWT and set cookie
-      await generateJwtAndSetCookie(newUser._id, res);
+      generateJwtAndSetCookie(newUser._id, res);
 
       /*
       ? Why passing res in generateJwtAndCookie(..., ...)
@@ -73,19 +73,59 @@ export const signupController = async (req, res) => {
       res.status(400).json({ error: "Invalid user data" });
     }
   } catch (err) {
-    console.error("Error in signup controller", err);
+    console.error("Error in signup controller", err); // this is for us developers to understand what error coming
     res.status(500).json({
-      error: "Internal Server Error",
+      error: "Internal Server Error", // this is for users to show someting internally happed
     });
   }
 };
 
 //signup
-export const loginController = (req, res) => {
-  console.log("login");
+export const loginController = async (req, res) => {
+  try {
+    // Form validation
+
+    // extract input
+    const { username, password } = req.body;
+
+    // check user exists or not
+    const user = await User.findOne({ username });
+
+    // check password match or not
+    const isPasswordCorrect = await bcrypt.compare(
+      password,
+      user?.password || ""
+    ); // return => boolean, if password not exists we assign blank string
+
+    // check credentials and return error
+    if (!user || !isPasswordCorrect) {
+      return res.status(400).json({ error: "Invalid username or password" });
+    }
+
+    // if credentials are correct the generate jwt and set cookie
+    generateJwtAndSetCookie(user._id, res);
+
+    res.status(200).json({
+      _id: user._id,
+      fullName: user.fullName,
+      username: user.username,
+      profileUrl: user.profileUrl,
+    });
+  } catch (err) {
+    console.log("Error in login controller", err); // this is for us developers to understand what error coming
+    res.status(500).json({
+      error: "Internal Server Error", // this is for users to show someting internally happed
+    });
+  }
 };
 
 //signup
 export const logoutController = (req, res) => {
-  console.log("logout");
+  try {
+    res.cookie("jwt", "", { maxAge: 0 }); // setting empty cookie,
+    res.status(200).json({ message: "Successfully Logout" });
+  } catch (err) {
+    console.log("Error at logout controller", err); // this is for us developers to understand what error coming
+    res.status(500).json({ error: "Internal Server Error" }); // this is for users to show someting internally happed
+  }
 };
