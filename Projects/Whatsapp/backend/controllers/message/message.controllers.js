@@ -37,8 +37,16 @@ export const sendMessageController = async (req, res) => {
       await conversation.messages.push(newMessage._id);
     };
 
-    await newMessage.save();
-    await conversation.save();
+    //TODO: Socket.io functunality come here
+     
+
+
+    // * this is lower way , means not run parellaly
+    // await newMessage.save(); // if it take 2s
+    // await conversation.save();// then this have to wait for 2s
+
+    //* parellal executing way
+    await Promise.all[ newMessage.save(), conversation.save() ];
 
     res.status(200).json({
         message: newMessage?.message,
