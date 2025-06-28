@@ -46,8 +46,7 @@ export const signupController = async (req, res) => {
     };
 
     if (newUser) {
-      //generate JWT and set cookie
-      generateJwtAndSetCookie(newUser._id, res);
+
 
       /*
       ? Why passing res in generateJwtAndCookie(..., ...)
@@ -63,7 +62,10 @@ export const signupController = async (req, res) => {
       */
 
       // add to DB
-      await User.create(newUser);
+     const user =  await User.create(newUser);
+
+      //generate JWT and set cookie
+      generateJwtAndSetCookie(user?._id, res);
 
       res.status(201).json({
         _id: newUser._id,
@@ -80,7 +82,7 @@ export const signupController = async (req, res) => {
   }
 };
 
-//signup
+//login
 export const loginController = async (req, res) => {
   try {
     // Form validation

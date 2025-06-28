@@ -10,7 +10,8 @@ import cookieParser from "cookie-parser";
 // modules import
 import connectToMongoDB from "./Database/DB.config.js";
 import authRoute from "./routes/auth.routes.js";
-import messageRoute from "./routes/message.routes.js"
+import messageRoute from "./routes/message.routes.js";
+import contactRoute from "./routes/contact.routes.js";
 
 // dont.env configuration
 dotenv.config();
@@ -45,6 +46,9 @@ app.use("/api/auth", authRoute);
 
 // for message
 app.use("/api/message", messageRoute);
+
+// for all contacts
+app.use("/api/contact/", contactRoute ) 
 
 
 app.listen(port, () => {
