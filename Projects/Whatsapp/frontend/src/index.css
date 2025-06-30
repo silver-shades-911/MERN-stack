@@ -1,9 +1,17 @@
-/* src/index.css */
+* {
+  /* border: 1px solid red; */
+}
+
+body {
+  overflow: hidden;
+}
+
 @import "tailwindcss";
-@plugin "daisyui";
+
 
 /*
   Add your custom global styles below this import.
   However, remember that Tailwind's utility-first approach generally discourages
   extensive custom CSS outside of its system.
 */
+
