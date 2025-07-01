@@ -2,7 +2,7 @@ import React from "react";
 
 const Signup = () => {
   return (
-    <div className="h-screen w-full flex flex-col pt-10 gap-y-8 md:px-4 container mx-auto">
+    <div className="h-auto w-full flex flex-col pt-10 gap-y-8 md:px-4 container mx-auto mb-10">
       {/* heading and img  */}
       <div className="flex flex-col items-center">
         <img src="2 leady talkings.svg" alt="" className="w-50  md:hidden" />

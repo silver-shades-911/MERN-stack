@@ -2,10 +2,10 @@ import React from "react";
 
 const Signup = () => {
   return (
-    <div className="h-screen w-full flex flex-col pt-10 gap-y-8 md:px-4 container mx-auto">
+    <div className="h-auto w-full flex flex-col pt-10 gap-y-8 md:px-4 container mx-auto mb-20">
       {/* heading and img  */}
       <div className="flex flex-col items-center">
-        <img src="2 leady talkings.svg" alt="" className="w-50  md:hidden" />
+        <img src="2 leady talkings.svg" alt="" className="w-70  md:hidden" />
         <h1 className="text-3xl text-black font-bold  md:hidden">Signup</h1>
         <h1 className="hidden text-3xl text-black font-bold lg:block">
           Welcome{" "}
