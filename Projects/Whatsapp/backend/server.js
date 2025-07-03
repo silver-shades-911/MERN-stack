@@ -32,7 +32,7 @@ app.use(cookieParser(process.env.SIGNED_COOKIE_SECRET_KEY)); // Secret required 
 
 // For cross-origin requests (important!)
 app.use(cors({
-  origin: 'http://localhost:5000',
+  origin: 'http://localhost:5173',
   credentials: true // allow cookies to be sent
 }));
 

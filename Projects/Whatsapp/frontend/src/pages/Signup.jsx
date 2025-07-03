@@ -1,6 +1,38 @@
-import React from "react";
+import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { signupUser } from "../features/auth/authAPI";
 
 const Signup = () => {
+  // dispatch
+  const dispatch = useDispatch();
+
+  // selector
+  const { loading, error, user } = useSelector((state) => state.auth);
+
+  // use state (local)
+  const [form, setForm] = useState({
+    fullName: "",
+    username: "",
+    password: "",
+    confirmPassword: "",
+    gender: "",
+  });
+
+  // handle local form
+  const handleLocalForm = (e) => {
+    e.preventDefault();
+    setForm((preState) => ({
+      ...preState,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  // handle form submit
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    dispatch(signupUser(form));
+  };
+
   return (
     <div className="h-auto w-full flex flex-col pt-10 gap-y-8 md:px-4 container mx-auto mb-20">
       {/* heading and img  */}
@@ -8,7 +40,7 @@ const Signup = () => {
         <img src="2 leady talkings.svg" alt="" className="w-70  md:hidden" />
         <h1 className="text-3xl text-black font-bold  md:hidden">Signup</h1>
         <h1 className="hidden text-3xl text-black font-bold lg:block">
-          Welcome{" "}
+          Welcome
         </h1>
       </div>
       {/* form */}
@@ -33,7 +65,10 @@ const Signup = () => {
         </div>
 
         {/* form  */}
-        <form className="flex flex-col gap-y-2 p-3 bg-gray-100 rounded-md md:w-1/2 md:bg-white lg:justify-center-safe lg:items-center-safe 2lg:w-1/4 lg:gap-y-3">
+        <form
+          onSubmit={handleFormSubmit}
+          className="flex flex-col gap-y-2 p-3 bg-gray-100 rounded-md md:w-1/2 md:bg-white lg:justify-center-safe lg:items-center-safe 2lg:w-1/4 lg:gap-y-3"
+        >
           <h1 className="hidden text-2xl text-black font-bold lg:block">
             Signup
           </h1>
@@ -44,7 +79,11 @@ const Signup = () => {
             <input
               type="text"
               className="input"
-              placeholder="Type fullname here"
+              placeholder="Type full name here"
+              onChange={handleLocalForm}
+              value={form.fullName}
+              name="fullName"
+              id="fullName"
             />
           </fieldset>
           <fieldset className="fieldset lg:w-3/4">
@@ -55,6 +94,9 @@ const Signup = () => {
               type="text"
               className="input"
               placeholder="Type username here"
+              name="username"
+              onChange={handleLocalForm}
+              value={form.username}
             />
           </fieldset>
           <fieldset className="fieldset lg:w-3/4">
@@ -65,6 +107,9 @@ const Signup = () => {
               type="password"
               className="input"
               placeholder="Create your password"
+              name="password"
+              onChange={handleLocalForm}
+              value={form.password}
             />
           </fieldset>
           <fieldset className="fieldset lg:w-3/4">
@@ -75,6 +120,9 @@ const Signup = () => {
               type="password"
               className="input"
               placeholder="Type password again"
+              name="confirmPassword"
+              onChange={handleLocalForm}
+              value={form.confirmPassword}
             />
           </fieldset>
           <div className="flex flex-col gap-y-1 lg:w-3/4">
@@ -85,11 +133,12 @@ const Signup = () => {
               <span className="flex gap-x-1 ">
                 <input
                   type="radio"
-                  name="radio-1"
+                  name="gender"
                   className="radio"
-                  defaultChecked
                   id="boy"
                   value="boy"
+                  checked={form.gender == "boy"}
+                  onChange={handleLocalForm}
                 />
                 <label htmlFor="boy" className="text-sm">
                   Men
@@ -99,10 +148,12 @@ const Signup = () => {
               <span className="flex gap-x-1">
                 <input
                   type="radio"
-                  name="radio-1"
+                  name="gender"
                   className="radio"
                   id="girl"
                   value="girl"
+                  checked={form.gender == "girl"}
+                  onChange={handleLocalForm}
                 />
                 <label htmlFor="girl" className="text-sm">
                   Women
@@ -128,7 +179,24 @@ const Signup = () => {
           {/* signup button in form for screen > lx   */}
 
           <div className="hidden lg:flex flex-col justify-center items-center gap-y-3 mt-5 lg:w-3/4">
-            <button className="  btn btn-soft bg-[#7161ef] text-white font-normal rounded-lg">
+            <button
+              type="submit"
+              className="  btn btn-soft bg-[#7161ef] text-white font-normal rounded-lg"
+            >
+              Signup
+            </button>
+            <p className="text-sm ">
+              Already have an accound?{" "}
+              <a className="link link-primary">Login</a>
+            </p>
+          </div>
+
+          {/* buttons */}
+          <div className="flex flex-col justify-center items-center gap-y-3 mt-5 lg:hidden">
+            <button
+              type="submit"
+              className="  btn btn-soft bg-[#7161ef] text-white text-xl font-normal rounded-xl"
+            >
               Signup
             </button>
             <p className="text-sm ">
@@ -137,15 +205,6 @@ const Signup = () => {
             </p>
           </div>
         </form>
-      </div>
-      {/* buttons */}
-      <div className="flex flex-col justify-center items-center gap-y-3 mt-5 lg:hidden">
-        <button className="  btn btn-soft bg-[#7161ef] text-white text-xl font-normal rounded-xl">
-          Signup
-        </button>
-        <p className="text-sm ">
-          Already have an accound? <a className="link link-primary">Login</a>
-        </p>
       </div>
     </div>
   );

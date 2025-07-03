@@ -2,7 +2,7 @@ import { MdOutlineArrowBackIos } from "react-icons/md";
 
 const Profile = () => {
   return (
-    <div className=" container h-auto flex flex-col mb-10">
+    <div className=" h-auto flex flex-col mb-10">
       {/* Navbar */}
       <nav className="relative w-full h-14 bg-[#957FEF] flex">
         {/* go back icon */}
@@ -17,7 +17,7 @@ const Profile = () => {
       </nav>
 
       {/* info container */}
-      <div className="flex flex-col gap-y-5 container mx-auto">
+      <div className="flex flex-col gap-y-5 container mx-auto lg:w-1/2">
         {/* profile pic and name & username  */}
         <div className="px-5">
           <div className="flex justify-center items-end  translate-y-1/3">

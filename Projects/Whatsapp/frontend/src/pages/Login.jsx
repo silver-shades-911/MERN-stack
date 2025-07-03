@@ -1,6 +1,19 @@
-import React from "react";
+import { useState } from "react";
 
 const Signup = () => {
+  const [form, setForm] = useState({
+    username: "",
+    password: "",
+  });
+
+  //
+  const handleLocalForm = (e) => {
+    setForm((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
   return (
     <div className="h-auto w-full flex flex-col pt-10 gap-y-8 md:px-4 container mx-auto mb-10">
       {/* heading and img  */}
@@ -45,6 +58,9 @@ const Signup = () => {
               type="text"
               className="input"
               placeholder="Type username here"
+              onChange={handleLocalForm}
+              value={form.username}
+              name="username"
             />
           </fieldset>
           <fieldset className="fieldset lg:w-3/4">
@@ -55,6 +71,9 @@ const Signup = () => {
               type="password"
               className="input"
               placeholder="Create your password"
+              onChange={handleLocalForm}
+              value={form.password}
+              name="password"
             />
           </fieldset>
 
