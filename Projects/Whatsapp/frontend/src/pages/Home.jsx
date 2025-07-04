@@ -17,7 +17,7 @@ const Home = () => {
     dispatch(getContacts());
   }, []);
 
-  console.log("Test contacts =>", contacts);
+  // console.log("Test contacts =>", contacts);
 
   return (
     <div className="h-[100dvh] flex flex-col overflow-hidden">

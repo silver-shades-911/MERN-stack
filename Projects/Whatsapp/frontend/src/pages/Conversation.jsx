@@ -3,17 +3,24 @@ import { BiDotsVerticalRounded } from "react-icons/bi";
 import { BsFillSendFill } from "react-icons/bs";
 import { useEffect, useRef, useState } from "react";
 import Home from "./Home";
+import { useSelector, useDispatch } from "react-redux";
+import { sendMessage } from "../features/conversation/conversationAPI.js";
 
 const Conversation = () => {
-  //
+  // dispatch
+  const dispatch = useDispatch();
+
+  // use selector
+  const { messages } = useSelector((state) => state.conversation);
+  console.log(" messages at conversation.jsx =>", messages);
+
+  // local
   const [newMessage, setNewMessage] = useState("");
 
   // handle new message form local
   const handleNewMessageLocal = (e) => {
-    setNewMessage((preState) => ({
-      ...preState,
-      [e.target.name]: e.target.value,
-    }));
+    e.preventDefault();
+    setNewMessage(e.target.value);
   };
 
   const bottomBlankSpace = useRef(null);
@@ -22,6 +29,13 @@ const Conversation = () => {
   useEffect(() => {
     bottomBlankSpace.current?.scrollIntoView({ behavior: "smooth" });
   }, []);
+
+  // handleSendMessageGlobal
+
+  const handleSendMessageGlobal = (e) => {
+    e.preventDefault();
+    dispatch(sendMessage(newMessage));
+  };
 
   return (
     <div className="flex-none lg:flex w-full gap-x-5">
@@ -153,7 +167,10 @@ const Conversation = () => {
         </div>
 
         {/* typing section / input bar  */}
-        <div className="h-20 flex justify-center items-center px-3 ">
+        <form
+          onSubmit={handleSendMessageGlobal}
+          className="h-20 flex justify-center items-center px-3 "
+        >
           <input
             type="text"
             placeholder="Enter Message"
@@ -162,10 +179,13 @@ const Conversation = () => {
             onChange={handleNewMessageLocal}
             value={newMessage}
           />
-          <button className="btn rounded-e-full rounded-s-none h-13 bg-gray-100 border-0 outline-0 ">
+          <button
+            type="submit"
+            className="btn rounded-e-full rounded-s-none h-13 bg-gray-100 border-0 outline-0 "
+          >
             <BsFillSendFill size={23} color={"#7161ef"} />
           </button>
-        </div>
+        </form>
       </div>
     </div>
   );

@@ -1,13 +1,46 @@
-import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  selectConversation,
+  cleanUp,
+} from "../features/conversation/conversationSlice.js";
+import { useEffect } from "react";
 
 const ContactCard = ({ user }) => {
+  // console.log("user at contact card => ", user);
 
+  // dispatch
+  const dispatch = useDispatch();
 
+  // selector
+  const { selectedConversation, messages } = useSelector(
+    (state) => state.conversation
+  );
 
+  // console.log("selectedConversation =>", selectedConversation);
 
-  
+  // isSelected switch
+  const isSelected = user?._id === selectedConversation?._id;
+
+  // console.log("isSelected =>", isSelected);
+
+  // handle Select Conversation
+  const handleSelectConversation = () => {
+    console.log("i am click");
+    dispatch(selectConversation(user));
+  };
+
+  // clean up
+  useEffect(() => {
+    dispatch(cleanUp());
+  }, []);
+
   return (
-    <div className="w-full flex gap-x-3 p-2 rounded-xl bg-gray-50">
+    <div
+      className={`w-full flex gap-x-3 p-2 rounded-xl hover:bg-[#7161ef]  ${
+        isSelected ? "bg-[#7161ef]" : "bg-gray-50"
+      }`}
+      onClick={handleSelectConversation}
+    >
       {/* img section  */}
       <div className="flex justify-center items-center">
         <img

@@ -90,7 +90,7 @@ export const loginUser = createAsyncThunk(
       if (!res.ok) {
         const data = await res.json();
         console.log("data at thunk (if failed) => ", data);
-        return thunkAPI.rejectWithValue({ email, password }); // error case
+        return thunkAPI.rejectWithValue({ username, password }); // error case
       }
 
       const userData = await res.json();
