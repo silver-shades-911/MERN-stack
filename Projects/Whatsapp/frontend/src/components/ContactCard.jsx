@@ -1,13 +1,18 @@
 import React from "react";
 
-const ContactCard = () => {
+const ContactCard = ({ user }) => {
+
+
+
+
+  
   return (
     <div className="w-full flex gap-x-3 p-2 rounded-xl bg-gray-50">
       {/* img section  */}
       <div className="flex justify-center items-center">
         <img
-          src="https://avatar.iran.liara.run/public"
-          alt=""
+          src={`${user.profileUrl}`}
+          alt={`${user.fullName}`}
           className="w-15"
         />
       </div>
@@ -16,8 +21,8 @@ const ContactCard = () => {
       <div className="flex flex-col w-full">
         {/* upper name and time part  */}
         <div className="flex justify-between pr-2">
-          <div className="text-md font-medium"> Zoya Lawrences</div>
-          <div className="text-xs text-gray-900 flex items-center"> 11:30 </div>
+          <div className="text-md font-medium">{user.fullName}</div>
+          <div className="text-xs text-gray-900 flex items-center">11:00</div>
         </div>
 
         {/* last message part  */}

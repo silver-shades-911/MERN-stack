@@ -17,7 +17,7 @@ const Home = () => {
     dispatch(getContacts());
   }, []);
 
-  console.log("contacts =>", contacts);
+  console.log("Test contacts =>", contacts);
 
   return (
     <div className="h-[100dvh] flex flex-col overflow-hidden">
@@ -44,7 +44,9 @@ const Home = () => {
 
       {/* contacts lists area outer layer with fixed size  */}
       <div className="flex-1 flex flex-col px-5 gap-y-1 overflow-auto">
-        <ContactCard />
+        {contacts.map((contact) => {
+          return <ContactCard user={contact} key={`${contact._id}`}/>;
+        })}
       </div>
     </div>
   );

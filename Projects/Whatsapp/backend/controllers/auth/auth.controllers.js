@@ -34,7 +34,7 @@ export const signupController = async (req, res) => {
     const hash = await bcrypt.hash(password, salt);
 
     // profile picture
-    const profileUrl = `https://avatar.iran.liara.run/public/${gender}/username=${username}`;
+    const profileUrl = `https://avatar.iran.liara.run/public/${gender}?username=${username}`;
 
     // new user
     let newUser = {
