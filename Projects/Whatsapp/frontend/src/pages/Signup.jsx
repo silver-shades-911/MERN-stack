@@ -6,8 +6,10 @@ const Signup = () => {
   // dispatch
   const dispatch = useDispatch();
 
-  // selector
+  // useSelector
   const { loading, error, user } = useSelector((state) => state.auth);
+
+  console.log("Test Data Signup => ", error, user);
 
   // use state (local)
   const [form, setForm] = useState({

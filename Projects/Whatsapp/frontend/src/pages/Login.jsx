@@ -1,6 +1,17 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser } from "../features/auth/authAPI.js";
 
-const Signup = () => {
+const Login = () => {
+  // dispatch
+  const dispatch = useDispatch();
+
+  // useSelector
+  const { loading, error, user } = useSelector((state) => state.auth);
+
+  console.log("Test Data Login => ",error, user);
+
+  // local state variable
   const [form, setForm] = useState({
     username: "",
     password: "",
@@ -8,10 +19,17 @@ const Signup = () => {
 
   //
   const handleLocalForm = (e) => {
+    e.preventDefault();
     setForm((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
     }));
+  };
+
+  // handle from submit to global state
+  const handleFormSubmitGlobal = (e) => {
+    e.preventDefault();
+    dispatch(loginUser(form));
   };
 
   return (
@@ -46,7 +64,10 @@ const Signup = () => {
         </div>
 
         {/* form  */}
-        <form className="flex flex-col gap-y-2 p-3 bg-gray-100 rounded-md md:w-1/2 md:bg-white lg:justify-center-safe lg:items-center-safe 2lg:w-1/4 lg:gap-y-3">
+        <form
+          onSubmit={handleFormSubmitGlobal}
+          className="flex flex-col gap-y-2 p-3 bg-gray-100 rounded-md md:w-1/2 md:bg-white lg:justify-center-safe lg:items-center-safe 2lg:w-1/4 lg:gap-y-3"
+        >
           <h1 className="hidden text-2xl text-black font-bold lg:block">
             Login
           </h1>
@@ -80,7 +101,24 @@ const Signup = () => {
           {/* signup button in form for screen > lx   */}
 
           <div className="hidden lg:flex flex-col justify-center items-center gap-y-3 mt-5 lg:w-3/4">
-            <button className="  btn btn-soft bg-[#7161ef] text-white font-normal rounded-lg">
+            <button
+              type="submit"
+              className="  btn btn-soft bg-[#7161ef] text-white font-normal rounded-lg"
+            >
+              Login
+            </button>
+            <p className="text-sm ">
+              New here, Want to create account?{" "}
+              <a className="link link-primary">Signup</a>
+            </p>
+          </div>
+
+          {/* buttons */}
+          <div className="flex flex-col justify-center items-center gap-y-3 mt-5 lg:hidden">
+            <button
+              type="submit"
+              className="  btn btn-soft bg-[#7161ef] text-white text-xl font-normal rounded-xl"
+            >
               Login
             </button>
             <p className="text-sm ">
@@ -90,18 +128,8 @@ const Signup = () => {
           </div>
         </form>
       </div>
-      {/* buttons */}
-      <div className="flex flex-col justify-center items-center gap-y-3 mt-5 lg:hidden">
-        <button className="  btn btn-soft bg-[#7161ef] text-white text-xl font-normal rounded-xl">
-          Login
-        </button>
-        <p className="text-sm ">
-          New here, Want to create account?{" "}
-          <a className="link link-primary">Signup</a>
-        </p>
-      </div>
     </div>
   );
 };
 
-export default Signup;
+export default Login;

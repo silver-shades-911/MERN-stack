@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { signupUser } from "./authAPI.js";
+import { signupUser, loginUser } from "./authAPI.js";
 import { act } from "react";
 
 const initialState = {
@@ -17,7 +17,7 @@ export const authSlice = createSlice({
     },
   },
 
-  // connect thunk to redux state
+  // connect signup & login thunk to redux state
   extraReducers: (builder) => {
     builder
       .addCase(signupUser.pending, (state) => {
@@ -26,9 +26,23 @@ export const authSlice = createSlice({
       })
       .addCase(signupUser.fulfilled, (state, action) => {
         state.loading = false;
+        console.log("action at slice => ", action);
+        console.log("action.payload at slice => ", action.payload);
         state.user = action.payload;
       })
       .addCase(signupUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action;
+      })
+      .addCase(loginUser.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(loginUser.fulfilled, (state, action) => {
+        state.loading = false;
+        state.user = action.payload;
+      })
+      .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action;
       });

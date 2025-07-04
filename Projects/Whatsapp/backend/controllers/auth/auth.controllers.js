@@ -46,8 +46,6 @@ export const signupController = async (req, res) => {
     };
 
     if (newUser) {
-
-
       /*
       ? Why passing res in generateJwtAndCookie(..., ...)
 
@@ -62,7 +60,7 @@ export const signupController = async (req, res) => {
       */
 
       // add to DB
-     const user =  await User.create(newUser);
+      const user = await User.create(newUser);
 
       //generate JWT and set cookie
       generateJwtAndSetCookie(user?._id, res);
@@ -105,7 +103,9 @@ export const loginController = async (req, res) => {
     }
 
     // if credentials are correct the generate jwt and set cookie
-    generateJwtAndSetCookie(user._id, res);
+    generateJwtAndSetCookie(user?._id, res);
+
+    console.log("Reach to login controller");
 
     res.status(200).json({
       _id: user._id,
@@ -125,6 +125,7 @@ export const loginController = async (req, res) => {
 export const logoutController = (req, res) => {
   try {
     res.cookie("jwt", "", { maxAge: 0 }); // setting empty cookie,
+    console.log("Reach to logout controller");
     res.status(200).json({ message: "Successfully Logout" });
   } catch (err) {
     console.log("Error at logout controller", err); // this is for us developers to understand what error coming
