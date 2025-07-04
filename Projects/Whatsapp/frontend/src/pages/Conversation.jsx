@@ -11,8 +11,11 @@ const Conversation = () => {
   const dispatch = useDispatch();
 
   // use selector
-  const { messages } = useSelector((state) => state.conversation);
+  const { messages, selectedConversation } = useSelector(
+    (state) => state.conversation
+  );
   console.log(" messages at conversation.jsx =>", messages);
+  console.log(" selectedConversation =>", selectedConversation);
 
   // local
   const [newMessage, setNewMessage] = useState("");
@@ -61,9 +64,9 @@ const Conversation = () => {
             <div className="flex flex-col justify-center items-center gap-y-2 mt-5">
               <img
                 className="mask mask-circle w-20"
-                src="https://img.daisyui.com/images/stock/photo-1567653418876-5bb0e566e1c2.webp"
+                src={`${selectedConversation?.profileUrl}`}
               />
-              <p className="font-medium">Zoya Lorenwz</p>
+              <p className="font-medium">{selectedConversation?.fullName}</p>
             </div>
 
             {/* chat bubles containing container  */}
