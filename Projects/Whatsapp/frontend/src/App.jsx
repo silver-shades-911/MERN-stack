@@ -5,8 +5,19 @@ import Home from "./pages/Home";
 import Conversation from "./pages/Conversation";
 import Profile from "./pages/Profile";
 import MainLayout from "./layout/MainLayout";
+import { useDispatch } from "react-redux";
+import { fetchCurrentUser } from "./features/auth/authAPI";
+import { useEffect } from "react";
 
 function App() {
+  // dispatch
+  const dispatch = useDispatch();
+
+  // useEffect for fetch current user
+  useEffect(() => {
+    dispatch(fetchCurrentUser()); // this current user data we need for frontend to display and conditional rendering
+  }, []);
+
   return (
     <>
       <Routes>

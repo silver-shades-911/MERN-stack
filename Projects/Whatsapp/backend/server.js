@@ -13,6 +13,7 @@ import authRoute from "./routes/auth.routes.js";
 import messageRoute from "./routes/message.routes.js";
 import contactRoute from "./routes/contact.routes.js";
 
+
 // dont.env configuration
 dotenv.config();
 
@@ -49,6 +50,7 @@ app.use("/api/message", messageRoute);
 
 // for all contacts
 app.use("/api/contact/", contactRoute ) 
+
 
 
 app.listen(port, () => {

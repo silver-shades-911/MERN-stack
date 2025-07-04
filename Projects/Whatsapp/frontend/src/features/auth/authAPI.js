@@ -81,7 +81,7 @@ export const loginUser = createAsyncThunk(
       console.log("reach login thunk");
       const res = await fetch("http://localhost:5000/api/auth/login", {
         method: "POST",
-         headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json" },
         credentials: "include",
         body: JSON.stringify({ username, password }),
       });
@@ -96,6 +96,29 @@ export const loginUser = createAsyncThunk(
       const userData = await res.json();
       console.log("data at thunk => ", userData);
       return userData; // this is becomes payload
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+// fetch current user thunk
+
+export const fetchCurrentUser = createAsyncThunk(
+  "auth/fetchCurrentUser",
+  async (_, thunkAPI) => {
+    try {
+      const res = await fetch("http://localhost:5000/api/auth/me", {
+        credentials: "include", // send the cookie and set cookie even page reloads and navigate (in same domain)
+      });
+
+      if (!res.ok) {
+        const data = await res.json();
+        return thunkAPI.rejectWithValue(data.message);
+      }
+
+      const user = await res.json();
+      return user;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

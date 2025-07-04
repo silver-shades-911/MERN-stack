@@ -1,10 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import { IoIosSearch } from "react-icons/io";
 import { IoSearch } from "react-icons/io5";
 import ContactCard from "../components/ContactCard";
+import { getContacts } from "../features/contacts/contactAPI.js";
+import { useSelector, useDispatch } from "react-redux";
 
 const Home = () => {
+  // dispatch
+  const dispatch = useDispatch();
+
+  // useSelector
+  const { contacts, loading, error } = useSelector((state) => state.contacts);
+
+  useEffect(() => {
+    dispatch(getContacts());
+  }, []);
+
+  console.log("contacts =>", contacts);
+
   return (
     <div className="h-[100dvh] flex flex-col overflow-hidden">
       {/* navbar and heading and options  */}
@@ -30,21 +44,6 @@ const Home = () => {
 
       {/* contacts lists area outer layer with fixed size  */}
       <div className="flex-1 flex flex-col px-5 gap-y-1 overflow-auto">
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
         <ContactCard />
       </div>
     </div>

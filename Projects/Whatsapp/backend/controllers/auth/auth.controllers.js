@@ -121,7 +121,7 @@ export const loginController = async (req, res) => {
   }
 };
 
-//signup
+//logout
 export const logoutController = (req, res) => {
   try {
     res.cookie("jwt", "", { maxAge: 0 }); // setting empty cookie,
@@ -132,3 +132,17 @@ export const logoutController = (req, res) => {
     res.status(500).json({ error: "Internal Server Error" }); // this is for users to show someting internally happed
   }
 };
+
+
+// me
+export const meController = async (req, res) => {
+ try {
+    console.log("Hi i am in meController")
+    // console.log("me controller req =>", req);
+    res.json(req.user);
+
+ } catch (error) {
+    console.log("Error at meController", error.message);
+    res.status(500).json({error: "Internal Server Error"});
+ }
+} 

@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { signupUser, loginUser } from "./authAPI.js";
+import { signupUser, loginUser, fetchCurrentUser } from "./authAPI.js";
 import { act } from "react";
 
 const initialState = {
-  user: JSON.parse(localStorage.getItem("user")) || null,
+  user: null,
   loading: false,
   error: null,
 };
@@ -32,7 +32,7 @@ export const authSlice = createSlice({
       })
       .addCase(signupUser.rejected, (state, action) => {
         state.loading = false;
-        state.error = action;
+        state.error = action.payload;
       })
       .addCase(loginUser.pending, (state) => {
         state.loading = true;
@@ -44,9 +44,23 @@ export const authSlice = createSlice({
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;
-        state.error = action;
+        state.error = action.payload;
+      })
+      .addCase(fetchCurrentUser.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchCurrentUser.fulfilled, (state, action) => {
+        state.loading = false;
+        state.user = action.payload;
+      })
+      .addCase(fetchCurrentUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+        state.user = null;
       });
   },
 });
 
+export const { logout } = authSlice.actions;
 export default authSlice.reducer;
