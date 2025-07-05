@@ -28,10 +28,17 @@ function App() {
         </Route>
 
         <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login"  element={<Login />} />
       </Routes>
     </>
   );
 }
 
 export default App;
+
+
+// ⚠️ Cookie Limitation Note:
+// Browsers share cookies across tabs/windows for the same origin.
+// So if you log in with two different users in two tabs of the same browser,
+// the latest login will overwrite the previous session (since JWT is stored in a shared cookie).
+// ✅ Use different browsers, Incognito mode, or Chrome profiles for multi-user testing.

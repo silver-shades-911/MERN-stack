@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { sendMessage } from "./conversationAPI.js";
+import { sendMessage, getMessages } from "./conversationAPI.js";
 
 const initialState = {
   selectedConversation: {},
@@ -29,10 +29,23 @@ export const conversationSlice = createSlice({
       })
       .addCase(sendMessage.fulfilled, (state, action) => {
         state.loading = false;
-        console.log("action.payload at conversation Slice =>", action.payload);
-        state.messages.push(action.payload);
+        // ❌ DO NOT modify state.messages here
+        // ✅ Let component dispatch getMessages after this
       })
       .addCase(sendMessage.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(getMessages.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getMessages.fulfilled, (state, action) => {
+        state.loading = false;
+        console.log("action.payload at conversation Slice =>", action.payload);
+        state.messages = action.payload; // ✅ full message array from backend
+      })
+      .addCase(getMessages.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });
@@ -43,3 +56,13 @@ export const conversationSlice = createSlice({
 export const { selectConversation, cleanUp } = conversationSlice.actions;
 
 export default conversationSlice.reducer;
+
+/*
+🎯 Goal:
+We want:
+
+ getMessages to fully set messages array with fresh data from the server.
+ sendMessage to not mutate messages directly (no push).
+ Instead, refetch messages after sending (which you're already doing in component).
+
+*/

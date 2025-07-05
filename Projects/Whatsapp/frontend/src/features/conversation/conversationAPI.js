@@ -13,7 +13,7 @@ export const sendMessage = createAsyncThunk(
       const selectedConversation = state.conversation.selectedConversation;
 
       console.log(
-        "other user id at send Message Thunk => ",
+        "other user id at sendMessage thunk => ",
         selectedConversation._id
       );
 
@@ -37,6 +37,48 @@ export const sendMessage = createAsyncThunk(
       const result = await res.json();
       console.log("res data at sendMessage thunk =>", result);
       return result; // ✅ return this so it's received as `action.payload`
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+// get messages thunk
+
+export const getMessages = createAsyncThunk(
+  "conversation/getMessages",
+  async (_, thunkAPI) => {
+    try {
+      console.log("I am in getMessages thunk");
+
+      // accessing Reduc state
+      const state = thunkAPI.getState();
+      const selectedConversation = state.conversation.selectedConversation;
+
+      console.log(
+        "other use id at getMessages thunk =>",
+        selectedConversation._id
+      );
+
+      // hit request to end point
+      const res = await fetch(
+        `http://localhost:5000/api/message/${selectedConversation._id}`,
+        {
+          method: "GET",
+          credentials: "include",
+        }
+      );
+
+      //checking
+      if (!res.ok) {
+        const data = await res.json();
+        console.log(" data (messages) at getMessages (if failed) =>", data);
+        return thunkAPI.rejectWithValue("Cannot get messages");
+      }
+      
+      const result = await res.json();
+      console.log("🟩 FULL response from /getMessages API:", result);
+      return result;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
