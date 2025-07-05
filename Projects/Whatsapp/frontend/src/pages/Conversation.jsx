@@ -124,7 +124,7 @@ const Conversation = () => {
                       <MessageBubble message={msg} key={msg._id} />
                     ))
                   ) : (
-                    <p> Send Message to Start conversation </p>
+                    <p className="text-center"> Send Message to Start conversation </p>
                   )}
                   <div className="h-15" ref={bottomBlankSpace}></div>
                 </div>
